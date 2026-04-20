@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#e50914">
+<title>🌍 Global Tier List</title>
+<style>
+:root {
+  --bg: #0a0a0a;
+  --surface: #141414;
+  --surface2: #1e1e1e;
+  --surface3: #282828;
+  --border: #2a2a2a;
+  --border2: #3a3a3a;
+  --text: #f0f0f0;
+  --text-muted: #777;
+  --text-dim: #444;
+  --accent: #e50914;
+  --accent2: #f5c518;
+  --success: #22c55e;
+  --radius: 14px;
+  --radius-sm: 8px;
+  --shadow: 0 8px 32px rgba(0,0,0,0.6);
+  --tier-s: #ff4655;
+  --tier-a: #ff8c00;
+  --tier-b: #ffd700;
+  --tier-c: #22c55e;
+  --tier-d: #3b82f6;
+  --tier-f: #a855f7;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══════════════════════════════════════
+   LOADING
+══════════════════════════════════════ */
+#loadingScreen {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  gap: 22px;
+  transition: opacity 0.4s ease;
+}
+
+#loadingScreen.hidden { opacity: 0; pointer-events: none; }
+
+.load-emoji { font-size: 3.8rem; animation: floatUp 1.4s ease-in-out infinite; }
+
+@keyframes floatUp {
+  0%,100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-14px) scale(1.06); }
+}
+
+.load-ring {
+  width: 42px; height: 42px;
+  border: 3px solid var(--border2);
+  border-top-color: var(--accent2);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.load-label {
+  font-size: 0.8rem; color: var(--text-muted);
+  animation: breathe 2s ease-in-out infinite;
+}
+
+@keyframes breathe { 0%,100% { opacity:0.4; } 50% { opacity:1; } }
+
+/* ══════════════════════════════════════
+   HEADER
+══════════════════════════════════════ */
+header {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(10,10,10,0.96);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 16px;
+}
+
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.brand-name {
+  font-size: 1.1rem; font-weight: 800; letter-spacing: -0.4px;
+}
+
+.brand-name em { color: var(--accent); font-style: normal; }
+
+.brand-sub {
+  font-size: 0.58rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.5px; margin-top: 3px; font-weight: 600;
+}
+
+.header-right { display: flex; align-items: center; gap: 7px; }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 5px 10px; border-radius: 20px;
+  font-size: 0.63rem; font-weight: 700; border: 1px solid;
+}
+
+.pill.green { background: rgba(34,197,94,0.12); color: var(--success); border-color: rgba(34,197,94,0.3); }
+.pill.yellow { background: rgba(245,197,24,0.12); color: var(--accent2); border-color: rgba(245,197,24,0.3); }
+.pill.red { background: rgba(229,9,20,0.12); color: var(--accent); border-color: rgba(229,9,20,0.3); }
+
+.pill-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.pill.green .pill-dot { animation: pulse-dot 2s ease-in-out infinite; }
+.pill.yellow .pill-dot { animation: blink-dot 0.8s ease-in-out infinite; }
+
+@keyframes pulse-dot { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+@keyframes blink-dot { 0%,100%{opacity:1;} 50%{opacity:0.2;} }
+
+.refresh-btn {
+  background: var(--surface2); border: 1px solid var(--border2);
+  color: var(--text-muted); border-radius: 50%;
+  width: 32px; height: 32px; display: flex; align-items: center;
+  justify-content: center; cursor: pointer; font-size: 0.95rem; transition: all 0.2s;
+}
+
+.refresh-btn:active { transform: rotate(180deg) scale(0.9); }
+
+/* ══════════════════════════════════════
+   CATEGORY TABS
+══════════════════════════════════════ */
+.cat-tabs {
+  display: flex; gap: 0;
+  margin: 12px 16px 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 4px;
+  overflow: hidden;
+}
+
+.cat-tab {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 2px; padding: 8px 4px;
+  border: none; background: transparent;
+  color: var(--text-muted); cursor: pointer;
+  border-radius: 50px; transition: all 0.25s ease;
+  font-size: 0.6rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.3px;
+}
+
+.cat-tab .tab-icon { font-size: 1.1rem; }
+
+.cat-tab.active {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 2px 12px rgba(229,9,20,0.4);
+}
+
+/* ══════════════════════════════════════
+   LIVE BANNER
+══════════════════════════════════════ */
+.live-banner {
+  margin: 12px 16px 0;
+  background: linear-gradient(135deg, rgba(245,197,24,0.08), rgba(229,9,20,0.05));
+  border: 1px solid rgba(245,197,24,0.18);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  display: flex; align-items: center; gap: 10px;
+}
+
+.live-icon { font-size: 1.3rem; }
+
+.live-title { font-size: 0.72rem; font-weight: 700; color: var(--accent2); }
+.live-sub { font-size: 0.62rem; color: var(--text-muted); margin-top: 1px; }
+
+/* ══════════════════════════════════════
+   STATS
+══════════════════════════════════════ */
+.stats-row {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 8px; padding: 12px 16px 0;
+}
+
+.stat-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 10px; text-align: center;
+  position: relative; overflow: hidden;
+}
+
+.stat-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+}
+
+.stat-card.c1::before { background: var(--accent2); }
+.stat-card.c2::before { background: var(--tier-s); }
+.stat-card.c3::before { background: var(--success); }
+
+.stat-num { font-size: 1.3rem; font-weight: 900; color: var(--accent2); line-height: 1; display: block; }
+.stat-lbl { font-size: 0.57rem; color: var(--text-muted); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+
+/* ══════════════════════════════════════
+   SEARCH
+══════════════════════════════════════ */
+.search-wrap { padding: 14px 16px 0; }
+
+.search-box {
+  display: flex; gap: 8px;
+  background: var(--surface); border: 1px solid var(--border2);
+  border-radius: 50px; padding: 6px 6px 6px 16px;
+  transition: border-color 0.2s;
+}
+
+.search-box:focus-within { border-color: var(--accent); }
+
+.search-box input {
+  flex: 1; background: transparent; border: none; outline: none;
+  color: var(--text); font-size: 0.85rem; min-width: 0;
+}
+
+.search-box input::placeholder { color: var(--text-dim); }
+
+.search-go {
+  background: var(--accent); border: none; border-radius: 50px;
+  color: white; padding: 8px 18px; font-size: 0.8rem;
+  font-weight: 700; cursor: pointer; flex-shrink: 0; transition: opacity 0.2s;
+}
+
+.search-go:active { opacity: 0.8; }
+
+.spinner {
+  display: none; width: 20px; height: 20px;
+  border: 2px solid var(--border2); border-top-color: var(--accent);
+  border-radius: 50%; animation: spin 0.6s linear infinite;
+  margin: 14px auto 0;
+}
+
+.spinner.on { display: block; }
+
+.err-box {
+  background: rgba(229,9,20,0.1); border: 1px solid rgba(229,9,20,0.3);
+  border-radius: var(--radius-sm); color: #ff6b6b;
+  padding: 9px 13px; font-size: 0.73rem;
+  margin: 10px 16px 0; display: none; line-height: 1.5;
+}
+
+.err-box.on { display: block; }
+
+/* ══════════════════════════════════════
+   RESULTS
+══════════════════════════════════════ */
+.section-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px 6px;
+}
+
+.sec-label { font-size: 0.65rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; }
+.sec-count { font-size: 0.65rem; font-weight: 700; color: var(--accent2); }
+
+.results-scroll {
+  display: flex; gap: 10px; overflow-x: auto;
+  padding: 4px 16px 16px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  min-height: 175px; scrollbar-width: none;
+}
+
+.results-scroll::-webkit-scrollbar { display: none; }
+
+.results-scroll:empty::after {
+  content: 'Search to find content to rank 🔍';
+  color: var(--text-dim); font-size: 0.78rem;
+  white-space: nowrap; align-self: center; margin: auto;
+}
+
+/* Pages */
+.pages { display: flex; gap: 6px; padding: 0 16px 4px; justify-content: center; }
+
+.pg-btn {
+  background: var(--surface2); border: 1px solid var(--border2);
+  color: var(--text-muted); border-radius: 20px;
+  padding: 6px 14px; font-size: 0.72rem; cursor: pointer; font-weight: 600; transition: all 0.2s;
+}
+
+.pg-btn.cur { background: var(--accent); border-color: var(--accent); color: white; }
+.pg-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.pg-btn:not(:disabled):active { transform: scale(0.95); }
+
+/* ══════════════════════════════════════
+   MEDIA CARD
+══════════════════════════════════════ */
+.mcard {
+  flex-shrink: 0; width: 100px; scroll-snap-align: start;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 10px; overflow: hidden; cursor: grab;
+  position: relative; user-select: none; -webkit-user-select: none;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.mcard:active { cursor: grabbing; }
+
+.mcard img {
+  width: 100%; height: 132px; object-fit: cover; display: block;
+  background: var(--surface3); pointer-events: none;
+}
+
+.mcard-body { padding: 6px 6px 7px; }
+
+.mcard-title {
+  font-size: 0.63rem; font-weight: 600; line-height: 1.3;
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden; word-break: break-word;
+}
+
+.mcard-meta { font-size: 0.57rem; color: var(--text-muted); margin-top: 2px; }
+
+.mcard-badge {
+  position: absolute; top: 5px; right: 5px;
+  background: rgba(0,0,0,0.88); border-radius: 5px;
+  padding: 2px 5px; font-size: 0.54rem; font-weight: 700;
+  color: var(--accent2); backdrop-filter: blur(6px);
+}
+
+/* Category tag on card */
+.mcard-cat {
+  position: absolute; bottom: 34px; left: 0; right: 0;
+  text-align: center; font-size: 0.5rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.4px;
+  padding: 2px 4px;
+}
+
+.mcard-cat.movies { background: rgba(229,9,20,0.85); color: white; }
+.mcard-cat.tv { background: rgba(59,130,246,0.85); color: white; }
+.mcard-cat.anime { background: rgba(168,85,247,0.85); color: white; }
+.mcard-cat.actors { background: rgba(245,197,24,0.85); color: black; }
+
+.mcard-remove {
+  position: absolute; top: 5px; left: 5px;
+  background: var(--accent); border: none; border-radius: 50%;
+  width: 20px; height: 20px; color: white; font-size: 0.65rem;
+  cursor: pointer; display: none; align-items: center; justify-content: center;
+  z-index: 10; box-shadow: 0 2px 8px rgba(0,0,0,0.5); transition: transform 0.12s;
+}
+
+.mcard-remove:active { transform: scale(0.88); }
+
+.tier-zone .mcard { width: 80px; }
+.tier-zone .mcard img { height: 106px; }
+.tier-zone .mcard .mcard-remove { display: flex; }
+
+.no-img {
+  width: 100%; height: 132px; background: var(--surface3);
+  display: flex; align-items: center; justify-content: center; font-size: 2rem;
+}
+
+.tier-zone .no-img { height: 106px; }
+
+/* Person card (actors) — square portrait */
+.mcard.person img { height: 110px; object-fit: cover; object-position: top; }
+.tier-zone .mcard.person img { height: 90px; }
+.no-img.person { height: 110px; font-size: 2.5rem; }
+.tier-zone .no-img.person { height: 90px; }
+
+/* ══════════════════════════════════════
+   TIER LIST
+══════════════════════════════════════ */
+.tiers-wrap { padding: 0 16px 28px; }
+
+.tiers-heading {
+  font-size: 0.65rem; font-weight: 700; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.8px;
+  margin-bottom: 10px; padding-top: 4px;
+}
+
+.tier-block {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  margin-bottom: 10px; transition: border-color 0.2s;
+}
+
+.tier-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 9px 12px; background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+}
+
+.tier-bar-left { display: flex; align-items: center; gap: 10px; }
+
+.tier-chip {
+  width: 34px; height: 34px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.05rem; font-weight: 900; color: #000; flex-shrink: 0;
+}
+
+.ts .tier-chip { background: var(--tier-s); }
+.ta .tier-chip { background: var(--tier-a); }
+.tb .tier-chip { background: var(--tier-b); }
+.tc .tier-chip { background: var(--tier-c); }
+.td .tier-chip { background: var(--tier-d); }
+.tf .tier-chip { background: var(--tier-f); color:#fff; }
+
+.tier-name { font-size: 0.72rem; font-weight: 700; }
+.tier-cnt { font-size: 0.62rem; color: var(--text-muted); font-weight: 600; margin-top: 1px; }
+
+.view-all {
+  background: transparent; border: 1px solid var(--border2);
+  color: var(--text-muted); border-radius: 20px;
+  padding: 4px 12px; font-size: 0.63rem;
+  cursor: pointer; font-weight: 600; transition: all 0.2s; display: none;
+}
+
+.view-all.show { display: block; }
+.view-all:active { transform: scale(0.95); }
+
+.tier-zone {
+  display: flex; gap: 8px; padding: 10px;
+  min-height: 76px; overflow-x: auto; overflow-y: hidden;
+  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; position: relative; transition: background 0.2s;
+}
+
+.tier-zone::-webkit-scrollbar { display: none; }
+
+.tier-zone.over {
+  background: var(--surface3);
+  outline: 2px dashed rgba(229,9,20,0.5);
+  outline-offset: -4px;
+}
+
+.tier-zone:empty::after {
+  content: 'Drag here';
+  color: var(--border2); font-size: 0.7rem;
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  white-space: nowrap; pointer-events: none;
+}
+
+.tier-zone .mcard { scroll-snap-align: start; }
+
+.sortable-ghost { opacity: 0.25; }
+.sortable-chosen {
+  transform: scale(1.07);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.8);
+  z-index: 999;
+}
+
+/* ══════════════════════════════════════
+   VIEW ALL MODAL
+══════════════════════════════════════ */
+.vmodal-bg {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.92); z-index: 3000;
+  align-items: flex-end; justify-content: center;
+  backdrop-filter: blur(6px);
+}
+
+.vmodal-bg.open { display: flex; }
+
+.vmodal {
+  background: var(--surface); border: 1px solid var(--border2);
+  border-radius: 20px 20px 0 0; padding: 0 0 32px;
+  width: 100%; max-width: 520px; max-height: 82vh;
+  overflow-y: auto; scrollbar-width: none;
+  animation: sheetUp 0.32s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.vmodal::-webkit-scrollbar { display: none; }
+
+@keyframes sheetUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.vmodal-handle {
+  width: 36px; height: 4px; background: var(--border2);
+  border-radius: 4px; margin: 14px auto 16px;
+}
+
+.vmodal-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 16px 14px; border-bottom: 1px solid var(--border);
+}
+
+.vmodal-title {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.95rem; font-weight: 700;
+}
+
+.vmodal-close {
+  background: var(--surface2); border: 1px solid var(--border2);
+  color: var(--text-muted); border-radius: 50%;
+  width: 30px; height: 30px; display: flex;
+  align-items: center; justify-content: center;
+  cursor: pointer; font-size: 1rem; transition: all 0.2s;
+}
+
+.vmodal-close:active { transform: scale(0.9); }
+
+.vmodal-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(96px,1fr));
+  gap: 12px; padding: 16px;
+}
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+.footer {
+  text-align: center; padding: 4px 16px 32px;
+  font-size: 0.62rem; color: var(--text-dim); line-height: 1.7;
+}
+
+.footer a { color: var(--accent2); text-decoration: none; font-weight: 600; }
+
+/* ══════════════════════════════════════
+   TOAST
+══════════════════════════════════════ */
+.toast {
+  position: fixed; bottom: 28px; left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--surface3); border: 1px solid var(--border2);
+  border-radius: 50px; padding: 10px 22px;
+  font-size: 0.78rem; font-weight: 600; color: var(--text);
+  z-index: 4000; transition: transform 0.32s cubic-bezier(0.34,1.56,0.64,1);
+  white-space: nowrap; box-shadow: var(--shadow);
+  max-width: 88vw; text-align: center; pointer-events: none;
+}
+
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+@media (max-width: 360px) {
+  .brand-name { font-size: 0.95rem; }
+  .mcard { width: 88px; }
+  .tier-zone .mcard { width: 72px; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .stats-row .stat-card:last-child { grid-column: 1/-1; }
+}
+</style>
+</head>
+<body>
+
+<!-- LOADING -->
+<div id="loadingScreen">
+  <div class="load-emoji">🌍</div>
+  <div class="load-ring"></div>
+  <div class="load-label">Connecting to global database…</div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="brand-name">🌍 <em>Global</em> Tier List</div>
+      <div class="brand-sub">Collaborative Rankings · Live</div>
+    </div>
+    <div class="header-right">
+      <div class="pill green">
+        <div class="pill-dot"></div>
+        <span id="onlineCount">0</span> live
+      </div>
+      <div class="pill green" id="syncPill">
+        <div class="pill-dot"></div>
+        <span id="syncLabel">Synced</span>
+      </div>
+      <button class="refresh-btn" onclick="refreshData()">↻</button>
+    </div>
+  </div>
+</header>
+
+<!-- CATEGORY TABS -->
+<div class="cat-tabs">
+  <button class="cat-tab active" data-cat="movies" onclick="switchCat('movies')">
+    <span class="tab-icon">🎬</span>Movies
+  </button>
+  <button class="cat-tab" data-cat="tv" onclick="switchCat('tv')">
+    <span class="tab-icon">📺</span>TV Shows
+  </button>
+  <button class="cat-tab" data-cat="anime" onclick="switchCat('anime')">
+    <span class="tab-icon">⛩️</span>Anime
+  </button>
+  <button class="cat-tab" data-cat="actors" onclick="switchCat('actors')">
+    <span class="tab-icon">🎭</span>Actors
+  </button>
+</div>
+
+<!-- LIVE BANNER -->
+<div class="live-banner">
+  <div class="live-icon" id="liveBannerIcon">🎬</div>
+  <div>
+    <div class="live-title" id="liveBannerTitle">Global Movie Rankings</div>
+    <div class="live-sub">Everyone ranks together in real-time</div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stat-card c1">
+    <span class="stat-num" id="statTotal">0</span>
+    <span class="stat-lbl">Ranked</span>
+  </div>
+  <div class="stat-card c2">
+    <span class="stat-num" id="statS">0</span>
+    <span class="stat-lbl">S-Tier</span>
+  </div>
+  <div class="stat-card c3">
+    <span class="stat-num" id="statTime">—</span>
+    <span class="stat-lbl">Updated</span>
+  </div>
+</div>
+
+<!-- SEARCH -->
+<div class="search-wrap">
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search movies…" autocomplete="off">
+    <button class="search-go" onclick="doSearch()">Search</button>
+  </div>
+</div>
+
+<div class="spinner" id="spinner"></div>
+<div class="err-box" id="errBox"></div>
+
+<!-- RESULTS -->
+<div class="section-head">
+  <span class="sec-label">Search Results</span>
+  <span class="sec-count" id="resultCount"></span>
+</div>
+<div class="results-scroll" id="resultsPool"></div>
+<div class="pages" id="pages"></div>
+
+<!-- TIER LIST -->
+<div class="tiers-wrap">
+  <div class="tiers-heading" id="tiersHeading">🏆 Global Movie Rankings</div>
+
+  <div class="tier-block ts">
+    <div class="tier-bar">
+      <div class="tier-bar-left">
+        <div class="tier-chip">S</div>
+        <div><div class="tier-name">S — Tier</div><div class="tier-cnt" id="cnt-S">0</div></div>
+      </div>
+      <button class="view-all" id="va-S" onclick="openViewAll('S')">View All</button>
+    </div>
+    <div class="tier-zone" id="tier-S" data-tier="S"></div>
+  </div>
+
+  <div class="tier-block ta">
+    <div class="tier-bar">
+      <div class="tier-bar-left">
+        <div class="tier-chip">A</div>
+        <div><div class="tier-name">A — Tier</div><div class="tier-cnt" id="cnt-A">0</div></div>
+      </div>
+      <button class="view-all" id="va-A" onclick="openViewAll('A')">View All</button>
+    </div>
+    <div class="tier-zone" id="tier-A" data-tier="A"></div>
+  </div>
+
+  <div class="tier-block tb">
+    <div class="tier-bar">
+      <div class="tier-bar-left">
+        <div class="tier-chip">B</div>
+        <div><div class="tier-name">B — Tier</div><div class="tier-cnt" id="cnt-B">0</div></div>
+      </div>
+      <button class="view-all" id="va-B" onclick="openViewAll('B')">View All</button>
+    </div>
+    <div class="tier-zone" id="tier-B" data-tier="B"></div>
+  </div>
+
+  <div class="tier-block tc">
+    <div class="tier-bar">
+      <div class="tier-bar-left">
+        <div class="tier-chip">C</div>
+        <div><div class="tier-name">C — Tier</div><div class="tier-cnt" id="cnt-C">0</div></div>
+      </div>
+      <button class="view-all" id="va-C" onclick="openViewAll('C')">View All</button>
+    </div>
+    <div class="tier-zone" id="tier-C" data-tier="C"></div>
+  </div>
+
+  <div class="tier-block td">
+    <div class="tier-bar">
+      <div class="tier-bar-left">
+        <div class="tier-chip">D</div>
+        <div><div class="tier-name">D — Tier</div><div class="tier-cnt" id="cnt-D">0</div></div>
+      </div>
+      <button class="view-all" id="va-D" onclick="openViewAll('D')">View All</button>
+    </div>
+    <div class="tier-zone" id="tier-D" data-tier="D"></div>
+  </div>
+
+  <div class="tier-block tf">
+    <div class="tier-bar">
+      <div class="tier-bar-left">
+        <div class="tier-chip">F</div>
+        <div><div class="tier-name">F — Tier</div><div class="tier-cnt" id="cnt-F">0</div></div>
+      </div>
+      <button class="view-all" id="va-F" onclick="openViewAll('F')">View All</button>
+    </div>
+    <div class="tier-zone" id="tier-F" data-tier="F"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  Powered by <a href="https://www.themoviedb.org" target="_blank">TMDB</a>
+  &amp; <a href="https://firebase.google.com" target="_blank">Firebase</a><br>
+  🎬 Movies · 📺 TV Shows · ⛩️ Anime · 🎭 Actors
+</div>
+
+<!-- VIEW ALL MODAL -->
+<div class="vmodal-bg" id="vmodalBg">
+  <div class="vmodal">
+    <div class="vmodal-handle"></div>
+    <div class="vmodal-head">
+      <div class="vmodal-title">
+        <div class="tier-chip" id="vmodalChip">S</div>
+        <span id="vmodalTitle">S-Tier</span>
+      </div>
+      <button class="vmodal-close" onclick="closeViewAll()">✕</button>
+    </div>
+    <div class="vmodal-grid" id="vmodalGrid"></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, set, get, onValue, update, serverTimestamp }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+const cfg = {
+  apiKey: "AIzaSyALvEsXJ4PPw-AmeVy8ng3HGF1ENP6BzOI",
+  authDomain: "my-tier-6cd84.firebaseapp.com",
+  databaseURL: "https://my-tier-6cd84-default-rtdb.firebaseio.com",
+  projectId: "my-tier-6cd84",
+  storageBucket: "my-tier-6cd84.firebasestorage.app",
+  messagingSenderId: "636474439383",
+  appId: "1:636474439383:web:80d85da0cb80f3f0aa6292"
+};
+
+const app = initializeApp(cfg);
+const db  = getDatabase(app);
+const USERS_PATH = 'activeUsers';
+const sid = `s_${Date.now()}_${Math.random().toString(36).slice(2,8)}`;
+
+/* ── Save category tier data ── */
+window._save = async function(cat, data) {
+  window._setSyncPill('syncing');
+  try {
+    await update(ref(db, `globalTierList/${cat}`), {
+      tierData: data,
+      lastUpdated: serverTimestamp()
+    });
+    window._setSyncPill('synced');
+    return true;
+  } catch(e) {
+    console.error(e);
+    window._setSyncPill('offline');
+    return false;
+  }
+};
+
+/* ── Load category once ── */
+window._load = async function(cat) {
+  try {
+    const snap = await get(ref(db, `globalTierList/${cat}/tierData`));
+    return snap.exists() ? snap.val() : null;
+  } catch(e) {
+    console.error(e);
+    return null;
+  }
+};
+
+/* ── Watch category real-time ── */
+window._watch = function(cat, cb) {
+  return onValue(ref(db, `globalTierList/${cat}/tierData`), snap => {
+    if (snap.exists()) cb(snap.val());
+  });
+};
+
+/* ── Presence ── */
+async function joinPresence() {
+  const uRef = ref(db, `${USERS_PATH}/${sid}`);
+  await set(uRef, { t: serverTimestamp() }).catch(()=>{});
+  setInterval(() => update(uRef, { t: serverTimestamp() }).catch(()=>{}), 25000);
+  window.addEventListener('beforeunload', () => {
+    navigator.sendBeacon(
+      `https://my-tier-6cd84-default-rtdb.firebaseio.com/${USERS_PATH}/${sid}.json`,
+      JSON.stringify(null)
+    );
+  });
+}
+
+function watchPresence() {
+  onValue(ref(db, USERS_PATH), snap => {
+    if (!snap.exists()) { document.getElementById('onlineCount').textContent = '1'; return; }
+    const now = Date.now();
+    const active = Object.values(snap.val()).filter(u => u.t && now - u.t < 90000).length;
+    document.getElementById('onlineCount').textContent = active || '1';
+  });
+}
+
+/* ── Sync pill ── */
+window._setSyncPill = function(state) {
+  const pill  = document.getElementById('syncPill');
+  const label = document.getElementById('syncLabel');
+  pill.className = 'pill';
+  if (state === 'synced')  { pill.classList.add('green');  label.textContent = 'Synced'; }
+  if (state === 'syncing') { pill.classList.add('yellow'); label.textContent = 'Saving…'; }
+  if (state === 'offline') { pill.classList.add('red');    label.textContent = 'Offline'; }
+};
+
+joinPresence();
+watchPresence();
+
+window.addEventListener('online',  () => { window._setSyncPill('synced');  window._toast?.('Back online ✅'); });
+window.addEventListener('offline', () => { window._setSyncPill('offline'); window._toast?.('Offline ⚠️'); });
+if (!navigator.onLine) window._setSyncPill('offline');
+
+setTimeout(() => window._boot?.(), 450);
+</script>
+
+<!-- APP -->
+<script>
+'use strict';
+
+const TIERS   = ['S','A','B','C','D','F'];
+const API_KEY = 'd971d4b212180c43e0830d20c04a68b5';
+const SAVE_DELAY = 1200;
+
+/* ── Category config ── */
+const CATS = {
+  movies: {
+    label: '🎬 Global Movie Rankings',
+    banner: '🎬',
+    bannerTitle: 'Global Movie Rankings',
+    placeholder: 'Search movies…',
+    color: '#e50914'
+  },
+  tv: {
+    label: '📺 Global TV Show Rankings',
+    banner: '📺',
+    bannerTitle: 'Global TV Show Rankings',
+    placeholder: 'Search TV shows…',
+    color: '#3b82f6'
+  },
+  anime: {
+    label: '⛩️ Global Anime Rankings',
+    banner: '⛩️',
+    bannerTitle: 'Global Anime Rankings',
+    placeholder: 'Search anime…',
+    color: '#a855f7'
+  },
+  actors: {
+    label: '🎭 Global Actor Rankings',
+    banner: '🎭',
+    bannerTitle: 'Global Actor Rankings',
+    placeholder: 'Search actors & actresses…',
+    color: '#f5c518'
+  }
+};
+
+/* ── State ── */
+let currentCat  = 'movies';
+let tierData    = { S:[],A:[],B:[],C:[],D:[],F:[] };
+let saving      = false;
+let saveTimer   = null;
+let watchUnsub  = null;
+let curPage     = 1;
+let maxPages    = 1;
+let curQuery    = '';
+
+const TIER_COLORS = {
+  S:'var(--tier-s)', A:'var(--tier-a)', B:'var(--tier-b)',
+  C:'var(--tier-c)', D:'var(--tier-d)', F:'var(--tier-f)'
+};
+
+/* ══════════════════════════════════════
+   BOOT
+══════════════════════════════════════ */
+window._boot = async function() {
+  const ls = document.getElementById('loadingScreen');
+  ls.classList.add('hidden');
+  setTimeout(() => ls.style.display = 'none', 500);
+
+  setupListeners();
+  initSortable();
+  await loadCat('movies');
+  window._setSyncPill('synced');
+};
+
+function setupListeners() {
+  document.getElementById('searchInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') doSearch();
+  });
+  document.getElementById('vmodalBg').addEventListener('click', function(e) {
+    if (e.target === this) closeViewAll();
+  });
+}
+
+/* ══════════════════════════════════════
+   SWITCH CATEGORY
+══════════════════════════════════════ */
+async function switchCat(cat) {
+  if (cat === currentCat) return;
+  currentCat = cat;
+
+  /* Update tabs */
+  document.querySelectorAll('.cat-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.cat === cat);
+  });
+
+  const cfg = CATS[cat];
+
+  /* Update UI labels */
+  document.getElementById('liveBannerIcon').textContent  = cfg.banner;
+  document.getElementById('liveBannerTitle').textContent = cfg.bannerTitle;
+  document.getElementById('tiersHeading').textContent    = `🏆 ${cfg.bannerTitle}`;
+  document.getElementById('searchInput').placeholder     = cfg.placeholder;
+
+  /* Clear search */
+  document.getElementById('searchInput').value = '';
+  document.getElementById('resultsPool').innerHTML = '';
+  document.getElementById('resultCount').textContent = '';
+  document.getElementById('pages').innerHTML = '';
+  clearErr();
+  curQuery = '';
+  curPage  = 1;
+
+  /* Clear tiers */
+  TIERS.forEach(t => document.getElementById(`tier-${t}`).innerHTML = '');
+
+  /* Unwatch previous */
+  if (watchUnsub) { watchUnsub(); watchUnsub = null; }
+
+  /* Load new category */
+  await loadCat(cat);
+}
+
+async function loadCat(cat) {
+  const data = await window._load(cat);
+  if (data) applyData(data);
+  else { tierData = { S:[],A:[],B:[],C:[],D:[],F:[] }; }
+  refreshStats();
+
+  /* Watch real-time */
+  watchUnsub = window._watch(cat, remote => {
+    if (!saving) {
+      applyData(remote);
+      refreshStats();
+      refreshTime();
+    }
+  });
+}
+
+/* ══════════════════════════════════════
+   APPLY DATA FROM FIREBASE
+══════════════════════════════════════ */
+function applyData(data) {
+  tierData = { S:[],A:[],B:[],C:[],D:[],F:[], ...data };
+  TIERS.forEach(t => {
+    const zone = document.getElementById(`tier-${t}`);
+    zone.innerHTML = '';
+    (tierData[t] || []).forEach(m => zone.appendChild(makeCard(m, true)));
+  });
+  refreshStats();
+}
+
+/* ══════════════════════════════════════
+   READ TIER DATA FROM DOM
+══════════════════════════════════════ */
+function readTierData() {
+  const out = {};
+  TIERS.forEach(t => {
+    out[t] = Array.from(
+      document.getElementById(`tier-${t}`).querySelectorAll('.mcard')
+    ).map(c => ({
+      id:     Number(c.dataset.id),
+      title:  c.dataset.title,
+      year:   c.dataset.year,
+      poster: c.dataset.poster || null,
+      rating: c.dataset.rating,
+      cat:    c.dataset.cat
+    }));
+  });
+  return out;
+}
+
+/* ══════════════════════════════════════
+   SCHEDULE SAVE
+══════════════════════════════════════ */
+function scheduleSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async () => {
+    saving = true;
+    tierData = readTierData();
+    await window._save(currentCat, tierData);
+    refreshStats();
+    setTimeout(() => { saving = false; }, 600);
+  }, SAVE_DELAY);
+}
+
+/* ══════════════════════════════════════
+   REFRESH DATA
+══════════════════════════════════════ */
+async function refreshData() {
+  showToast('Refreshing… 🔄');
+  const data = await window._load(currentCat);
+  if (data) { applyData(data); showToast('Up to date ✅'); }
+  else showToast('No data yet');
+}
+
+/* ══════════════════════════════════════
+   STATS
+══════════════════════════════════════ */
+function refreshStats() {
+  const zones = TIERS.map(t => ({
+    t, count: document.getElementById(`tier-${t}`).querySelectorAll('.mcard').length
+  }));
+
+  const total  = zones.reduce((s,z) => s + z.count, 0);
+  const sCount = zones.find(z => z.t === 'S')?.count || 0;
+
+  document.getElementById('statTotal').textContent = total;
+  document.getElementById('statS').textContent     = sCount;
+  refreshTime();
+
+  zones.forEach(({ t, count }) => {
+    document.getElementById(`cnt-${t}`).textContent =
+      count === 1 ? '1 item' : `${count} items`;
+    const va = document.getElementById(`va-${t}`);
+    count > 4 ? va.classList.add('show') : va.classList.remove('show');
+  });
+}
+
+function refreshTime() {
+  document.getElementById('statTime').textContent =
+    new Date().toLocaleTimeString('en-US',{ hour:'2-digit', minute:'2-digit' });
+}
+
+/* ══════════════════════════════════════
+   MAKE CARD
+══════════════════════════════════════ */
+function makeCard(item, inTier) {
+  const c = document.createElement('div');
+  c.className = 'mcard' + (item.cat === 'actors' ? ' person' : '');
+  c.dataset.id     = item.id;
+  c.dataset.title  = item.title;
+  c.dataset.year   = item.year || '';
+  c.dataset.poster = item.poster || '';
+  c.dataset.rating = item.rating || '';
+  c.dataset.cat    = item.cat || currentCat;
+
+  const isPerson   = (item.cat || currentCat) === 'actors';
+  const imgH       = isPerson ? '110px' : '132px';
+  const noImgEmoji = isPerson ? '🎭' : '🎬';
+
+  const imgHTML = item.poster
+    ? `<img src="${item.poster}" alt="${esc(item.title)}" loading="lazy"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+    : '';
+
+  const catLabel = item.cat || currentCat;
+
+  c.innerHTML = `
+    ${imgHTML}
+    <div class="no-img${isPerson ? ' person' : ''}" style="${item.poster ? 'display:none' : ''}">${noImgEmoji}</div>
+    ${item.rating ? `<div class="mcard-badge">⭐ ${item.rating}</div>` : ''}
+    <div class="mcard-cat ${catLabel}">${catLabel}</div>
+    <button class="mcard-remove" title="Remove">✕</button>
+    <div class="mcard-body">
+      <div class="mcard-title">${esc(item.title)}</div>
+      <div class="mcard-meta">${esc(item.year || '')}</div>
+    </div>`;
+
+  c.querySelector('.mcard-remove').addEventListener('click', e => {
+    e.stopPropagation();
+    c.remove();
+    scheduleSave();
+    refreshStats();
+    showToast('Removed ✅');
+  });
+
+  return c;
+}
+
+/* ══════════════════════════════════════
+   TMDB SEARCH (multi-type)
+══════════════════════════════════════ */
+async function doSearch(page = 1) {
+  const q = document.getElementById('searchInput').value.trim();
+  if (!q) { showErr('Please enter a search term'); return; }
+
+  curQuery = q;
+  curPage  = page;
+  clearErr();
+  showSpinner(true);
+
+  try {
+    let url = '';
+
+    if (currentCat === 'movies') {
+      url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(q)}&page=${page}`;
+    } else if (currentCat === 'tv') {
+      url = `https://api.themoviedb.org/3/search/tv?api_key=${API_KEY}&query=${encodeURIComponent(q)}&page=${page}`;
+    } else if (currentCat === 'anime') {
+      url = `https://api.themoviedb.org/3/search/tv?api_key=${API_KEY}&query=${encodeURIComponent(q)}&page=${page}&with_genres=16&with_original_language=ja`;
+    } else if (currentCat === 'actors') {
+      url = `https://api.themoviedb.org/3/search/person?api_key=${API_KEY}&query=${encodeURIComponent(q)}&page=${page}`;
+    }
+
+    const res  = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    if (!data.results?.length) {
+      showErr('Nothing found. Try a different search.');
+      renderResults([]);
+      renderPages(0, 0);
+      return;
+    }
+
+    maxPages = Math.min(data.total_pages || 1, 500);
+    renderResults(data.results);
+    renderPages(page, maxPages);
+    document.getElementById('resultCount').textContent =
+      `${(data.total_results || 0).toLocaleString()} found`;
+
+  } catch(e) {
+    showErr('Search failed. Check your connection.');
+    console.error(e);
+  } finally {
+    showSpinner(false);
+  }
+}
+
+function renderResults(results) {
+  const pool = document.getElementById('resultsPool');
+  pool.innerHTML = '';
+
+  results.forEach(r => {
+    let item = {};
+
+    if (currentCat === 'movies') {
+      item = {
+        id:     r.id,
+        title:  r.title || r.original_title || 'Unknown',
+        year:   r.release_date?.slice(0,4) || '—',
+        poster: r.poster_path ? `https://image.tmdb.org/t/p/w185${r.poster_path}` : null,
+        rating: r.vote_average?.toFixed(1) || '?',
+        cat:    'movies'
+      };
+    } else if (currentCat === 'tv' || currentCat === 'anime') {
+      item = {
+        id:     r.id,
+        title:  r.name || r.original_name || 'Unknown',
+        year:   r.first_air_date?.slice(0,4) || '—',
+        poster: r.poster_path ? `https://image.tmdb.org/t/p/w185${r.poster_path}` : null,
+        rating: r.vote_average?.toFixed(1) || '?',
+        cat:    currentCat
+      };
+    } else if (currentCat === 'actors') {
+      item = {
+        id:     r.id,
+        title:  r.name || 'Unknown',
+        year:   r.known_for_department || '—',
+        poster: r.profile_path ? `https://image.tmdb.org/t/p/w185${r.profile_path}` : null,
+        rating: r.popularity ? r.popularity.toFixed(0) : '?',
+        cat:    'actors'
+      };
+    }
+
+    pool.appendChild(makeCard(item, false));
+  });
+}
+
+function renderPages(cur, total) {
+  const pg = document.getElementById('pages');
+  pg.innerHTML = '';
+  if (total <= 1) return;
+
+  const prev = document.createElement('button');
+  prev.className = 'pg-btn';
+  prev.textContent = '← Prev';
+  prev.disabled = cur <= 1;
+  prev.onclick = () => doSearch(cur - 1);
+  pg.appendChild(prev);
+
+  const info = document.createElement('button');
+  info.className = 'pg-btn cur';
+  info.textContent = `${cur} / ${total}`;
+  info.disabled = true;
+  pg.appendChild(info);
+
+  const next = document.createElement('button');
+  next.className = 'pg-btn';
+  next.textContent = 'Next →';
+  next.disabled = cur >= total;
+  next.onclick = () => doSearch(cur + 1);
+  pg.appendChild(next);
+}
+
+/* ══════════════════════════════════════
+   SORTABLE
+══════════════════════════════════════ */
+function initSortable() {
+  Sortable.create(document.getElementById('resultsPool'), {
+    group:            { name:'items', pull:'clone', put:false },
+    animation:        160,
+    sort:             false,
+    ghostClass:       'sortable-ghost',
+    chosenClass:      'sortable-chosen',
+    delay:            80,
+    delayOnTouchOnly: true,
+    onEnd(evt) {
+      if (evt.to !== evt.from && evt.to.classList.contains('tier-zone')) {
+        const rb = evt.item.querySelector('.mcard-remove');
+        if (rb) rb.style.display = 'flex';
+        scheduleSave();
+        refreshStats();
+      }
+    }
+  });
+
+  TIERS.forEach(t => {
+    Sortable.create(document.getElementById(`tier-${t}`), {
+      group:            { name:'items', pull:true, put:true },
+      animation:        160,
+      ghostClass:       'sortable-ghost',
+      chosenClass:      'sortable-chosen',
+      delay:            80,
+      delayOnTouchOnly: true,
+      onAdd(evt) {
+        const rb = evt.item.querySelector('.mcard-remove');
+        if (rb) rb.style.display = 'flex';
+        scheduleSave();
+        refreshStats();
+      },
+      onUpdate() {
+        scheduleSave();
+      }
+    });
+  });
+}
+
+/* ══════════════════════════════════════
+   VIEW ALL MODAL
+══════════════════════════════════════ */
+function openViewAll(tier) {
+  const data  = readTierData()[tier];
+  const chip  = document.getElementById('vmodalChip');
+  const title = document.getElementById('vmodalTitle');
+  const grid  = document.getElementById('vmodalGrid');
+
+  chip.textContent      = tier;
+  chip.style.background = TIER_COLORS[tier];
+  chip.style.color      = tier === 'F' ? '#fff' : '#000';
+  title.textContent     = `${tier}-Tier (${data.length} items)`;
+
+  grid.innerHTML = '';
+  data.forEach(m => {
+    const card = makeCard(m, false);
+    card.querySelector('.mcard-remove')?.remove();
+    grid.appendChild(card);
+  });
+
+  document.getElementById('vmodalBg').classList.add('open');
+}
+
+function closeViewAll() {
+  document.getElementById('vmodalBg').classList.remove('open');
+}
+
+/* ══════════════════════════════════════
+   UI HELPERS
+══════════════════════════════════════ */
+function showSpinner(on) {
+  document.getElementById('spinner').classList.toggle('on', on);
+}
+
+function showErr(msg) {
+  const el = document.getElementById('errBox');
+  el.textContent = '⚠️ ' + msg;
+  el.classList.add('on');
+}
+
+function clearErr() {
+  document.getElementById('errBox').classList.remove('on');
+  document.getElementById('resultCount').textContent = '';
+}
+
+let toastT;
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastT);
+  toastT = setTimeout(() => el.classList.remove('show'), 2600);
+}
+
+window._toast = showToast;
+
+function esc(s) {
+  const d = document.createElement('div');
+  d.textContent = String(s);
+  return d.innerHTML;
+}
+</script>
+</body>
+</html>
