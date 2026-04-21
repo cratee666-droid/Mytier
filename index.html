@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#e50914">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<html lang="en"><head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="theme-color" content="#e50914" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <title>🌍 Global Tier List</title>
 <style>
 :root{
@@ -466,8 +465,10 @@ header{
 </head>
 <body>
 
+</div>
+</div>
 <!-- LOADING -->
-<div id="ls">
+<div id="ls" class="out" style="display: none;">
   <div class="le">🌍</div>
   <div class="lr"></div>
   <div class="ll">Connecting to global database…</div>
@@ -490,16 +491,16 @@ header{
 
 <!-- TABS -->
 <div class="tabs">
-  <button class="tab on" data-cat="movies" onclick="switchCat('movies')">
+  <button class="tab on" data-cat="movies" onclick="switchCat(&#39;movies&#39;)">
     <span class="ti">🎬</span>Movies
   </button>
-  <button class="tab" data-cat="tv" onclick="switchCat('tv')">
+  <button class="tab" data-cat="tv" onclick="switchCat(&#39;tv&#39;)">
     <span class="ti">📺</span>TV
   </button>
-  <button class="tab" data-cat="anime" onclick="switchCat('anime')">
+  <button class="tab" data-cat="anime" onclick="switchCat(&#39;anime&#39;)">
     <span class="ti">⛩️</span>Anime
   </button>
-  <button class="tab" data-cat="actors" onclick="switchCat('actors')">
+  <button class="tab" data-cat="actors" onclick="switchCat(&#39;actors&#39;)">
     <span class="ti">🎭</span>Actors
   </button>
 </div>
@@ -516,9 +517,9 @@ header{
   <div class="thead">
     <div class="ttitle"><span class="tfire">🔥</span>Trending</div>
     <div class="ttabs">
-      <button class="ttab on" data-tt="movie" onclick="switchTrend('movie')">Movies</button>
-      <button class="ttab" data-tt="tv" onclick="switchTrend('tv')">TV</button>
-      <button class="ttab" data-tt="anime" onclick="switchTrend('anime')">Anime</button>
+      <button class="ttab on" data-tt="movie" onclick="switchTrend(&#39;movie&#39;)">Movies</button>
+      <button class="ttab" data-tt="tv" onclick="switchTrend(&#39;tv&#39;)">TV</button>
+      <button class="ttab" data-tt="anime" onclick="switchTrend(&#39;anime&#39;)">Anime</button>
     </div>
   </div>
   <div class="tscroll" id="tscroll"></div>
@@ -529,7 +530,7 @@ header{
 <!-- SEARCH -->
 <div class="swrap">
   <div class="sbox">
-    <input type="text" id="si" placeholder="Search movies…" autocomplete="off" inputmode="search">
+    <input type="text" id="si" placeholder="Search movies…" autocomplete="off" inputmode="search" />
     <button class="sgo" onclick="doSearch()">Search</button>
   </div>
 </div>
@@ -549,40 +550,46 @@ header{
   <div class="th2" id="th">🏆 Global Movie Rankings</div>
 
   <div class="tb3 ts2">
-    <div class="tbar"><div class="tbl"><div class="chip">S</div><div><div class="tn">S — Tier</div><div class="tcnt" id="cs">0 items</div></div></div><button class="va" id="va-S" onclick="openVA('S')">View All</button></div>
+    <div class="tbar"><div class="tbl"><div class="chip">S</div><div><div class="tn">S — Tier</div><div class="tcnt" id="cs">0 items</div></div></div><button class="va" id="va-S" onclick="openVA(&#39;S&#39;)">View All</button></div>
     <div class="tz" id="tier-S" data-tier="S"></div>
   </div>
 
   <div class="tb3 ta2">
-    <div class="tbar"><div class="tbl"><div class="chip">A</div><div><div class="tn">A — Tier</div><div class="tcnt" id="ca">0 items</div></div></div><button class="va" id="va-A" onclick="openVA('A')">View All</button></div>
+    <div class="tbar"><div class="tbl"><div class="chip">A</div><div><div class="tn">A — Tier</div><div class="tcnt" id="ca">0 items</div></div></div><button class="va" id="va-A" onclick="openVA(&#39;A&#39;)">View All</button></div>
     <div class="tz" id="tier-A" data-tier="A"></div>
   </div>
 
   <div class="tb3 tb4">
-    <div class="tbar"><div class="tbl"><div class="chip">B</div><div><div class="tn">B — Tier</div><div class="tcnt" id="cb">0 items</div></div></div><button class="va" id="va-B" onclick="openVA('B')">View All</button></div>
+    <div class="tbar"><div class="tbl"><div class="chip">B</div><div><div class="tn">B — Tier</div><div class="tcnt" id="cb">0 items</div></div></div><button class="va" id="va-B" onclick="openVA(&#39;B&#39;)">View All</button></div>
     <div class="tz" id="tier-B" data-tier="B"></div>
   </div>
 
   <div class="tb3 tc2">
-    <div class="tbar"><div class="tbl"><div class="chip">C</div><div><div class="tn">C — Tier</div><div class="tcnt" id="cc">0 items</div></div></div><button class="va" id="va-C" onclick="openVA('C')">View All</button></div>
+    <div class="tbar"><div class="tbl"><div class="chip">C</div><div><div class="tn">C — Tier</div><div class="tcnt" id="cc">0 items</div></div></div><button class="va" id="va-C" onclick="openVA(&#39;C&#39;)">View All</button></div>
     <div class="tz" id="tier-C" data-tier="C"></div>
   </div>
 
   <div class="tb3 td3">
-    <div class="tbar"><div class="tbl"><div class="chip">D</div><div><div class="tn">D — Tier</div><div class="tcnt" id="cd">0 items</div></div></div><button class="va" id="va-D" onclick="openVA('D')">View All</button></div>
+    <div class="tbar"><div class="tbl"><div class="chip">D</div><div><div class="tn">D — Tier</div><div class="tcnt" id="cd">0 items</div></div></div><button class="va" id="va-D" onclick="openVA(&#39;D&#39;)">View All</button></div>
     <div class="tz" id="tier-D" data-tier="D"></div>
   </div>
 
   <div class="tb3 tf2">
-    <div class="tbar"><div class="tbl"><div class="chip">F</div><div><div class="tn">F — Tier</div><div class="tcnt" id="cf">0 items</div></div></div><button class="va" id="va-F" onclick="openVA('F')">View All</button></div>
+    <div class="tbar"><div class="tbl"><div class="chip">F</div><div><div class="tn">F — Tier</div><div class="tcnt" id="cf">0 items</div></div></div><button class="va" id="va-F" onclick="openVA(&#39;F&#39;)">View All</button></div>
     <div class="tz" id="tier-F" data-tier="F"></div>
   </div>
 </div>
-
+<div style="display: flex; justify-content: flex-end; padding: 20px;">
+  <a href="index2.html" 
+     style="padding:6px 12px; font-size:14px; background-color:#007BFF; color:white; text-decoration:none; border-radius:4px;">
+    CHAT
+  </a>
+  </div>
+  
 <!-- FOOTER -->
 <div class="foot">
   Powered by <a href="https://www.themoviedb.org" target="_blank" rel="noopener">TMDB</a>
-  &amp; <a href="https://firebase.google.com" target="_blank" rel="noopener">Firebase</a><br>
+  &amp; <a href="https://firebase.google.com" target="_blank" rel="noopener">Firebase</a><br />
   🎬 Movies · 📺 TV · ⛩️ Anime · 🎭 Actors
 </div>
 
@@ -1080,5 +1087,5 @@ function esc(s){
   d.textContent=String(s);return d.innerHTML;
 }
 </script>
-</body>
-</html>
+
+</body></html>
