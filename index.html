@@ -46,15 +46,10 @@ body {
    LOADING
 ══════════════════════════════════════ */
 #loadingScreen {
-  position: fixed;
-  inset: 0;
-  background: var(--bg);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  gap: 22px;
+  position: fixed; inset: 0; background: var(--bg);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  z-index: 9999; gap: 22px;
   transition: opacity 0.4s ease;
 }
 
@@ -77,12 +72,9 @@ body {
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
-.load-label {
-  font-size: 0.8rem; color: var(--text-muted);
-  animation: breathe 2s ease-in-out infinite;
-}
+.load-label { font-size: 0.8rem; color: var(--text-muted); animation: breathe 2s ease-in-out infinite; }
 
-@keyframes breathe { 0%,100% { opacity:0.4; } 50% { opacity:1; } }
+@keyframes breathe { 0%,100%{opacity:0.4;} 50%{opacity:1;} }
 
 /* ══════════════════════════════════════
    HEADER
@@ -95,20 +87,11 @@ header {
   padding: 12px 16px;
 }
 
-.header-inner {
-  display: flex; align-items: center; justify-content: space-between;
-}
+.header-inner { display: flex; align-items: center; justify-content: space-between; }
 
-.brand-name {
-  font-size: 1.1rem; font-weight: 800; letter-spacing: -0.4px;
-}
-
+.brand-name { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.4px; }
 .brand-name em { color: var(--accent); font-style: normal; }
-
-.brand-sub {
-  font-size: 0.58rem; color: var(--text-muted);
-  text-transform: uppercase; letter-spacing: 0.5px; margin-top: 3px; font-weight: 600;
-}
+.brand-sub { font-size: 0.58rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 3px; font-weight: 600; }
 
 .header-right { display: flex; align-items: center; gap: 7px; }
 
@@ -133,7 +116,7 @@ header {
   background: var(--surface2); border: 1px solid var(--border2);
   color: var(--text-muted); border-radius: 50%;
   width: 32px; height: 32px; display: flex; align-items: center;
-  justify-content: center; cursor: pointer; font-size: 0.95rem; transition: all 0.2s;
+  justify-content: center; cursor: pointer; font-size: 0.95rem; transition: all 0.25s;
 }
 
 .refresh-btn:active { transform: rotate(180deg) scale(0.9); }
@@ -148,7 +131,6 @@ header {
   border: 1px solid var(--border);
   border-radius: 50px;
   padding: 4px;
-  overflow: hidden;
 }
 
 .cat-tab {
@@ -158,34 +140,12 @@ header {
   border: none; background: transparent;
   color: var(--text-muted); cursor: pointer;
   border-radius: 50px; transition: all 0.25s ease;
-  font-size: 0.6rem; font-weight: 700;
+  font-size: 0.58rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.3px;
 }
 
 .cat-tab .tab-icon { font-size: 1.1rem; }
-
-.cat-tab.active {
-  background: var(--accent);
-  color: white;
-  box-shadow: 0 2px 12px rgba(229,9,20,0.4);
-}
-
-/* ══════════════════════════════════════
-   LIVE BANNER
-══════════════════════════════════════ */
-.live-banner {
-  margin: 12px 16px 0;
-  background: linear-gradient(135deg, rgba(245,197,24,0.08), rgba(229,9,20,0.05));
-  border: 1px solid rgba(245,197,24,0.18);
-  border-radius: var(--radius-sm);
-  padding: 10px 14px;
-  display: flex; align-items: center; gap: 10px;
-}
-
-.live-icon { font-size: 1.3rem; }
-
-.live-title { font-size: 0.72rem; font-weight: 700; color: var(--accent2); }
-.live-sub { font-size: 0.62rem; color: var(--text-muted); margin-top: 1px; }
+.cat-tab.active { background: var(--accent); color: white; box-shadow: 0 2px 12px rgba(229,9,20,0.4); }
 
 /* ══════════════════════════════════════
    STATS
@@ -201,17 +161,144 @@ header {
   position: relative; overflow: hidden;
 }
 
-.stat-card::before {
-  content: ''; position: absolute;
-  top: 0; left: 0; right: 0; height: 2px;
-}
-
+.stat-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
 .stat-card.c1::before { background: var(--accent2); }
 .stat-card.c2::before { background: var(--tier-s); }
 .stat-card.c3::before { background: var(--success); }
 
 .stat-num { font-size: 1.3rem; font-weight: 900; color: var(--accent2); line-height: 1; display: block; }
 .stat-lbl { font-size: 0.57rem; color: var(--text-muted); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+
+/* ══════════════════════════════════════
+   TRENDING SECTION
+══════════════════════════════════════ */
+.trending-section { margin-top: 14px; }
+
+.trending-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 16px 8px;
+}
+
+.trending-title {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 0.75rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.6px;
+}
+
+.trending-fire { font-size: 1rem; animation: flicker 1.5s ease-in-out infinite; }
+
+@keyframes flicker {
+  0%,100% { transform: scale(1) rotate(-3deg); }
+  50% { transform: scale(1.15) rotate(3deg); }
+}
+
+.trending-tabs {
+  display: flex; gap: 5px;
+}
+
+.trend-tab {
+  background: var(--surface2); border: 1px solid var(--border2);
+  color: var(--text-muted); border-radius: 20px;
+  padding: 4px 10px; font-size: 0.6rem; font-weight: 700;
+  cursor: pointer; transition: all 0.2s; white-space: nowrap;
+  text-transform: uppercase; letter-spacing: 0.3px;
+}
+
+.trend-tab.active {
+  background: linear-gradient(135deg, #f5c518, #ff8c00);
+  color: #000; border-color: transparent;
+  box-shadow: 0 2px 8px rgba(245,197,24,0.4);
+}
+
+.trend-tab:active { transform: scale(0.95); }
+
+/* Trending scroll */
+.trending-scroll {
+  display: flex; gap: 10px; overflow-x: auto;
+  padding: 0 16px 14px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  min-height: 195px;
+}
+
+.trending-scroll::-webkit-scrollbar { display: none; }
+
+.trending-scroll.loading-trends {
+  align-items: center; justify-content: center;
+}
+
+/* Trending card — taller with rank badge */
+.tcard {
+  flex-shrink: 0; width: 108px; scroll-snap-align: start;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 12px; overflow: hidden; cursor: grab;
+  position: relative; user-select: none; -webkit-user-select: none;
+  transition: transform 0.12s ease;
+}
+
+.tcard:active { cursor: grabbing; transform: scale(0.97); }
+
+.tcard img {
+  width: 100%; height: 142px; object-fit: cover; display: block;
+  background: var(--surface3); pointer-events: none;
+}
+
+.tcard-rank {
+  position: absolute; top: 0; left: 0;
+  background: linear-gradient(135deg, var(--accent2), #ff8c00);
+  color: #000; font-size: 0.7rem; font-weight: 900;
+  padding: 3px 8px; border-radius: 0 0 8px 0;
+  min-width: 26px; text-align: center;
+}
+
+.tcard-body { padding: 6px 6px 7px; }
+
+.tcard-title {
+  font-size: 0.63rem; font-weight: 600; line-height: 1.3;
+  display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden; word-break: break-word;
+}
+
+.tcard-meta { font-size: 0.57rem; color: var(--text-muted); margin-top: 2px; }
+
+.tcard-rating {
+  position: absolute; top: 5px; right: 5px;
+  background: rgba(0,0,0,0.88); border-radius: 5px;
+  padding: 2px 5px; font-size: 0.54rem; font-weight: 700;
+  color: var(--accent2); backdrop-filter: blur(6px);
+}
+
+.tcard-cat {
+  position: absolute; bottom: 34px; left: 0; right: 0;
+  text-align: center; font-size: 0.5rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.4px; padding: 2px 4px;
+}
+
+.tcard-cat.movies { background: rgba(229,9,20,0.85); color: white; }
+.tcard-cat.tv     { background: rgba(59,130,246,0.85); color: white; }
+.tcard-cat.anime  { background: rgba(168,85,247,0.85); color: white; }
+
+.tcard-no-img {
+  width: 100%; height: 142px; background: var(--surface3);
+  display: flex; align-items: center; justify-content: center; font-size: 2rem;
+}
+
+/* Trending spinner */
+.trend-spinner {
+  width: 28px; height: 28px;
+  border: 2px solid var(--border2);
+  border-top-color: var(--accent2);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin: auto;
+}
+
+/* Divider */
+.section-divider {
+  height: 1px; background: var(--border);
+  margin: 6px 16px 0;
+}
 
 /* ══════════════════════════════════════
    SEARCH
@@ -287,7 +374,6 @@ header {
   white-space: nowrap; align-self: center; margin: auto;
 }
 
-/* Pages */
 .pages { display: flex; gap: 6px; padding: 0 16px 4px; justify-content: center; }
 
 .pg-btn {
@@ -301,14 +387,14 @@ header {
 .pg-btn:not(:disabled):active { transform: scale(0.95); }
 
 /* ══════════════════════════════════════
-   MEDIA CARD
+   MEDIA CARD (search results / tier)
 ══════════════════════════════════════ */
 .mcard {
   flex-shrink: 0; width: 100px; scroll-snap-align: start;
   background: var(--surface2); border: 1px solid var(--border);
   border-radius: 10px; overflow: hidden; cursor: grab;
   position: relative; user-select: none; -webkit-user-select: none;
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  transition: transform 0.12s ease;
 }
 
 .mcard:active { cursor: grabbing; }
@@ -335,17 +421,15 @@ header {
   color: var(--accent2); backdrop-filter: blur(6px);
 }
 
-/* Category tag on card */
 .mcard-cat {
   position: absolute; bottom: 34px; left: 0; right: 0;
   text-align: center; font-size: 0.5rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.4px;
-  padding: 2px 4px;
+  text-transform: uppercase; letter-spacing: 0.4px; padding: 2px 4px;
 }
 
 .mcard-cat.movies { background: rgba(229,9,20,0.85); color: white; }
-.mcard-cat.tv { background: rgba(59,130,246,0.85); color: white; }
-.mcard-cat.anime { background: rgba(168,85,247,0.85); color: white; }
+.mcard-cat.tv     { background: rgba(59,130,246,0.85); color: white; }
+.mcard-cat.anime  { background: rgba(168,85,247,0.85); color: white; }
 .mcard-cat.actors { background: rgba(245,197,24,0.85); color: black; }
 
 .mcard-remove {
@@ -369,7 +453,6 @@ header {
 
 .tier-zone .no-img { height: 106px; }
 
-/* Person card (actors) — square portrait */
 .mcard.person img { height: 110px; object-fit: cover; object-position: top; }
 .tier-zone .mcard.person img { height: 90px; }
 .no-img.person { height: 110px; font-size: 2.5rem; }
@@ -388,8 +471,7 @@ header {
 
 .tier-block {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); overflow: hidden;
-  margin-bottom: 10px; transition: border-color 0.2s;
+  border-radius: var(--radius); overflow: hidden; margin-bottom: 10px;
 }
 
 .tier-bar {
@@ -437,8 +519,7 @@ header {
 
 .tier-zone.over {
   background: var(--surface3);
-  outline: 2px dashed rgba(229,9,20,0.5);
-  outline-offset: -4px;
+  outline: 2px dashed rgba(229,9,20,0.5); outline-offset: -4px;
 }
 
 .tier-zone:empty::after {
@@ -452,11 +533,7 @@ header {
 .tier-zone .mcard { scroll-snap-align: start; }
 
 .sortable-ghost { opacity: 0.25; }
-.sortable-chosen {
-  transform: scale(1.07);
-  box-shadow: 0 12px 36px rgba(0,0,0,0.8);
-  z-index: 999;
-}
+.sortable-chosen { transform: scale(1.07); box-shadow: 0 12px 36px rgba(0,0,0,0.8); z-index: 999; }
 
 /* ══════════════════════════════════════
    VIEW ALL MODAL
@@ -485,20 +562,14 @@ header {
   to { transform: translateY(0); opacity: 1; }
 }
 
-.vmodal-handle {
-  width: 36px; height: 4px; background: var(--border2);
-  border-radius: 4px; margin: 14px auto 16px;
-}
+.vmodal-handle { width: 36px; height: 4px; background: var(--border2); border-radius: 4px; margin: 14px auto 16px; }
 
 .vmodal-head {
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 16px 14px; border-bottom: 1px solid var(--border);
 }
 
-.vmodal-title {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 0.95rem; font-weight: 700;
-}
+.vmodal-title { display: flex; align-items: center; gap: 10px; font-size: 0.95rem; font-weight: 700; }
 
 .vmodal-close {
   background: var(--surface2); border: 1px solid var(--border2);
@@ -545,6 +616,7 @@ header {
   .brand-name { font-size: 0.95rem; }
   .mcard { width: 88px; }
   .tier-zone .mcard { width: 72px; }
+  .tcard { width: 96px; }
   .stats-row { grid-template-columns: 1fr 1fr; }
   .stats-row .stat-card:last-child { grid-column: 1/-1; }
 }
@@ -596,15 +668,6 @@ header {
   </button>
 </div>
 
-<!-- LIVE BANNER -->
-<div class="live-banner">
-  <div class="live-icon" id="liveBannerIcon">🎬</div>
-  <div>
-    <div class="live-title" id="liveBannerTitle">Global Movie Rankings</div>
-    <div class="live-sub">Everyone ranks together in real-time</div>
-  </div>
-</div>
-
 <!-- STATS -->
 <div class="stats-row">
   <div class="stat-card c1">
@@ -620,6 +683,24 @@ header {
     <span class="stat-lbl">Updated</span>
   </div>
 </div>
+
+<!-- TRENDING SECTION -->
+<div class="trending-section" id="trendingSection">
+  <div class="trending-header">
+    <div class="trending-title">
+      <span class="trending-fire">🔥</span>
+      Trending Now
+    </div>
+    <div class="trending-tabs">
+      <button class="trend-tab active" data-ttype="movie" onclick="switchTrending('movie')">Movies</button>
+      <button class="trend-tab" data-ttype="tv" onclick="switchTrending('tv')">TV</button>
+      <button class="trend-tab" data-ttype="anime" onclick="switchTrending('anime')">Anime</button>
+    </div>
+  </div>
+  <div class="trending-scroll" id="trendingScroll"></div>
+</div>
+
+<div class="section-divider"></div>
 
 <!-- SEARCH -->
 <div class="search-wrap">
@@ -648,7 +729,7 @@ header {
     <div class="tier-bar">
       <div class="tier-bar-left">
         <div class="tier-chip">S</div>
-        <div><div class="tier-name">S — Tier</div><div class="tier-cnt" id="cnt-S">0</div></div>
+        <div><div class="tier-name">S — Tier</div><div class="tier-cnt" id="cnt-S">0 items</div></div>
       </div>
       <button class="view-all" id="va-S" onclick="openViewAll('S')">View All</button>
     </div>
@@ -659,7 +740,7 @@ header {
     <div class="tier-bar">
       <div class="tier-bar-left">
         <div class="tier-chip">A</div>
-        <div><div class="tier-name">A — Tier</div><div class="tier-cnt" id="cnt-A">0</div></div>
+        <div><div class="tier-name">A — Tier</div><div class="tier-cnt" id="cnt-A">0 items</div></div>
       </div>
       <button class="view-all" id="va-A" onclick="openViewAll('A')">View All</button>
     </div>
@@ -670,7 +751,7 @@ header {
     <div class="tier-bar">
       <div class="tier-bar-left">
         <div class="tier-chip">B</div>
-        <div><div class="tier-name">B — Tier</div><div class="tier-cnt" id="cnt-B">0</div></div>
+        <div><div class="tier-name">B — Tier</div><div class="tier-cnt" id="cnt-B">0 items</div></div>
       </div>
       <button class="view-all" id="va-B" onclick="openViewAll('B')">View All</button>
     </div>
@@ -681,7 +762,7 @@ header {
     <div class="tier-bar">
       <div class="tier-bar-left">
         <div class="tier-chip">C</div>
-        <div><div class="tier-name">C — Tier</div><div class="tier-cnt" id="cnt-C">0</div></div>
+        <div><div class="tier-name">C — Tier</div><div class="tier-cnt" id="cnt-C">0 items</div></div>
       </div>
       <button class="view-all" id="va-C" onclick="openViewAll('C')">View All</button>
     </div>
@@ -692,7 +773,7 @@ header {
     <div class="tier-bar">
       <div class="tier-bar-left">
         <div class="tier-chip">D</div>
-        <div><div class="tier-name">D — Tier</div><div class="tier-cnt" id="cnt-D">0</div></div>
+        <div><div class="tier-name">D — Tier</div><div class="tier-cnt" id="cnt-D">0 items</div></div>
       </div>
       <button class="view-all" id="va-D" onclick="openViewAll('D')">View All</button>
     </div>
@@ -703,7 +784,7 @@ header {
     <div class="tier-bar">
       <div class="tier-bar-left">
         <div class="tier-chip">F</div>
-        <div><div class="tier-name">F — Tier</div><div class="tier-cnt" id="cnt-F">0</div></div>
+        <div><div class="tier-name">F — Tier</div><div class="tier-cnt" id="cnt-F">0 items</div></div>
       </div>
       <button class="view-all" id="va-F" onclick="openViewAll('F')">View All</button>
     </div>
@@ -759,13 +840,11 @@ const db  = getDatabase(app);
 const USERS_PATH = 'activeUsers';
 const sid = `s_${Date.now()}_${Math.random().toString(36).slice(2,8)}`;
 
-/* ── Save category tier data ── */
 window._save = async function(cat, data) {
   window._setSyncPill('syncing');
   try {
     await update(ref(db, `globalTierList/${cat}`), {
-      tierData: data,
-      lastUpdated: serverTimestamp()
+      tierData: data, lastUpdated: serverTimestamp()
     });
     window._setSyncPill('synced');
     return true;
@@ -776,25 +855,19 @@ window._save = async function(cat, data) {
   }
 };
 
-/* ── Load category once ── */
 window._load = async function(cat) {
   try {
     const snap = await get(ref(db, `globalTierList/${cat}/tierData`));
     return snap.exists() ? snap.val() : null;
-  } catch(e) {
-    console.error(e);
-    return null;
-  }
+  } catch(e) { console.error(e); return null; }
 };
 
-/* ── Watch category real-time ── */
 window._watch = function(cat, cb) {
   return onValue(ref(db, `globalTierList/${cat}/tierData`), snap => {
     if (snap.exists()) cb(snap.val());
   });
 };
 
-/* ── Presence ── */
 async function joinPresence() {
   const uRef = ref(db, `${USERS_PATH}/${sid}`);
   await set(uRef, { t: serverTimestamp() }).catch(()=>{});
@@ -816,7 +889,6 @@ function watchPresence() {
   });
 }
 
-/* ── Sync pill ── */
 window._setSyncPill = function(state) {
   const pill  = document.getElementById('syncPill');
   const label = document.getElementById('syncLabel');
@@ -844,52 +916,29 @@ const TIERS   = ['S','A','B','C','D','F'];
 const API_KEY = 'd971d4b212180c43e0830d20c04a68b5';
 const SAVE_DELAY = 1200;
 
-/* ── Category config ── */
 const CATS = {
-  movies: {
-    label: '🎬 Global Movie Rankings',
-    banner: '🎬',
-    bannerTitle: 'Global Movie Rankings',
-    placeholder: 'Search movies…',
-    color: '#e50914'
-  },
-  tv: {
-    label: '📺 Global TV Show Rankings',
-    banner: '📺',
-    bannerTitle: 'Global TV Show Rankings',
-    placeholder: 'Search TV shows…',
-    color: '#3b82f6'
-  },
-  anime: {
-    label: '⛩️ Global Anime Rankings',
-    banner: '⛩️',
-    bannerTitle: 'Global Anime Rankings',
-    placeholder: 'Search anime…',
-    color: '#a855f7'
-  },
-  actors: {
-    label: '🎭 Global Actor Rankings',
-    banner: '🎭',
-    bannerTitle: 'Global Actor Rankings',
-    placeholder: 'Search actors & actresses…',
-    color: '#f5c518'
-  }
+  movies: { label:'🏆 Global Movie Rankings',    placeholder:'Search movies…',             showTrending: true  },
+  tv:     { label:'🏆 Global TV Show Rankings',  placeholder:'Search TV shows…',           showTrending: true  },
+  anime:  { label:'🏆 Global Anime Rankings',    placeholder:'Search anime…',              showTrending: true  },
+  actors: { label:'🏆 Global Actor Rankings',    placeholder:'Search actors & actresses…', showTrending: false }
 };
-
-/* ── State ── */
-let currentCat  = 'movies';
-let tierData    = { S:[],A:[],B:[],C:[],D:[],F:[] };
-let saving      = false;
-let saveTimer   = null;
-let watchUnsub  = null;
-let curPage     = 1;
-let maxPages    = 1;
-let curQuery    = '';
 
 const TIER_COLORS = {
   S:'var(--tier-s)', A:'var(--tier-a)', B:'var(--tier-b)',
   C:'var(--tier-c)', D:'var(--tier-d)', F:'var(--tier-f)'
 };
+
+/* ── State ── */
+let currentCat    = 'movies';
+let currentTrend  = 'movie';
+let tierData      = { S:[],A:[],B:[],C:[],D:[],F:[] };
+let saving        = false;
+let saveTimer     = null;
+let watchUnsub    = null;
+let curPage       = 1;
+let maxPages      = 1;
+let curQuery      = '';
+let trendCache    = {};
 
 /* ══════════════════════════════════════
    BOOT
@@ -902,6 +951,7 @@ window._boot = async function() {
   setupListeners();
   initSortable();
   await loadCat('movies');
+  loadTrending('movie');
   window._setSyncPill('synced');
 };
 
@@ -921,50 +971,179 @@ async function switchCat(cat) {
   if (cat === currentCat) return;
   currentCat = cat;
 
-  /* Update tabs */
-  document.querySelectorAll('.cat-tab').forEach(t => {
-    t.classList.toggle('active', t.dataset.cat === cat);
-  });
+  document.querySelectorAll('.cat-tab').forEach(t =>
+    t.classList.toggle('active', t.dataset.cat === cat)
+  );
 
   const cfg = CATS[cat];
+  document.getElementById('tiersHeading').textContent   = cfg.label;
+  document.getElementById('searchInput').placeholder    = cfg.placeholder;
 
-  /* Update UI labels */
-  document.getElementById('liveBannerIcon').textContent  = cfg.banner;
-  document.getElementById('liveBannerTitle').textContent = cfg.bannerTitle;
-  document.getElementById('tiersHeading').textContent    = `🏆 ${cfg.bannerTitle}`;
-  document.getElementById('searchInput').placeholder     = cfg.placeholder;
+  /* Show/hide trending */
+  const trendSec = document.getElementById('trendingSection');
+  trendSec.style.display = cfg.showTrending ? '' : 'none';
 
-  /* Clear search */
+  /* Reset search */
   document.getElementById('searchInput').value = '';
   document.getElementById('resultsPool').innerHTML = '';
   document.getElementById('resultCount').textContent = '';
   document.getElementById('pages').innerHTML = '';
   clearErr();
-  curQuery = '';
-  curPage  = 1;
+  curQuery = ''; curPage = 1;
 
   /* Clear tiers */
   TIERS.forEach(t => document.getElementById(`tier-${t}`).innerHTML = '');
 
-  /* Unwatch previous */
   if (watchUnsub) { watchUnsub(); watchUnsub = null; }
-
-  /* Load new category */
   await loadCat(cat);
+
+  /* Auto-load relevant trending */
+  if (cfg.showTrending) {
+    const map = { movies:'movie', tv:'tv', anime:'anime' };
+    const tt  = map[cat] || 'movie';
+    switchTrending(tt);
+  }
 }
 
 async function loadCat(cat) {
   const data = await window._load(cat);
   if (data) applyData(data);
-  else { tierData = { S:[],A:[],B:[],C:[],D:[],F:[] }; }
+  else tierData = { S:[],A:[],B:[],C:[],D:[],F:[] };
   refreshStats();
 
-  /* Watch real-time */
   watchUnsub = window._watch(cat, remote => {
-    if (!saving) {
-      applyData(remote);
-      refreshStats();
-      refreshTime();
+    if (!saving) { applyData(remote); refreshStats(); refreshTime(); }
+  });
+}
+
+/* ══════════════════════════════════════
+   TRENDING
+══════════════════════════════════════ */
+function switchTrending(type) {
+  currentTrend = type;
+  document.querySelectorAll('.trend-tab').forEach(t =>
+    t.classList.toggle('active', t.dataset.ttype === type)
+  );
+  loadTrending(type);
+}
+
+async function loadTrending(type) {
+  const scroll = document.getElementById('trendingScroll');
+
+  /* Show spinner */
+  scroll.innerHTML = '<div class="trend-spinner"></div>';
+  scroll.classList.add('loading-trends');
+
+  /* Check cache (5 min) */
+  const cacheKey = type;
+  const cached   = trendCache[cacheKey];
+  if (cached && Date.now() - cached.ts < 5 * 60 * 1000) {
+    renderTrending(cached.results, type);
+    return;
+  }
+
+  try {
+    let url = '';
+    if (type === 'movie') {
+      url = `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`;
+    } else if (type === 'tv') {
+      url = `https://api.themoviedb.org/3/trending/tv/day?api_key=${API_KEY}`;
+    } else if (type === 'anime') {
+      url = `https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_genres=16&with_original_language=ja&sort_by=popularity.desc&page=1`;
+    }
+
+    const res  = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    trendCache[cacheKey] = { results: data.results, ts: Date.now() };
+    renderTrending(data.results, type);
+
+  } catch(e) {
+    console.error('Trending fetch error:', e);
+    scroll.innerHTML = '<div style="color:var(--text-dim);font-size:0.75rem;margin:auto;padding:20px">Could not load trending</div>';
+    scroll.classList.remove('loading-trends');
+  }
+}
+
+function renderTrending(results, type) {
+  const scroll = document.getElementById('trendingScroll');
+  scroll.innerHTML = '';
+  scroll.classList.remove('loading-trends');
+
+  results.slice(0, 20).forEach((item, i) => {
+    const isMovie = type === 'movie';
+    const isAnime = type === 'anime';
+    const catLabel = isMovie ? 'movies' : isAnime ? 'anime' : 'tv';
+
+    const title  = item.title || item.name || 'Unknown';
+    const year   = (item.release_date || item.first_air_date || '').slice(0, 4) || '—';
+    const poster = item.poster_path ? `https://image.tmdb.org/t/p/w185${item.poster_path}` : null;
+    const rating = item.vote_average ? item.vote_average.toFixed(1) : '?';
+
+    const card = document.createElement('div');
+    card.className = 'tcard';
+
+    const imgHTML = poster
+      ? `<img src="${poster}" alt="${esc(title)}" loading="lazy"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+      : '';
+
+    card.innerHTML = `
+      ${imgHTML}
+      <div class="tcard-no-img" style="${poster ? 'display:none' : ''}">🎬</div>
+      <div class="tcard-rank">#${i + 1}</div>
+      <div class="tcard-rating">⭐ ${rating}</div>
+      <div class="tcard-cat ${catLabel}">${catLabel === 'movies' ? 'Movie' : catLabel === 'anime' ? 'Anime' : 'TV'}</div>
+      <div class="tcard-body">
+        <div class="tcard-title">${esc(title)}</div>
+        <div class="tcard-meta">${year}</div>
+      </div>`;
+
+    /* Make trending cards draggable into tiers via SortableJS clone trick */
+    card.dataset.id     = item.id;
+    card.dataset.title  = title;
+    card.dataset.year   = year;
+    card.dataset.poster = poster || '';
+    card.dataset.rating = rating;
+    card.dataset.cat    = catLabel;
+    card.dataset.isTrend = '1';
+
+    card.addEventListener('click', () => {
+      showToast('Drag this card into a tier row ⬇️');
+    });
+
+    scroll.appendChild(card);
+  });
+
+  /* Make trending scroll sortable (clone to tier) */
+  if (scroll._sortable) scroll._sortable.destroy();
+  scroll._sortable = Sortable.create(scroll, {
+    group:            { name:'items', pull:'clone', put:false },
+    animation:        160,
+    sort:             false,
+    ghostClass:       'sortable-ghost',
+    chosenClass:      'sortable-chosen',
+    delay:            80,
+    delayOnTouchOnly: true,
+    onEnd(evt) {
+      if (evt.to !== scroll && evt.to.classList.contains('tier-zone')) {
+        /* Convert tcard → mcard */
+        const tcard = evt.item;
+        if (tcard.dataset.isTrend) {
+          const mcard = makeMCard({
+            id:     tcard.dataset.id,
+            title:  tcard.dataset.title,
+            year:   tcard.dataset.year,
+            poster: tcard.dataset.poster || null,
+            rating: tcard.dataset.rating,
+            cat:    tcard.dataset.cat
+          }, true);
+          evt.to.replaceChild(mcard, tcard);
+        }
+        scheduleSave();
+        refreshStats();
+      }
     }
   });
 }
@@ -977,7 +1156,7 @@ function applyData(data) {
   TIERS.forEach(t => {
     const zone = document.getElementById(`tier-${t}`);
     zone.innerHTML = '';
-    (tierData[t] || []).forEach(m => zone.appendChild(makeCard(m, true)));
+    (tierData[t] || []).forEach(m => zone.appendChild(makeMCard(m, true)));
   });
   refreshStats();
 }
@@ -1016,9 +1195,6 @@ function scheduleSave() {
   }, SAVE_DELAY);
 }
 
-/* ══════════════════════════════════════
-   REFRESH DATA
-══════════════════════════════════════ */
 async function refreshData() {
   showToast('Refreshing… 🔄');
   const data = await window._load(currentCat);
@@ -1033,17 +1209,13 @@ function refreshStats() {
   const zones = TIERS.map(t => ({
     t, count: document.getElementById(`tier-${t}`).querySelectorAll('.mcard').length
   }));
-
   const total  = zones.reduce((s,z) => s + z.count, 0);
   const sCount = zones.find(z => z.t === 'S')?.count || 0;
-
   document.getElementById('statTotal').textContent = total;
   document.getElementById('statS').textContent     = sCount;
   refreshTime();
-
   zones.forEach(({ t, count }) => {
-    document.getElementById(`cnt-${t}`).textContent =
-      count === 1 ? '1 item' : `${count} items`;
+    document.getElementById(`cnt-${t}`).textContent = `${count} item${count !== 1 ? 's' : ''}`;
     const va = document.getElementById(`va-${t}`);
     count > 4 ? va.classList.add('show') : va.classList.remove('show');
   });
@@ -1055,11 +1227,12 @@ function refreshTime() {
 }
 
 /* ══════════════════════════════════════
-   MAKE CARD
+   MAKE MCARD (search/tier card)
 ══════════════════════════════════════ */
-function makeCard(item, inTier) {
+function makeMCard(item, inTier) {
+  const isPerson = (item.cat || currentCat) === 'actors';
   const c = document.createElement('div');
-  c.className = 'mcard' + (item.cat === 'actors' ? ' person' : '');
+  c.className = 'mcard' + (isPerson ? ' person' : '');
   c.dataset.id     = item.id;
   c.dataset.title  = item.title;
   c.dataset.year   = item.year || '';
@@ -1067,20 +1240,17 @@ function makeCard(item, inTier) {
   c.dataset.rating = item.rating || '';
   c.dataset.cat    = item.cat || currentCat;
 
-  const isPerson   = (item.cat || currentCat) === 'actors';
-  const imgH       = isPerson ? '110px' : '132px';
-  const noImgEmoji = isPerson ? '🎭' : '🎬';
+  const noEmoji = isPerson ? '🎭' : '🎬';
+  const catLabel = item.cat || currentCat;
 
   const imgHTML = item.poster
     ? `<img src="${item.poster}" alt="${esc(item.title)}" loading="lazy"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
     : '';
 
-  const catLabel = item.cat || currentCat;
-
   c.innerHTML = `
     ${imgHTML}
-    <div class="no-img${isPerson ? ' person' : ''}" style="${item.poster ? 'display:none' : ''}">${noImgEmoji}</div>
+    <div class="no-img${isPerson ? ' person' : ''}" style="${item.poster ? 'display:none' : ''}">${noEmoji}</div>
     ${item.rating ? `<div class="mcard-badge">⭐ ${item.rating}</div>` : ''}
     <div class="mcard-cat ${catLabel}">${catLabel}</div>
     <button class="mcard-remove" title="Remove">✕</button>
@@ -1101,20 +1271,59 @@ function makeCard(item, inTier) {
 }
 
 /* ══════════════════════════════════════
-   TMDB SEARCH (multi-type)
+   SORTABLE (search results + tiers)
+══════════════════════════════════════ */
+function initSortable() {
+  Sortable.create(document.getElementById('resultsPool'), {
+    group:            { name:'items', pull:'clone', put:false },
+    animation:        160,
+    sort:             false,
+    ghostClass:       'sortable-ghost',
+    chosenClass:      'sortable-chosen',
+    delay:            80,
+    delayOnTouchOnly: true,
+    onEnd(evt) {
+      if (evt.to !== evt.from && evt.to.classList.contains('tier-zone')) {
+        const rb = evt.item.querySelector('.mcard-remove');
+        if (rb) rb.style.display = 'flex';
+        scheduleSave();
+        refreshStats();
+      }
+    }
+  });
+
+  TIERS.forEach(t => {
+    Sortable.create(document.getElementById(`tier-${t}`), {
+      group:            { name:'items', pull:true, put:true },
+      animation:        160,
+      ghostClass:       'sortable-ghost',
+      chosenClass:      'sortable-chosen',
+      delay:            80,
+      delayOnTouchOnly: true,
+      onAdd(evt) {
+        const rb = evt.item.querySelector('.mcard-remove');
+        if (rb) rb.style.display = 'flex';
+        scheduleSave();
+        refreshStats();
+      },
+      onUpdate() { scheduleSave(); }
+    });
+  });
+}
+
+/* ══════════════════════════════════════
+   TMDB SEARCH
 ══════════════════════════════════════ */
 async function doSearch(page = 1) {
   const q = document.getElementById('searchInput').value.trim();
   if (!q) { showErr('Please enter a search term'); return; }
 
-  curQuery = q;
-  curPage  = page;
+  curQuery = q; curPage = page;
   clearErr();
   showSpinner(true);
 
   try {
     let url = '';
-
     if (currentCat === 'movies') {
       url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(q)}&page=${page}`;
     } else if (currentCat === 'tv') {
@@ -1156,37 +1365,20 @@ function renderResults(results) {
 
   results.forEach(r => {
     let item = {};
-
     if (currentCat === 'movies') {
-      item = {
-        id:     r.id,
-        title:  r.title || r.original_title || 'Unknown',
-        year:   r.release_date?.slice(0,4) || '—',
-        poster: r.poster_path ? `https://image.tmdb.org/t/p/w185${r.poster_path}` : null,
-        rating: r.vote_average?.toFixed(1) || '?',
-        cat:    'movies'
-      };
+      item = { id:r.id, title:r.title||'Unknown', year:r.release_date?.slice(0,4)||'—',
+               poster:r.poster_path?`https://image.tmdb.org/t/p/w185${r.poster_path}`:null,
+               rating:r.vote_average?.toFixed(1)||'?', cat:'movies' };
     } else if (currentCat === 'tv' || currentCat === 'anime') {
-      item = {
-        id:     r.id,
-        title:  r.name || r.original_name || 'Unknown',
-        year:   r.first_air_date?.slice(0,4) || '—',
-        poster: r.poster_path ? `https://image.tmdb.org/t/p/w185${r.poster_path}` : null,
-        rating: r.vote_average?.toFixed(1) || '?',
-        cat:    currentCat
-      };
+      item = { id:r.id, title:r.name||r.original_name||'Unknown', year:r.first_air_date?.slice(0,4)||'—',
+               poster:r.poster_path?`https://image.tmdb.org/t/p/w185${r.poster_path}`:null,
+               rating:r.vote_average?.toFixed(1)||'?', cat:currentCat };
     } else if (currentCat === 'actors') {
-      item = {
-        id:     r.id,
-        title:  r.name || 'Unknown',
-        year:   r.known_for_department || '—',
-        poster: r.profile_path ? `https://image.tmdb.org/t/p/w185${r.profile_path}` : null,
-        rating: r.popularity ? r.popularity.toFixed(0) : '?',
-        cat:    'actors'
-      };
+      item = { id:r.id, title:r.name||'Unknown', year:r.known_for_department||'—',
+               poster:r.profile_path?`https://image.tmdb.org/t/p/w185${r.profile_path}`:null,
+               rating:r.popularity?r.popularity.toFixed(0):'?', cat:'actors' };
     }
-
-    pool.appendChild(makeCard(item, false));
+    pool.appendChild(makeMCard(item, false));
   });
 }
 
@@ -1217,49 +1409,6 @@ function renderPages(cur, total) {
 }
 
 /* ══════════════════════════════════════
-   SORTABLE
-══════════════════════════════════════ */
-function initSortable() {
-  Sortable.create(document.getElementById('resultsPool'), {
-    group:            { name:'items', pull:'clone', put:false },
-    animation:        160,
-    sort:             false,
-    ghostClass:       'sortable-ghost',
-    chosenClass:      'sortable-chosen',
-    delay:            80,
-    delayOnTouchOnly: true,
-    onEnd(evt) {
-      if (evt.to !== evt.from && evt.to.classList.contains('tier-zone')) {
-        const rb = evt.item.querySelector('.mcard-remove');
-        if (rb) rb.style.display = 'flex';
-        scheduleSave();
-        refreshStats();
-      }
-    }
-  });
-
-  TIERS.forEach(t => {
-    Sortable.create(document.getElementById(`tier-${t}`), {
-      group:            { name:'items', pull:true, put:true },
-      animation:        160,
-      ghostClass:       'sortable-ghost',
-      chosenClass:      'sortable-chosen',
-      delay:            80,
-      delayOnTouchOnly: true,
-      onAdd(evt) {
-        const rb = evt.item.querySelector('.mcard-remove');
-        if (rb) rb.style.display = 'flex';
-        scheduleSave();
-        refreshStats();
-      },
-      onUpdate() {
-        scheduleSave();
-      }
-    });
-  });
-}
-
-/* ══════════════════════════════════════
    VIEW ALL MODAL
 ══════════════════════════════════════ */
 function openViewAll(tier) {
@@ -1275,7 +1424,7 @@ function openViewAll(tier) {
 
   grid.innerHTML = '';
   data.forEach(m => {
-    const card = makeCard(m, false);
+    const card = makeMCard(m, false);
     card.querySelector('.mcard-remove')?.remove();
     grid.appendChild(card);
   });
@@ -1290,9 +1439,7 @@ function closeViewAll() {
 /* ══════════════════════════════════════
    UI HELPERS
 ══════════════════════════════════════ */
-function showSpinner(on) {
-  document.getElementById('spinner').classList.toggle('on', on);
-}
+function showSpinner(on) { document.getElementById('spinner').classList.toggle('on', on); }
 
 function showErr(msg) {
   const el = document.getElementById('errBox');
