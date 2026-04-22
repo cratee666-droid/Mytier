@@ -105,7 +105,7 @@
             color: white;
         }
 
-        .user-avatar  { background: linear-gradient(135deg, #d97757, #b85c3c); }
+        .user-avatar   { background: linear-gradient(135deg, #d97757, #b85c3c); }
         .friend-avatar { background: linear-gradient(135deg, #667eea, #764ba2); }
 
         .sender-name  { font-size: 13px; font-weight: 600; color: var(--text-primary); }
@@ -221,7 +221,7 @@
             transition: all 0.2s;
         }
 
-        .send-btn:hover { box-shadow: 0 4px 14px rgba(217,119,87,0.45); transform: translateY(-1px); }
+        .send-btn:hover  { box-shadow: 0 4px 14px rgba(217,119,87,0.45); transform: translateY(-1px); }
         .send-btn:active { transform: scale(0.94); }
         .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
 
@@ -240,9 +240,9 @@
             transition: all 0.2s;
         }
 
-        .tool-btn:hover { border-color: var(--accent); color: var(--accent); transform: scale(1.05); }
+        .tool-btn:hover  { border-color: var(--accent); color: var(--accent); transform: scale(1.05); }
         .tool-btn:active { transform: scale(0.94); }
-        .tool-btn svg { display: block; }
+        .tool-btn svg    { display: block; }
 
         /* ─── Sidebar ─── */
         .sidebar {
@@ -377,7 +377,7 @@
             box-shadow: 0 4px 16px rgba(217,119,87,0.4);
         }
 
-        .login-title  { font-size: 26px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+        .login-title    { font-size: 26px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
         .login-subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
 
         .login-input {
@@ -415,7 +415,7 @@
             transition: all 0.2s;
         }
 
-        .login-btn:hover { box-shadow: 0 6px 18px rgba(217,119,87,0.45); transform: translateY(-1px); }
+        .login-btn:hover  { box-shadow: 0 6px 18px rgba(217,119,87,0.45); transform: translateY(-1px); }
         .login-btn:active { transform: scale(0.98); }
 
         /* ─── Empty State ─── */
@@ -547,6 +547,26 @@
         }
 
         .clear-btn:hover { color: var(--text-primary); }
+
+        /* ─── Search hint ─── */
+        .search-hint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 14px 0;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .search-hint kbd {
+            background: var(--border-color);
+            color: var(--text-muted);
+            padding: 2px 6px;
+            border-radius: 5px;
+            font-size: 11px;
+            font-family: inherit;
+        }
 
         .search-results {
             flex: 1;
@@ -772,7 +792,7 @@
             overflow: hidden;
         }
 
-        .poll-option:hover  { background: var(--poll-option-hover); border-color: var(--accent); }
+        .poll-option:hover   { background: var(--poll-option-hover); border-color: var(--accent); }
         .poll-option.my-vote { background: rgba(217,119,87,0.18); border-color: var(--accent); }
 
         .poll-option-fill {
@@ -838,7 +858,6 @@
 <div class="login-modal" id="loginModal">
     <div class="login-box">
         <div class="login-logo">
-            <!-- Chat bubble logo -->
             <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
                 <path d="M18 4C10.268 4 4 9.82 4 17c0 3.18 1.18 6.1 3.14 8.4L5.5 30.5l5.8-1.58A14.8 14.8 0 0018 30c7.732 0 14-5.82 14-13S25.732 4 18 4z" fill="white" fill-opacity="0.9"/>
                 <circle cx="12" cy="17" r="1.8" fill="#d97757"/>
@@ -849,9 +868,7 @@
         <div class="login-title">Welcome Back</div>
         <div class="login-subtitle">Enter your name to join the chat</div>
         <input type="text" class="login-input" id="nameInput" placeholder="Your name" maxlength="20" autocomplete="off">
-        <button class="login-btn" onclick="login()">
-            Join Chat
-        </button>
+        <button class="login-btn" onclick="login()">Join Chat</button>
     </div>
 </div>
 
@@ -862,7 +879,6 @@
 <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
         <div class="sidebar-avatar">
-            <!-- User SVG -->
             <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
                 <circle cx="13" cy="9" r="5" fill="white" fill-opacity="0.9"/>
                 <path d="M3 22c0-4.418 4.477-8 10-8s10 3.582 10 8" stroke="white" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.9"/>
@@ -878,7 +894,6 @@
     </div>
 
     <div class="sidebar-menu">
-        <!-- Home -->
         <a href="index.html" class="sidebar-item">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
@@ -886,8 +901,6 @@
             </svg>
             Home
         </a>
-
-        <!-- Clear Chat -->
         <div class="sidebar-item" onclick="clearMyChat()">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="3 6 5 6 21 6"/>
@@ -901,7 +914,6 @@
 
     <div class="sidebar-spacer"></div>
 
-    <!-- Logout -->
     <div class="sidebar-item danger" onclick="logout()">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/>
@@ -912,7 +924,7 @@
     </div>
 </div>
 
-<!-- Search / Rate Modal -->
+<!-- Search Modal -->
 <div class="search-modal" id="searchModal">
     <div class="search-sheet">
         <div class="search-handle"></div>
@@ -920,18 +932,19 @@
             <div class="search-title">Search &amp; Rate</div>
             <div class="search-tabs">
                 <button class="search-tab active" onclick="setTab('movie',this)">
-                    <!-- Film icon -->
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
-                        <line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/>
-                        <line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/>
-                        <line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/>
+                        <line x1="7" y1="2" x2="7" y2="22"/>
+                        <line x1="17" y1="2" x2="17" y2="22"/>
+                        <line x1="2" y1="12" x2="22" y2="12"/>
+                        <line x1="2" y1="7" x2="7" y2="7"/>
+                        <line x1="2" y1="17" x2="7" y2="17"/>
+                        <line x1="17" y1="17" x2="22" y2="17"/>
                         <line x1="17" y1="7" x2="22" y2="7"/>
                     </svg>
                     Movies
                 </button>
                 <button class="search-tab" onclick="setTab('tv',this)">
-                    <!-- TV icon -->
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="7" width="20" height="15" rx="2" ry="2"/>
                         <polyline points="17 2 12 7 7 2"/>
@@ -939,7 +952,6 @@
                     TV Shows
                 </button>
                 <button class="search-tab" onclick="setTab('person',this)">
-                    <!-- Person icon -->
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
                         <circle cx="12" cy="7" r="4"/>
@@ -948,23 +960,40 @@
                 </button>
             </div>
             <div class="search-input-row">
-                <!-- Search icon -->
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    <circle cx="11" cy="11" r="8"/>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
                 </svg>
-                <input type="text" class="search-input" id="searchInput" placeholder="Search…" autocomplete="off">
+                <input
+                    type="text"
+                    class="search-input"
+                    id="searchInput"
+                    placeholder="Type and press Search…"
+                    autocomplete="off"
+                    inputmode="search"
+                    enterkeyhint="search"
+                >
                 <button class="clear-btn" id="clearBtn" onclick="clearSearch()">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
                     </svg>
                 </button>
+            </div>
+            <div class="search-hint">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 10 4 15 9 20"/>
+                    <path d="M20 4v7a4 4 0 01-4 4H4"/>
+                </svg>
+                Press <kbd>Enter</kbd> or tap <kbd>Search</kbd> on keyboard
             </div>
         </div>
         <div class="search-results" id="searchResults">
             <div class="search-empty">
                 <div class="search-empty-icon">
                     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
                     </svg>
                 </div>
                 <div>Search for something to rate!</div>
@@ -985,7 +1014,8 @@
                 <circle cx="36" cy="25" r="2" fill="#777"/>
             </svg>
         </div>
-        <div class="empty-text">Start chatting with your friends!<br>
+        <div class="empty-text">
+            Start chatting with your friends!<br>
             <span style="font-size:13px;opacity:0.6;">Tap <strong>+</strong> to search &amp; create rating polls</span>
         </div>
     </div>
@@ -995,18 +1025,18 @@
 <div class="input-container">
     <div class="input-wrapper">
 
-        <!-- Menu button -->
+        <!-- Menu -->
         <button class="tool-btn" onclick="toggleSettings()" title="Menu">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="5"  r="1.2" fill="currentColor" stroke="none"/>
-                <circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/>
-                <circle cx="12" cy="19" r="1.2" fill="currentColor" stroke="none"/>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="12" cy="5"  r="1.5"/>
+                <circle cx="12" cy="12" r="1.5"/>
+                <circle cx="12" cy="19" r="1.5"/>
             </svg>
         </button>
 
-        <!-- Plus / Search button -->
+        <!-- Plus / Search -->
         <button class="tool-btn" onclick="openSearch()" title="Search &amp; Rate">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
                 <line x1="12" y1="5" x2="12" y2="19"/>
                 <line x1="5"  y1="12" x2="19" y2="12"/>
             </svg>
@@ -1014,7 +1044,7 @@
 
         <textarea id="messageInput" class="message-input" placeholder="Type a message…" rows="1"></textarea>
 
-        <!-- Send button -->
+        <!-- Send -->
         <button class="send-btn" id="sendBtn" onclick="sendMessage()">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="12" y1="19" x2="12" y2="5"/>
@@ -1031,7 +1061,7 @@
         onValue, onDisconnect, set, remove, get
     } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
 
-    /* ── Firebase ── */
+    /* ── Firebase init ── */
     const app = initializeApp({
         apiKey:            "AIzaSyDVAgkpOFYoVqfs0QhQKPvNOefJ6yYCKPU",
         authDomain:        "assemble-ab9ca.firebaseapp.com",
@@ -1042,16 +1072,16 @@
         appId:             "1:459627152005:web:997d0ac8304fca447b9fec"
     });
 
-    const db             = getDatabase(app);
-    const messagesRef    = ref(db, 'messages');
-    const onlineRef      = ref(db, 'onlineUsers');
+    const db          = getDatabase(app);
+    const messagesRef = ref(db, 'messages');
+    const onlineRef   = ref(db, 'onlineUsers');
 
     /* ── TMDB ── */
     const TMDB_KEY  = 'd971d4b212180c43e0830d20c04a68b5';
     const TMDB_BASE = 'https://api.themoviedb.org/3';
     const TMDB_IMG  = 'https://image.tmdb.org/t/p/w185';
 
-    /* ── Tiers ── */
+    /* ── Tier config ── */
     const TIERS = [
         { id:'s', label:'S-Tier', cls:'tier-s' },
         { id:'a', label:'A-Tier', cls:'tier-a' },
@@ -1061,15 +1091,14 @@
         { id:'f', label:'F-Tier', cls:'tier-f' },
     ];
 
-    /* ── State ── */
-    let currentUser    = null;
-    let deletedMsgs    = new Set();
-    let loadedMsgs     = new Set();
-    let searchTimer    = null;
-    let currentTab     = 'movie';
+    /* ── App state ── */
+    let currentUser = null;
+    let deletedMsgs = new Set();
+    let loadedMsgs  = new Set();
+    let currentTab  = 'movie';
 
     /* ── Helpers ── */
-    function esc(t) {
+    function esc(t = '') {
         const d = document.createElement('div');
         d.textContent = t;
         return d.innerHTML;
@@ -1081,10 +1110,10 @@
     }
 
     function getTime() {
-        return new Date().toLocaleTimeString('en-US',{ hour:'numeric', minute:'2-digit', hour12:true });
+        return new Date().toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit', hour12:true });
     }
 
-    /* ── Persistence ── */
+    /* ── Bootstrap saved state ── */
     (function init() {
         const dm = localStorage.getItem('deletedMessages');
         if (dm) deletedMsgs = new Set(JSON.parse(dm));
@@ -1097,7 +1126,9 @@
         }
     })();
 
-    function saveDel() { localStorage.setItem('deletedMessages', JSON.stringify([...deletedMsgs])); }
+    function saveDel() {
+        localStorage.setItem('deletedMessages', JSON.stringify([...deletedMsgs]));
+    }
 
     function goOnline() {
         if (!currentUser) return;
@@ -1107,7 +1138,7 @@
     }
 
     /* ── Login / Logout ── */
-    window.login = function() {
+    window.login = function () {
         const name = document.getElementById('nameInput').value.trim();
         if (!name) return;
         currentUser = { name, id: Date.now().toString() };
@@ -1117,7 +1148,7 @@
         document.getElementById('messageInput').focus();
     };
 
-    window.logout = function() {
+    window.logout = function () {
         if (!confirm('Leave the chat?')) return;
         if (currentUser) remove(ref(db, `onlineUsers/${currentUser.id}`));
         currentUser = null;
@@ -1127,21 +1158,24 @@
         closeSidebar();
     };
 
-    window.clearMyChat = function() {
+    window.clearMyChat = function () {
         if (!confirm('Clear your chat view?')) return;
-        document.getElementById('chatContainer').innerHTML =
-            `<div class="empty-state"><div class="empty-icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="3 6 5 6 21 6"/>
-                    <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
-                </svg>
-             </div><div class="empty-text">Chat cleared!</div></div>`;
+        document.getElementById('chatContainer').innerHTML = `
+            <div class="empty-state">
+                <div class="empty-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="3 6 5 6 21 6"/>
+                        <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
+                    </svg>
+                </div>
+                <div class="empty-text">Chat cleared!</div>
+            </div>`;
         loadedMsgs.clear();
         closeSidebar();
     };
 
     /* ── Sidebar ── */
-    window.toggleSettings = function() {
+    window.toggleSettings = function () {
         if (currentUser) document.getElementById('sidebarName').textContent = currentUser.name;
         document.getElementById('sidebar').classList.toggle('open');
         document.getElementById('sidebarOverlay').classList.toggle('open');
@@ -1158,80 +1192,110 @@
         document.getElementById('sidebarOnlineCount').textContent = `${n} online`;
     });
 
-    /* ── Input ── */
+    /* ── Chat input ── */
     const msgInput = document.getElementById('messageInput');
-    msgInput.addEventListener('input', function() {
+
+    msgInput.addEventListener('input', function () {
         this.style.height = 'auto';
         this.style.height = Math.min(this.scrollHeight, 100) + 'px';
     });
+
     msgInput.addEventListener('keydown', e => {
-        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
     });
+
     document.getElementById('nameInput').addEventListener('keydown', e => {
         if (e.key === 'Enter') login();
     });
 
-    /* ── Send text ── */
-    window.sendMessage = async function() {
+    /* ── Send text message ── */
+    window.sendMessage = async function () {
         if (!currentUser) { alert('Please login first'); return; }
         const txt = msgInput.value.trim();
         if (!txt) return;
         await push(messagesRef, {
-            type: 'text', text: txt,
-            sender: currentUser.name, senderId: currentUser.id,
+            type: 'text',
+            text: txt,
+            sender: currentUser.name,
+            senderId: currentUser.id,
             timestamp: serverTimestamp()
         });
         msgInput.value = '';
         msgInput.style.height = 'auto';
     };
 
-    /* ── Search ── */
-    window.openSearch = function() {
+    /* ── Search modal open / close ── */
+    window.openSearch = function () {
         if (!currentUser) { alert('Please login first'); return; }
         document.getElementById('searchModal').classList.add('open');
-        setTimeout(() => document.getElementById('searchInput').focus(), 380);
+        setTimeout(() => document.getElementById('searchInput').focus(), 400);
     };
 
-    window.closeSearch = function() {
+    window.closeSearch = function () {
         document.getElementById('searchModal').classList.remove('open');
     };
 
-    document.getElementById('searchModal').addEventListener('click', function(e) {
+    /* Close on backdrop tap */
+    document.getElementById('searchModal').addEventListener('click', function (e) {
         if (e.target === this) closeSearch();
     });
 
-    window.setTab = function(tab, btn) {
+    /* ── Tab switching ── */
+    window.setTab = function (tab, btn) {
         currentTab = tab;
         document.querySelectorAll('.search-tab').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+
+        /* Only re-search if results are already displayed */
         const q = document.getElementById('searchInput').value.trim();
-        if (q.length >= 2) doSearch(q); else showEmpty();
+        if (q.length >= 2 && document.querySelector('.result-item')) {
+            doSearch(q);
+        }
     };
 
+    /* ── Search input – show/hide clear button only, NO auto-search ── */
     const si = document.getElementById('searchInput');
     const cb = document.getElementById('clearBtn');
 
-    si.addEventListener('input', function() {
+    si.addEventListener('input', function () {
         cb.style.display = this.value ? 'block' : 'none';
-        clearTimeout(searchTimer);
-        const q = this.value.trim();
-        if (q.length < 2) { showEmpty(); return; }
-        searchTimer = setTimeout(() => doSearch(q), 340);
     });
 
-    window.clearSearch = function() {
-        si.value = ''; cb.style.display = 'none'; showEmpty(); si.focus();
+    /* ── Fire search on Enter / Search key ── */
+    si.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const q = this.value.trim();
+            if (q.length < 2) {
+                showEmpty('Type at least 2 characters to search');
+                return;
+            }
+            doSearch(q);
+            this.blur(); /* dismiss mobile keyboard */
+        }
+    });
+
+    window.clearSearch = function () {
+        si.value = '';
+        cb.style.display = 'none';
+        showEmpty();
+        si.focus();
     };
 
-    function showEmpty() {
+    /* ── Result display helpers ── */
+    function showEmpty(msg = 'Search for something to rate!') {
         document.getElementById('searchResults').innerHTML = `
             <div class="search-empty">
                 <div class="search-empty-icon">
                     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
                     </svg>
                 </div>
-                <div>Search for something to rate!</div>
+                <div>${msg}</div>
             </div>`;
     }
 
@@ -1240,137 +1304,174 @@
             `<div class="search-loading"><div class="search-spinner"></div><div>Searching…</div></div>`;
     }
 
+    /* ── TMDB fetch ── */
     async function doSearch(q) {
         showLoading();
         try {
             const res  = await fetch(`${TMDB_BASE}/search/${currentTab}?api_key=${TMDB_KEY}&query=${encodeURIComponent(q)}`);
+            if (!res.ok) throw new Error('API error');
             const data = await res.json();
             renderResults(data.results || [], q);
         } catch {
-            document.getElementById('searchResults').innerHTML =
-                `<div class="search-empty"><div class="search-empty-icon">⚠️</div><div>Search failed. Try again.</div></div>`;
+            document.getElementById('searchResults').innerHTML = `
+                <div class="search-empty">
+                    <div class="search-empty-icon">⚠️</div>
+                    <div>Search failed. Check your connection and try again.</div>
+                </div>`;
         }
     }
 
+    /* ── Render result list ── */
     function renderResults(list, q) {
         const el = document.getElementById('searchResults');
+
         if (!list.length) {
-            el.innerHTML = `<div class="search-empty"><div class="search-empty-icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                </svg></div>
-                <div>No results for "<strong>${esc(q)}</strong>"</div></div>`;
+            el.innerHTML = `
+                <div class="search-empty">
+                    <div class="search-empty-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                    </div>
+                    <div>No results for "<strong>${esc(q)}</strong>"</div>
+                </div>`;
             return;
         }
 
         const isPerson = currentTab === 'person';
-        let html = `<div class="result-section-title">${
-            currentTab==='movie' ? 'Movies' : currentTab==='tv' ? 'TV Shows' : 'Actors'
-        }</div>`;
+        const label    = currentTab === 'movie' ? 'Movies' : currentTab === 'tv' ? 'TV Shows' : 'Actors';
+        let html = `<div class="result-section-title">${label}</div>`;
 
-        list.slice(0,15).forEach(item => {
-            const encoded = esc(JSON.stringify(pick(item)));
+        list.slice(0, 15).forEach(item => {
+            const payload = JSON.stringify(JSON.stringify(pick(item)));
+
             if (isPerson) {
-                const img   = item.profile_path ? `${TMDB_IMG}${item.profile_path}` : null;
-                const dept  = esc(item.known_for_department || 'Actor');
-                const knownFor = (item.known_for||[]).map(k=>k.title||k.name).slice(0,2).join(', ');
-                html += `<div class="result-item" onclick='sendPoll(${JSON.stringify(JSON.stringify(pick(item)))})'>
-                    ${img
-                        ? `<img class="result-avatar-img" src="${img}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
-                        : ''}
-                    <div class="result-avatar-ph" ${img?'style="display:none"':''}>
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    </div>
-                    <div class="result-info">
-                        <div class="result-title">${esc(item.name||'')}</div>
-                        <div class="result-meta">${dept}${knownFor?' · '+esc(knownFor):''}</div>
-                    </div>
-                    <div class="result-chevron">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                    </div>
-                </div>`;
+                const img      = item.profile_path ? `${TMDB_IMG}${item.profile_path}` : null;
+                const dept     = esc(item.known_for_department || 'Actor');
+                const knownFor = (item.known_for || []).map(k => k.title || k.name).slice(0, 2).join(', ');
+
+                html += `
+                    <div class="result-item" onclick='sendPoll(${payload})'>
+                        ${img
+                            ? `<img class="result-avatar-img" src="${img}" alt=""
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+                            : ''}
+                        <div class="result-avatar-ph" ${img ? 'style="display:none"' : ''}>
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+                                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="result-info">
+                            <div class="result-title">${esc(item.name || '')}</div>
+                            <div class="result-meta">${dept}${knownFor ? ' · ' + esc(knownFor) : ''}</div>
+                        </div>
+                        <div class="result-chevron">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </div>
+                    </div>`;
             } else {
-                const title  = esc(item.title||item.name||'Unknown');
-                const year   = (item.release_date||item.first_air_date||'').slice(0,4);
+                const title  = esc(item.title || item.name || 'Unknown');
+                const year   = (item.release_date || item.first_air_date || '').slice(0, 4);
                 const rating = item.vote_average ? item.vote_average.toFixed(1) : null;
                 const img    = item.poster_path ? `${TMDB_IMG}${item.poster_path}` : null;
-                html += `<div class="result-item" onclick='sendPoll(${JSON.stringify(JSON.stringify(pick(item)))})'>
-                    ${img
-                        ? `<img class="result-poster" src="${img}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
-                        : ''}
-                    <div class="result-poster-ph" ${img?'style="display:none"':''}>
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>
-                    </div>
-                    <div class="result-info">
-                        <div class="result-title">${title}</div>
-                        <div class="result-meta">${year?year+' · ':''}${currentTab==='movie'?'Movie':'TV Show'}</div>
-                        ${rating?`<div class="result-rating">
-                            <svg width="11" height="11" viewBox="0 0 24 24" fill="#d97757" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                            ${rating}
-                        </div>`:''}
-                    </div>
-                    <div class="result-chevron">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-                    </div>
-                </div>`;
+
+                html += `
+                    <div class="result-item" onclick='sendPoll(${payload})'>
+                        ${img
+                            ? `<img class="result-poster" src="${img}" alt=""
+                                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+                            : ''}
+                        <div class="result-poster-ph" ${img ? 'style="display:none"' : ''}>
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="2"/>
+                                <line x1="7"  y1="2"  x2="7"  y2="22"/>
+                                <line x1="17" y1="2"  x2="17" y2="22"/>
+                                <line x1="2"  y1="12" x2="22" y2="12"/>
+                            </svg>
+                        </div>
+                        <div class="result-info">
+                            <div class="result-title">${title}</div>
+                            <div class="result-meta">${year ? year + ' · ' : ''}${currentTab === 'movie' ? 'Movie' : 'TV Show'}</div>
+                            ${rating ? `
+                            <div class="result-rating">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="#d97757">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                </svg>
+                                ${rating}
+                            </div>` : ''}
+                        </div>
+                        <div class="result-chevron">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </div>
+                    </div>`;
             }
         });
 
         el.innerHTML = html;
     }
 
+    /* ── Sanitise item for storage ── */
     function pick(item) {
-        const isPerson = currentTab === 'person';
-        if (isPerson) return {
-            kind: 'person',
-            id:   item.id,
-            name: item.name||'',
-            dept: item.known_for_department||'Actor',
-            profile_path: item.profile_path||null,
-            knownFor: (item.known_for||[]).map(k=>k.title||k.name).slice(0,3)
-        };
+        if (currentTab === 'person') {
+            return {
+                kind:         'person',
+                id:           item.id,
+                name:         item.name || '',
+                dept:         item.known_for_department || 'Actor',
+                profile_path: item.profile_path || null,
+                knownFor:     (item.known_for || []).map(k => k.title || k.name).slice(0, 3)
+            };
+        }
         return {
-            kind:  currentTab,
-            id:    item.id,
-            title: item.title||item.name||'',
-            year:  (item.release_date||item.first_air_date||'').slice(0,4),
-            rating: item.vote_average||0,
-            poster_path: item.poster_path||null
+            kind:        currentTab,
+            id:          item.id,
+            title:       item.title || item.name || '',
+            year:        (item.release_date || item.first_air_date || '').slice(0, 4),
+            rating:      item.vote_average || 0,
+            poster_path: item.poster_path || null
         };
     }
 
-    /* ── Send Poll ── */
-    window.sendPoll = async function(jsonStr) {
+    /* ── Send poll to Firebase ── */
+    window.sendPoll = async function (jsonStr) {
         if (!currentUser) return;
         const item = JSON.parse(jsonStr);
         closeSearch();
         await push(messagesRef, {
-            type: 'poll',
-            sender: currentUser.name,
-            senderId: currentUser.id,
+            type:      'poll',
+            sender:    currentUser.name,
+            senderId:  currentUser.id,
             timestamp: serverTimestamp(),
             item,
-            votes: {}
+            votes:     {}
         });
     };
 
-    /* ── Vote ── */
-    window.votePoll = async function(msgId, tierId) {
+    /* ── Vote on a poll ── */
+    window.votePoll = async function (msgId, tierId) {
         if (!currentUser) { alert('Login to vote'); return; }
         const vRef = ref(db, `messages/${msgId}/votes/${currentUser.id}`);
         const snap = await get(vRef);
+        /* toggle off if already voted same tier */
         if (snap.exists() && snap.val() === tierId) await remove(vRef);
         else await set(vRef, tierId);
     };
 
-    /* ── Delete ── */
-    window.deleteMessage = function(id) {
-        deletedMsgs.add(id); saveDel();
+    /* ── Delete own message (local) ── */
+    window.deleteMessage = function (id) {
+        deletedMsgs.add(id);
+        saveDel();
         const el = document.querySelector(`[data-msg-id="${id}"]`);
-        if (el) { el.classList.add('deleted'); setTimeout(()=>el.remove(),300); }
+        if (el) { el.classList.add('deleted'); setTimeout(() => el.remove(), 300); }
     };
 
-    /* ── Firebase listener ── */
+    /* ── Firebase real-time listener ── */
     onChildAdded(messagesRef, snap => {
         if (!currentUser) return;
         const data = snap.val();
@@ -1384,17 +1485,19 @@
 
         const isOwn = data.senderId === currentUser.id;
         if (data.type === 'poll') renderPoll(container, id, data, isOwn);
-        else renderText(container, id, data, isOwn);
+        else                      renderText(container, id, data, isOwn);
     });
 
-    /* ── Render Text ── */
+    /* ── Render plain text bubble ── */
     function renderText(container, id, data, isOwn) {
-        const el = document.createElement('div');
-        el.className = `message-group ${isOwn?'own':''}`;
+        const el   = document.createElement('div');
+        el.className = `message-group ${isOwn ? 'own' : ''}`;
         el.setAttribute('data-msg-id', id);
-        const init = (data.sender||'?')[0].toUpperCase();
+        const init = (data.sender || '?')[0].toUpperCase();
+
         el.innerHTML = `
-            ${isOwn?`<div class="message-actions">
+            ${isOwn ? `
+            <div class="message-actions">
                 <button class="delete-btn" onclick="deleteMessage('${id}')">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <polyline points="3 6 5 6 21 6"/>
@@ -1402,81 +1505,105 @@
                     </svg>
                     Delete
                 </button>
-            </div>`:''}
+            </div>` : ''}
             <div class="message-header">
-                <div class="avatar ${isOwn?'user-avatar':'friend-avatar'}">${init}</div>
+                <div class="avatar ${isOwn ? 'user-avatar' : 'friend-avatar'}">${init}</div>
                 <span class="sender-name">${esc(data.sender)}</span>
                 <span class="message-time">${getTime()}</span>
             </div>
-            <div class="message-bubble ${isOwn?'':'friend'}">${esc(data.text||'')}</div>`;
+            <div class="message-bubble ${isOwn ? '' : 'friend'}">${esc(data.text || '')}</div>`;
+
         container.appendChild(el);
         scrollBottom();
     }
 
-    /* ── Render Poll ── */
+    /* ── Render poll bubble ── */
     function renderPoll(container, id, data, isOwn) {
-        const item   = data.item || {};
+        const item     = data.item || {};
         const isPerson = item.kind === 'person';
-        const title  = esc(item.name || item.title || 'Unknown');
-        const imgPath = item.poster_path || item.profile_path || null;
-        const imgSrc  = imgPath ? `${TMDB_IMG}${imgPath}` : null;
+        const title    = esc(item.name || item.title || 'Unknown');
+        const imgPath  = item.poster_path || item.profile_path || null;
+        const imgSrc   = imgPath ? `${TMDB_IMG}${imgPath}` : null;
 
-        const el = document.createElement('div');
-        el.className = `message-group ${isOwn?'own':''}`;
+        const personImgHtml = imgSrc
+            ? `<img class="poll-actor-img" src="${imgSrc}" alt=""
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+               <div class="poll-actor-ph" style="display:none">
+                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+                       <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                       <circle cx="12" cy="7" r="4"/>
+                   </svg>
+               </div>`
+            : `<div class="poll-actor-ph">
+                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+                       <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                       <circle cx="12" cy="7" r="4"/>
+                   </svg>
+               </div>`;
+
+        const mediaImgHtml = imgSrc
+            ? `<img class="poll-poster" src="${imgSrc}" alt=""
+                    onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+               <div class="poll-poster-ph" style="display:none">
+                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round">
+                       <rect x="2" y="2" width="20" height="20" rx="2"/>
+                   </svg>
+               </div>`
+            : `<div class="poll-poster-ph">
+                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round">
+                       <rect x="2" y="2" width="20" height="20" rx="2"/>
+                   </svg>
+               </div>`;
+
+        const el   = document.createElement('div');
+        el.className = `message-group ${isOwn ? 'own' : ''}`;
         el.setAttribute('data-msg-id', id);
         el.setAttribute('data-poll', '1');
 
-        const init   = (data.sender||'?')[0].toUpperCase();
+        const init   = (data.sender || '?')[0].toUpperCase();
         const votes  = data.votes || {};
         const myVote = currentUser ? votes[currentUser.id] : null;
         const total  = Object.keys(votes).length;
 
-        const imgHtml = isPerson
-            ? (imgSrc
-                ? `<img class="poll-actor-img" src="${imgSrc}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                   <div class="poll-actor-ph" style="display:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>`
-                : `<div class="poll-actor-ph"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>`)
-            : (imgSrc
-                ? `<img class="poll-poster" src="${imgSrc}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-                   <div class="poll-poster-ph" style="display:none"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="2"/></svg></div>`
-                : `<div class="poll-poster-ph"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="2"/></svg></div>`);
-
-        let optionsHtml = buildOptions(id, votes, myVote, total);
-
         el.innerHTML = `
             <div class="message-header">
-                <div class="avatar ${isOwn?'user-avatar':'friend-avatar'}">${init}</div>
+                <div class="avatar ${isOwn ? 'user-avatar' : 'friend-avatar'}">${init}</div>
                 <span class="sender-name">${esc(data.sender)}</span>
                 <span class="message-time">${getTime()}</span>
             </div>
             <div class="poll-bubble">
                 <div class="poll-header">
                     <div class="poll-badge">
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="white">
+                            <path d="M18 20V10M12 20V4M6 20v-6"/>
+                        </svg>
                         Rate It!
                     </div>
                     <div class="poll-poster-row">
-                        ${imgHtml}
+                        ${isPerson ? personImgHtml : mediaImgHtml}
                         <div class="poll-info">
                             <div class="poll-title">${title}</div>
-                            ${item.rating ? `<div class="poll-rating">
-                                <svg width="11" height="11" viewBox="0 0 24 24" fill="#d97757" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            ${item.rating ? `
+                            <div class="poll-rating">
+                                <svg width="11" height="11" viewBox="0 0 24 24" fill="#d97757">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                </svg>
                                 ${Number(item.rating).toFixed(1)}/10
                             </div>` : ''}
-                            ${item.year  ? `<div class="poll-year">${esc(item.year)}</div>`:''}
-                            ${isPerson && item.dept ? `<div class="poll-year">${esc(item.dept)}</div>`:''}
+                            ${item.year ? `<div class="poll-year">${esc(item.year)}</div>` : ''}
+                            ${isPerson && item.dept ? `<div class="poll-year">${esc(item.dept)}</div>` : ''}
                         </div>
                     </div>
                 </div>
                 <div class="poll-question">How would you rate it?</div>
-                <div class="poll-options" id="opts-${id}">${optionsHtml}</div>
-                <div class="poll-footer" id="foot-${id}">${total===0?'Be the first to vote!':total+' vote'+(total!==1?'s':'')}</div>
+                <div class="poll-options" id="opts-${id}">${buildOptions(id, votes, myVote, total)}</div>
+                <div class="poll-footer"  id="foot-${id}">${footerText(total)}</div>
             </div>`;
 
         container.appendChild(el);
         scrollBottom();
 
-        /* live vote updates */
+        /* Live vote sync */
         const votesRef = ref(db, `messages/${id}/votes`);
         onValue(votesRef, snap => {
             const lv = snap.val() || {};
@@ -1485,25 +1612,31 @@
             const optsEl = document.getElementById(`opts-${id}`);
             const footEl = document.getElementById(`foot-${id}`);
             if (optsEl) optsEl.innerHTML = buildOptions(id, lv, mv, tt);
-            if (footEl) footEl.textContent = tt===0?'Be the first to vote!':tt+' vote'+(tt!==1?'s':'');
+            if (footEl) footEl.textContent = footerText(tt);
         });
     }
 
+    /* ── Build poll option rows ── */
     function buildOptions(msgId, votes, myVote, total) {
         return TIERS.map(t => {
-            const cnt = Object.values(votes).filter(v=>v===t.id).length;
-            const pct = total > 0 ? Math.round((cnt/total)*100) : 0;
+            const cnt = Object.values(votes).filter(v => v === t.id).length;
+            const pct = total > 0 ? Math.round((cnt / total) * 100) : 0;
             return `
-                <div class="poll-option ${myVote===t.id?'my-vote':''}" onclick="votePoll('${msgId}','${t.id}')">
+                <div class="poll-option ${myVote === t.id ? 'my-vote' : ''}"
+                     onclick="votePoll('${msgId}','${t.id}')">
                     <div class="poll-option-fill" style="width:${pct}%"></div>
                     <span class="poll-tier ${t.cls}">${t.id.toUpperCase()}</span>
                     <span class="poll-tier-label">${t.label}</span>
-                    <span class="poll-pct">${total>0?pct+'%':''}</span>
+                    <span class="poll-pct">${total > 0 ? pct + '%' : ''}</span>
                 </div>`;
         }).join('');
     }
 
-    /* ── Prevent double-tap zoom ── */
+    function footerText(total) {
+        return total === 0 ? 'Be the first to vote!' : `${total} vote${total !== 1 ? 's' : ''}`;
+    }
+
+    /* ── Prevent double-tap zoom on mobile ── */
     let lt = 0;
     document.addEventListener('touchend', e => {
         const n = Date.now();
