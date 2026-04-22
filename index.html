@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <meta name="theme-color" content="#e50914" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -95,6 +95,29 @@ header{
 }
 .rbtn:active{transform:rotate(180deg) scale(.9)}
 
+/* Chat button inside stats grid */
+.sc.chat-stat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.sc .chat-btn {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--r);
+  background: var(--ac);
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 4px;
+  font-size: 0.7rem;
+}
+.sc .chat-btn span {
+  font-size: 1.2rem;
+  line-height: 1;
+}
 /* ── CATEGORY TABS ── */
 .tabs{
   display:flex;margin:10px 14px 0;
@@ -488,7 +511,25 @@ header{
     </div>
   </div>
 </header>
+<!-- STATS -->
+<div class="stats">
+  <div class="sc a">
+    <span class="sn" id="st">0</span>
+    <span class="sl">Ranked</span>
+  </div>
 
+  <!-- CHAT BUTTON (styled to match stat card) -->
+  <div class="sc chat-stat">
+    <button class="chat-btn" onclick="openChat()">
+      <span>💬</span> Chat
+    </button>
+  </div>
+
+  <div class="sc c">
+    <span class="sn" id="su">—</span>
+    <span class="sl">Updated</span>
+  </div>
+</div>
 <!-- TABS -->
 <div class="tabs">
   <button class="tab on" data-cat="movies" onclick="switchCat(&#39;movies&#39;)">
@@ -505,12 +546,7 @@ header{
   </button>
 </div>
 
-<!-- STATS -->
-<div class="stats">
-  <div class="sc a"><span class="sn" id="st">0</span><span class="sl">Ranked</span></div>
-  <div class="sc b"><span class="sn" id="ss">0</span><span class="sl">S-Tier</span></div>
-  <div class="sc c"><span class="sn" id="su">—</span><span class="sl">Updated</span></div>
-</div>
+
 
 <!-- TRENDING -->
 <div class="tsec" id="tsec">
@@ -579,12 +615,7 @@ header{
     <div class="tz" id="tier-F" data-tier="F"></div>
   </div>
 </div>
-<div style="display: flex; justify-content: flex-end; padding: 20px;">
-  <a href="index2.html" 
-     style="padding:6px 12px; font-size:14px; background-color:#007BFF; color:white; text-decoration:none; border-radius:4px;">
-    CHAT
-  </a>
-  </div>
+
   
 <!-- FOOTER -->
 <div class="foot">
@@ -799,13 +830,16 @@ async function doRefresh(){
   if(d){applyData(d);showToast('Up to date ✅');}
   else showToast('No data yet');
 }
-
+/* ══ OPEN CHAT ══ */
+function openChat() {
+  window.location.href = 'index2.html';
+}
 /* ══ STATS ══ */
 function refreshStats(){
   const counts=TIERS.map(t=>({t,n:document.getElementById(`tier-${t}`).querySelectorAll('.mc').length}));
   const total=counts.reduce((s,x)=>s+x.n,0);
   document.getElementById('st').textContent=total;
-  document.getElementById('ss').textContent=counts.find(x=>x.t==='S')?.n||0;
+  
   refreshTime();
   counts.forEach(({t,n})=>{
     document.getElementById(CNT_IDS[t]).textContent=`${n} item${n!==1?'s':''}`;
@@ -885,9 +919,9 @@ function renderTrend(results,t){
   /* Sortable for trending scroll */
   sc._s=Sortable.create(sc,{
     group:{name:'items',pull:'clone',put:false},
-    animation:150,sort:false,
+    animation:80,sort:false,
     ghostClass:'sortable-ghost',chosenClass:'sortable-chosen',
-    delay:80,delayOnTouchOnly:true,
+    delay:150,delayOnTouchOnly:true,
     onEnd(evt){
       if(evt.to!==sc&&evt.to.classList.contains('tz')){
         const tc=evt.item;
@@ -942,9 +976,9 @@ function makeCard(item,inTier){
 function initSortable(){
   Sortable.create(document.getElementById('rp'),{
     group:{name:'items',pull:'clone',put:false},
-    animation:150,sort:false,
+    animation:80,sort:false,
     ghostClass:'sortable-ghost',chosenClass:'sortable-chosen',
-    delay:80,delayOnTouchOnly:true,
+    delay:150,delayOnTouchOnly:true,
     onEnd(evt){
       if(evt.to!==evt.from&&evt.to.classList.contains('tz')){
         const rb=evt.item.querySelector('.rm');
@@ -957,9 +991,9 @@ function initSortable(){
   TIERS.forEach(t=>{
     Sortable.create(document.getElementById(`tier-${t}`),{
       group:{name:'items',pull:true,put:true},
-      animation:150,
+      animation:80,
       ghostClass:'sortable-ghost',chosenClass:'sortable-chosen',
-      delay:80,delayOnTouchOnly:true,
+      delay:150,delayOnTouchOnly:true,
       onAdd(evt){
         const rb=evt.item.querySelector('.rm');
         if(rb)rb.style.display='flex';
