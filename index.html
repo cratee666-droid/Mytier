@@ -10,7 +10,7 @@
 <title>CineStream</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}
-:root{--red:#E50914;--rd:#b20710;--rg:rgba(229,9,20,0.3);--rg2:rgba(229,9,20,0.1);--safe-bottom:env(safe-area-inset-bottom,0px);--safe-top:env(safe-area-inset-top,0px)}
+:root{--red:#E50914;--rd:#b20710;--rg:rgba(229,9,20,0.3);--rg2:rgba(229,9,20,0.1);--safe-bottom:env(safe-area-inset-bottom,0px);--safetop:env(safe-area-inset-top,0px)}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:#fff;overflow:hidden;touch-action:manipulation;-webkit-font-smoothing:antialiased;position:fixed;inset:0}
 #app{width:100%;height:100%;position:relative;overflow:hidden}
@@ -99,7 +99,7 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 .search-box svg{width:17px;height:17px;flex-shrink:0;color:rgba(229,9,20,0.55)}
 #main-search-input{flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:16px;padding:13px 0;caret-color:var(--red);-webkit-appearance:none}
 #main-search-input::placeholder{color:rgba(255,255,255,0.22)}
-.search-clear-btn{background:none;border:none;color:rgba(229,9,20,0.55);font-size:20px;cursor:pointer;padding:6px;line-height:1;display:none;min-width:32px;min-height:32px;display:none;align-items:center;justify-content:center}
+.search-clear-btn{background:none;border:none;color:rgba(229,9,20,0.55);font-size:20px;cursor:pointer;padding:6px;line-height:1;min-width:32px;min-height:32px;display:none;align-items:center;justify-content:center}
 .search-clear-btn.show{display:flex}
 
 /* AUTOCOMPLETE */
@@ -224,12 +224,43 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 .err-txt{font-size:12px;color:rgba(255,255,255,0.38);text-align:center}
 .err-sub{font-size:10px;color:rgba(229,9,20,0.4)}
 
-/* WEB SEARCHER */
+/* ===== WEB SEARCHER - ENHANCED WITH LOGOS ===== */
 .web-searcher-section{margin-bottom:20px}
 .ws-engines{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
-.ws-engine-btn{display:flex;align-items:center;gap:6px;background:rgba(8,0,0,0.85);border:1.5px solid rgba(229,9,20,0.18);border-radius:20px;padding:7px 13px;font-size:12px;font-weight:700;color:rgba(255,255,255,0.55);cursor:pointer;transition:all 0.15s;white-space:nowrap;min-height:36px}
-.ws-engine-btn.active{border-color:var(--red);color:#fff;background:rgba(229,9,20,0.14);box-shadow:0 0 8px rgba(229,9,20,0.18)}
-.ws-engine-btn .eng-emoji{font-size:15px;line-height:1}
+
+.ws-engine-btn{
+  display:flex;align-items:center;gap:7px;
+  background:rgba(8,0,0,0.85);
+  border:1.5px solid rgba(229,9,20,0.18);
+  border-radius:20px;padding:6px 13px 6px 8px;
+  font-size:12px;font-weight:700;
+  color:rgba(255,255,255,0.55);
+  cursor:pointer;transition:all 0.15s;
+  white-space:nowrap;min-height:36px;
+  position:relative;
+}
+.ws-engine-btn.active{
+  border-color:var(--red);color:#fff;
+  background:rgba(229,9,20,0.14);
+  box-shadow:0 0 8px rgba(229,9,20,0.18)
+}
+.ws-engine-btn:active{transform:scale(0.95)}
+
+/* Engine logo container */
+.eng-logo-wrap{
+  width:22px;height:22px;border-radius:50%;
+  background:rgba(255,255,255,0.08);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;overflow:hidden;
+  border:1px solid rgba(255,255,255,0.06);
+}
+.eng-logo-wrap img{
+  width:18px;height:18px;object-fit:contain;border-radius:2px;
+}
+.eng-logo-wrap .eng-emoji-fallback{
+  font-size:13px;line-height:1;
+}
+
 .ws-add-btn{display:flex;align-items:center;gap:5px;background:transparent;border:1.5px dashed rgba(229,9,20,0.28);border-radius:20px;padding:7px 13px;font-size:12px;font-weight:700;color:rgba(229,9,20,0.45);cursor:pointer;transition:all 0.15s;min-height:36px}
 .ws-add-btn:active{border-color:var(--red);color:var(--red)}
 .ws-query-row{display:flex;gap:8px;align-items:center}
@@ -264,13 +295,16 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 .custom-eng-url{font-size:9px;color:rgba(255,255,255,0.28);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:140px}
 .custom-eng-del{background:none;border:none;color:rgba(229,9,20,0.45);font-size:18px;cursor:pointer;padding:4px 6px;line-height:1;min-width:32px;min-height:32px;display:flex;align-items:center;justify-content:center}
 .custom-eng-del:active{color:var(--red)}
+
+/* ENGINE LOGO PREVIEW IN MODAL */
+.eng-logo-preview{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(229,9,20,0.04);border:1px solid rgba(229,9,20,0.1);border-radius:8px;margin-bottom:4px}
+.eng-logo-preview img{width:24px;height:24px;object-fit:contain;border-radius:4px}
+.eng-logo-preview-txt{font-size:11px;color:rgba(255,255,255,0.38)}
 </style>
 </head>
 <body>
 <div id="app">
-
 <div class="copy-toast" id="copy-toast">Copied!</div>
-
 <div class="loading-overlay" id="global-loading">
   <div class="ring"></div>
   <div class="load-text">Loading</div>
@@ -288,8 +322,15 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
     </div>
     <div class="modal-field">
       <label class="modal-label">Search URL</label>
-      <input class="modal-input" id="eng-url-input" placeholder="https://example.com/search?q={query}" autocomplete="off" inputmode="url"/>
+      <input class="modal-input" id="eng-url-input" placeholder="https://example.com/search?q={query}" autocomplete="off" inputmode="url"
+        oninput="previewEngLogo(this.value)"/>
       <div class="modal-hint">Replace the search term with <code>{query}</code><br>e.g. https://www.imdb.com/find?q={query}</div>
+      <div id="eng-logo-preview-wrap" style="display:none;margin-top:8px">
+        <div class="eng-logo-preview">
+          <img id="eng-logo-preview-img" src="" alt="logo" onerror="this.style.display='none'"/>
+          <span class="eng-logo-preview-txt" id="eng-logo-preview-txt">Logo auto-detected</span>
+        </div>
+      </div>
     </div>
     <div id="custom-engines-list-wrap" style="display:none">
       <div style="font-size:10px;font-weight:800;letter-spacing:0.7px;text-transform:uppercase;color:rgba(229,9,20,0.55);margin-bottom:7px">Your Engines</div>
@@ -351,9 +392,77 @@ let currentRegion='IN';
 let activeEngineId='google';
 let customEngines=JSON.parse(localStorage.getItem('cs_custom_engines')||'[]');
 
+/* ============================
+   ENGINE LOGO AUTO-DETECTION
+   ============================ */
+
+// Known engine logo overrides (SVG inline or direct URL)
+const ENGINE_LOGO_SVGS = {
+  google: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18" height="18"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>`,
+  bing: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="#008373" d="M5 3v15.26l4.18 2.33 9.19-5.42-4.24-1.56V7.4z"/></svg>`,
+  duckduckgo: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="18" height="18"><circle cx="50" cy="50" r="50" fill="#DE5833"/><text x="50" y="68" text-anchor="middle" font-size="52" fill="#fff">🦆</text></svg>`,
+  youtube: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18" height="18"><path fill="#FF0000" d="M43.2 33.9c-.4 2.1-2.1 3.7-4.2 4C35.3 38.6 29.7 39 24 39s-11.3-.4-15-1.1c-2.1-.3-3.8-1.9-4.2-4C4.4 31.6 4 27.8 4 24s.4-7.6.8-9.9c.4-2.1 2.1-3.7 4.2-4C12.7 9.4 18.3 9 24 9s11.3.4 15 1.1c2.1.3 3.8 1.9 4.2 4 .4 2.3.8 6.1.8 9.9s-.4 7.6-.8 9.9z"/><path fill="#fff" d="M20 31V17l12 7z"/></svg>`,
+  imdb: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="28" height="14"><rect width="60" height="30" rx="4" fill="#F5C518"/><text x="4" y="22" font-family="Arial Black,sans-serif" font-size="18" font-weight="900" fill="#000">IMDb</text></svg>`,
+};
+
 const BUILTIN_ENGINES=[
-  {id:'google',name:'Google',emoji:'🔍',url:'https://www.google.com/search?q={query}'}
+  {id:'google',   name:'Google',     emoji:'🔍', url:'https://www.google.com/search?q={query}',           domain:'google.com'},
+  {id:'bing',     name:'Bing',       emoji:'🅱️', url:'https://www.bing.com/search?q={query}',             domain:'bing.com'},
+  {id:'duckduckgo',name:'DuckDuckGo',emoji:'🦆', url:'https://duckduckgo.com/?q={query}',                 domain:'duckduckgo.com'},
+  {id:'youtube',  name:'YouTube',    emoji:'▶️', url:'https://www.youtube.com/results?search_query={query}',domain:'youtube.com'},
+  {id:'imdb',     name:'IMDb',       emoji:'🎬', url:'https://www.imdb.com/find?q={query}',               domain:'imdb.com'},
 ];
+
+/* Get favicon URL for any domain */
+function getFaviconUrl(domain){
+  if(!domain)return null;
+  // Use Google's favicon service as primary (best quality)
+  return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+}
+
+/* Extract domain from URL */
+function extractDomain(url){
+  try{
+    const u=new URL(url);
+    return u.hostname.replace(/^www\./,'');
+  }catch(e){return null;}
+}
+
+/* Build engine logo HTML - tries SVG first, then favicon, then emoji */
+function buildEngLogoHtml(engine){
+  // Check if we have an inline SVG
+  if(ENGINE_LOGO_SVGS[engine.id]){
+    return`<span class="eng-logo-wrap" style="background:transparent;border:none">${ENGINE_LOGO_SVGS[engine.id]}</span>`;
+  }
+  // Use favicon API for known domain
+  const domain = engine.domain || extractDomain(engine.url);
+  if(domain){
+    const faviconUrl = getFaviconUrl(domain);
+    return`<span class="eng-logo-wrap">
+      <img src="${faviconUrl}" alt="${engine.name}" 
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+        style="width:18px;height:18px;object-fit:contain;border-radius:2px"/>
+      <span class="eng-emoji-fallback" style="display:none">${engine.emoji||'🌐'}</span>
+    </span>`;
+  }
+  // Fallback to emoji
+  return`<span class="eng-logo-wrap"><span class="eng-emoji-fallback">${engine.emoji||'🌐'}</span></span>`;
+}
+
+/* Preview logo in modal when URL is typed */
+function previewEngLogo(url){
+  const wrap=document.getElementById('eng-logo-preview-wrap');
+  const img=document.getElementById('eng-logo-preview-img');
+  const txt=document.getElementById('eng-logo-preview-txt');
+  if(!wrap||!img||!txt)return;
+  const domain=extractDomain(url);
+  if(!domain){wrap.style.display='none';return;}
+  const faviconUrl=getFaviconUrl(domain);
+  img.src=faviconUrl;
+  img.style.display='block';
+  txt.textContent=`Auto-detected: ${domain}`;
+  wrap.style.display='block';
+}
 
 function getAllEngines(){return[...BUILTIN_ENGINES,...customEngines];}
 function getEngineById(id){return getAllEngines().find(e=>e.id===id);}
@@ -362,26 +471,36 @@ function openEngineModal(){
   document.getElementById('add-engine-modal').classList.remove('hidden');
   document.getElementById('eng-name-input').value='';
   document.getElementById('eng-url-input').value='';
+  document.getElementById('eng-logo-preview-wrap').style.display='none';
   renderCustomEnginesList();
 }
 function closeEngineModal(){
   document.getElementById('add-engine-modal').classList.add('hidden');
 }
+
 function renderCustomEnginesList(){
   const wrap=document.getElementById('custom-engines-list-wrap');
   const list=document.getElementById('custom-engines-list');
   if(!customEngines.length){wrap.style.display='none';return;}
   wrap.style.display='block';
-  list.innerHTML=customEngines.map(e=>`
-    <div class="custom-eng-item">
-      <span style="font-size:18px">${e.emoji||'🌐'}</span>
+  list.innerHTML=customEngines.map(e=>{
+    const domain=e.domain||extractDomain(e.url);
+    const faviconUrl=domain?getFaviconUrl(domain):null;
+    return`<div class="custom-eng-item">
+      <span class="eng-logo-wrap" style="width:28px;height:28px;flex-shrink:0">
+        ${faviconUrl
+          ?`<img src="${faviconUrl}" alt="${e.name}" style="width:20px;height:20px;object-fit:contain;border-radius:2px" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><span style="display:none;font-size:14px">${e.emoji||'🌐'}</span>`
+          :`<span style="font-size:14px">${e.emoji||'🌐'}</span>`}
+      </span>
       <div style="flex:1;min-width:0">
         <div class="custom-eng-name">${e.name}</div>
         <div class="custom-eng-url">${e.url}</div>
       </div>
       <button class="custom-eng-del" onclick="deleteCustomEngine('${e.id}')">✕</button>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
+
 function saveCustomEngine(){
   const name=document.getElementById('eng-name-input').value.trim();
   const url=document.getElementById('eng-url-input').value.trim();
@@ -389,14 +508,17 @@ function saveCustomEngine(){
   if(!url||!url.includes('{query}')){showToast('URL must contain {query}');return;}
   if(!url.startsWith('http')){showToast('URL must start with http://');return;}
   const id='custom_'+Date.now();
-  customEngines.push({id,name,url,emoji:'🌐',custom:true});
+  const domain=extractDomain(url);
+  customEngines.push({id,name,url,emoji:'🌐',domain,custom:true});
   localStorage.setItem('cs_custom_engines',JSON.stringify(customEngines));
   renderCustomEnginesList();
   document.getElementById('eng-name-input').value='';
   document.getElementById('eng-url-input').value='';
+  document.getElementById('eng-logo-preview-wrap').style.display='none';
   refreshWebSearcherEngines();
   showToast('Engine added!');
 }
+
 function deleteCustomEngine(id){
   customEngines=customEngines.filter(e=>e.id!==id);
   localStorage.setItem('cs_custom_engines',JSON.stringify(customEngines));
@@ -404,31 +526,36 @@ function deleteCustomEngine(id){
   renderCustomEnginesList();
   refreshWebSearcherEngines();
 }
+
 function refreshWebSearcherEngines(){
   const wrap=document.getElementById('ws-engines-wrap');
   if(wrap)wrap.innerHTML=buildEnginesHtml();
 }
+
 function buildEnginesHtml(){
   return getAllEngines().map(e=>`
     <button class="ws-engine-btn${activeEngineId===e.id?' active':''}" onclick="selectEngine('${e.id}')" id="ws-eng-${e.id}">
-      <span class="eng-emoji">${e.emoji||'🌐'}</span>${e.name}
+      ${buildEngLogoHtml(e)}${e.name}
     </button>`).join('')+`
     <button class="ws-add-btn" onclick="openEngineModal()">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>Add
     </button>`;
 }
+
 function selectEngine(id){
   activeEngineId=id;
   document.querySelectorAll('.ws-engine-btn').forEach(b=>b.classList.remove('active'));
   const btn=document.getElementById('ws-eng-'+id);
   if(btn)btn.classList.add('active');
 }
+
 function wsSearch(query){
   const engine=getEngineById(activeEngineId);
   if(!engine)return;
   const url=engine.url.replace('{query}',encodeURIComponent(query));
   window.open(url,'_blank');
 }
+
 function wsGoSearch(){
   const inp=document.getElementById('ws-main-input');
   if(!inp)return;
@@ -436,6 +563,7 @@ function wsGoSearch(){
   if(!q)return;
   wsSearch(q);
 }
+
 function buildWebSearcher(title,type){
   const typeLabel=type==='tv'?'TV show':'movie';
   return`
@@ -463,10 +591,8 @@ function showToast(msg){
   setTimeout(()=>t.classList.remove('show'),2200);
 }
 function escAttr(s){return String(s).replace(/'/g,"&#39;").replace(/"/g,"&quot;");}
-
 const noAvatar=`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Ccircle cx='36' cy='36' r='36' fill='%23110000'/%3E%3Ccircle cx='36' cy='28' r='12' fill='%23E50914' opacity='0.7'/%3E%3Cellipse cx='36' cy='58' rx='18' ry='12' fill='%23E50914' opacity='0.5'/%3E%3C/svg%3E`;
 const noThumb=`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='44' viewBox='0 0 70 44'%3E%3Crect width='70' height='44' fill='%23110000'/%3E%3Cpolygon points='28,14 28,30 46,22' fill='%23E50914' opacity='0.6'/%3E%3C/svg%3E`;
-
 const ICONS={
   film:`<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>`,
   tv:`<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg>`,
@@ -475,7 +601,7 @@ const ICONS={
   cal:`<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>`,
   copy:`<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>`,
   search:`<svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>`,
-  warn:`<svg width="32" height="32" viewBox="0 0 24 24" fill="#E50914"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>`,
+  warn:`<svg width="32" height="32" viewBox="0 0 24 24" fill="#E50914"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v4h2v4z"/></svg>`,
   noplay:`<svg width="38" height="38" viewBox="0 0 24 24" fill="rgba(229,9,20,0.28)"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 12l-5-3 5-3v6z"/></svg>`,
 };
 
@@ -567,6 +693,7 @@ async function buildHomeView(){
   loadRow('tr-tv','/trending/tv/week','tv');
   loadRow('pop-tv','/tv/popular','tv');
 }
+
 async function loadHomeGenres(){
   const bar=document.getElementById('home-genres');if(!bar)return;
   try{
@@ -577,6 +704,7 @@ async function loadHomeGenres(){
     bar.innerHTML=unique.map(g=>`<div class="genre-chip" onclick="homeGenreFilter(${g.id},this)">${g.name}</div>`).join('');
   }catch(e){if(bar)bar.style.display='none';}
 }
+
 async function homeGenreFilter(id,el){
   document.querySelectorAll('#home-genres .genre-chip').forEach(c=>c.classList.remove('active'));
   el.classList.add('active');
@@ -606,7 +734,7 @@ function renderHero(){
     <div class="hero-badge">${ICONS.film} Trending</div>
     <div class="hero-title">${title}</div>
     <div class="hero-meta"><div class="hero-rating">${ICONS.star} ${r}</div><div class="hero-pill">${y}</div><div class="hero-pill">${mt}</div></div>
-    <div class="hero-ov" style="font-size:11px;line-height:1.5;color:rgba(255,255,255,0.55);margin-bottom:9px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${ov}</div>
+    <div style="font-size:11px;line-height:1.5;color:rgba(255,255,255,0.55);margin-bottom:9px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${ov}</div>
     <button class="hero-btn" onclick="openDetail(${item.id},'${item.media_type||(item.first_air_date?'tv':'movie')}')">${ICONS.play} View Details</button>`;
   dots.innerHTML=heroItems.map((_,i)=>`<div class="hero-dot${i===heroIdx?' active':''}" onclick="setHero(${i})"></div>`).join('');
 }
@@ -702,7 +830,8 @@ async function fetchProviders(){
       list.sort((a,b)=>a.display_priority-b.display_priority);return list;
     };
     providersIN=buildList(mvIN,tvIN);providersUS=buildList(mvUS,tvUS);
-    renderProviderGrid('grid-IN',providersIN,'IN');renderProviderGrid('grid-US',providersUS,'US');
+    renderProviderGrid('grid-IN',providersIN,'IN');
+    renderProviderGrid('grid-US',providersUS,'US');
   }catch(e){['grid-IN','grid-US'].forEach(id=>{const g=document.getElementById(id);if(g)g.innerHTML=errBox('Failed to load providers');});}
 }
 function renderProviderGrid(gridId,providers,region){
@@ -724,7 +853,7 @@ async function loadPlatform(id,name,region){
   const pv=document.getElementById('platform-view');
   const providers=region==='IN'?providersIN:providersUS;
   const pf=providers.find(p=>p.provider_id===id);
-  const logoHtml=pf&&pf.logo_path?`<img class="plat-logo-img" src="${imgUrl(pf.logo_path,'w154')}" alt="${esc(name)}" onerror="this.style.display='none'"/>` :'';
+  const logoHtml=pf&&pf.logo_path?`<img class="plat-logo-img" src="${imgUrl(pf.logo_path,'w154')}" alt="${esc(name)}" onerror="this.style.display='none'"/>`:'';
   pv.innerHTML=`
     <div class="platform-banner">${logoHtml}<div><div class="plat-name">${name}</div><div class="plat-sub">${region==='IN'?'India':'USA'} · TMDB</div></div></div>
     ${secHtml('plat-movies','Movies')}
@@ -873,7 +1002,6 @@ async function openDetail(id,type){
     renderDetail(dv,detail,credits,videos,type);
   }catch(e){dv.innerHTML=`<button class="detail-back" onclick="closeDetail()">‹</button>${errBox('Failed to load')}`;}
 }
-
 function renderDetail(dv,detail,credits,videos,type){
   const title=detail.title||detail.name||'';
   const backdrop=imgUrl(detail.backdrop_path,'w780');
@@ -899,7 +1027,6 @@ function renderDetail(dv,detail,credits,videos,type){
   const cast=(credits.cast||[]).slice(0,16);
   const directors=(credits.crew||[]).filter(c=>c.job==='Director').map(c=>c.name).join(', ')||'N/A';
   const writers=(credits.crew||[]).filter(c=>c.department==='Writing').slice(0,3).map(c=>c.name).join(', ')||'N/A';
-
   const tRows=[
     ['Release',releaseDate],['Genre',genres],
     ['Rating',`${ICONS.star} ${rating}/10 (${votes} votes)`],
@@ -909,13 +1036,11 @@ function renderDetail(dv,detail,credits,videos,type){
     ...(seasons?[['Seasons',`${seasons}`]]:[]),
     ...(epTotal?[['Episodes',`${epTotal}`]]:[]),
   ];
-
   const trailerSection=trailer
     ?`<div class="detail-trailer-top"><iframe src="https://www.youtube.com/embed/${trailer.key}?rel=0&modestbranding=1&playsinline=1&autoplay=0" allowfullscreen allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture"></iframe></div>`
     :backdrop
     ?`<div class="detail-trailer-top" style="position:relative;overflow:hidden"><div class="detail-trailer-fallback" style="background-image:url(${backdrop})"></div><div class="detail-trailer-fallback-grad"></div><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px">${ICONS.noplay}<span style="font-size:11px;color:rgba(255,255,255,0.28)">No trailer available</span></div></div>`
     :`<div class="detail-trailer-top" style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">${ICONS.noplay}<span style="font-size:11px;color:rgba(255,255,255,0.28)">No trailer available</span></div>`;
-
   dv.innerHTML=`
     <button class="detail-back" onclick="closeDetail()">‹</button>
     ${trailerSection}
@@ -941,7 +1066,6 @@ function renderDetail(dv,detail,credits,videos,type){
         <div class="season-sel" id="season-sel">${validSeasons.map((s,i)=>`<button class="season-btn${i===0?' active':''}" onclick="loadSeason(${detail.id},${s.season_number},this)">Season ${s.season_number}</button>`).join('')}</div>
         <div class="ep-list" id="ep-list"><div class="small-ring"></div></div>`:''}
     </div>`;
-
   if(type==='tv'&&validSeasons.length)loadSeason(detail.id,validSeasons[0].season_number,null);
 }
 
