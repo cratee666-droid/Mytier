@@ -3,27 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<!-- Basic SEO -->
 <meta name="description" content="Download latest Bollywood, Hollywood & Tamil movies for free. HD, 1080p, 4K quality available. Fast download links updated daily.">
 <meta name="keywords" content="download movies, free movies, HD movies, bollywood movies download, hollywood movies, cinestream">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://vegamoviesss.netlify.app/">
-
-<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="CineStream - Download Latest Movies Free">
 <meta property="og:description" content="Download HD Movies Free - Bollywood, Hollywood, Tamil, Telugu">
 <meta property="og:image" content="https://vegamoviesss.netlify.app/banner.jpg">
 <meta property="og:url" content="https://vegamoviesss.netlify.app/">
 <meta property="og:site_name" content="CineStream">
-
-<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="CineStream - Download Latest Movies Free">
 <meta name="twitter:description" content="Download HD Movies - Updated Daily">
 <meta name="twitter:image" content="https://vegamoviesss.netlify.app/banner.jpg">
-
-<!-- Schema -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -38,8 +31,6 @@
   }
 }
 </script>
-
-<!-- Favicon -->
 <link rel="icon" type="image/png" href="https://i.ibb.co/xtjCx9B1/images-1.jpg">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -62,17 +53,14 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 .view.active{opacity:1;pointer-events:all}
 ::-webkit-scrollbar{display:none}
 *{scrollbar-width:none}
-
 /* BOTTOM NAV */
 #bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:300;background:rgba(0,0,0,0.97);border-top:1px solid rgba(229,9,20,0.18);display:flex;align-items:stretch;height:calc(var(--nav-h) + var(--safe-bottom));padding-bottom:var(--safe-bottom)}
 .bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:rgba(255,255,255,0.3);transition:color 0.15s;border:none;background:none;padding:0;min-height:44px;position:relative;-webkit-tap-highlight-color:transparent}
 .bnav-item.active{color:var(--red)}
 .bnav-item svg{width:22px;height:22px;flex-shrink:0}
 .bnav-item span{font-size:9px;font-weight:600;letter-spacing:0.2px;line-height:1}
-
 /* SCROLL VIEWS */
 .scroll-view{overflow-y:scroll;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding-bottom:calc(var(--nav-h) + var(--safe-bottom) + 8px)}
-
 /* HERO */
 .hero{width:100%;height:54vw;min-height:200px;max-height:290px;position:relative;overflow:hidden}
 .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center top;transition:opacity 0.65s ease}
@@ -88,18 +76,15 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 .hero-dots{display:flex;justify-content:center;gap:5px;padding:6px 0 2px}
 .hero-dot{width:16px;height:2.5px;background:rgba(255,255,255,0.18);border-radius:2px;cursor:pointer;transition:all 0.2s}
 .hero-dot.active{background:var(--red);width:26px}
-
 /* GENRES */
 .genres-scroll{display:flex;gap:7px;padding:8px 14px 4px;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .genre-chip{flex-shrink:0;background:var(--rg2);border:1px solid rgba(229,9,20,0.18);color:rgba(255,255,255,0.5);padding:6px 13px;border-radius:20px;font-size:11px;cursor:pointer;transition:all 0.15s;white-space:nowrap;min-height:32px;display:flex;align-items:center}
 .genre-chip.active{background:rgba(229,9,20,0.22);border-color:var(--red);color:#fff}
-
 /* SECTION */
 .section{padding:6px 0 2px}
 .section-head{display:flex;align-items:center;gap:8px;padding:0 14px 8px}
 .section-bar{width:3px;height:14px;background:var(--red);border-radius:2px;flex-shrink:0}
 .section-title{font-size:13px;font-weight:800;color:#fff}
-
 /* POSTER ROW */
 .h-row{display:flex;gap:9px;padding:0 14px 8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .poster-card{flex-shrink:0;width:98px;border-radius:8px;overflow:hidden;border:1px solid rgba(229,9,20,0.08);cursor:pointer;position:relative;transition:transform 0.15s;background:#0a0000;-webkit-tap-highlight-color:transparent}
@@ -107,11 +92,9 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 .poster-card img{width:100%;height:147px;object-fit:cover;display:block}
 .skel{flex-shrink:0;width:98px;height:147px;border-radius:8px;background:linear-gradient(90deg,rgba(229,9,20,0.04) 0%,rgba(229,9,20,0.1) 50%,rgba(229,9,20,0.04) 100%);background-size:200% 100%;animation:shimmer 1.4s infinite}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-
 /* VIEW TITLE BAR */
 .vtbar{padding:14px 14px 4px;display:flex;align-items:center;gap:8px;padding-top:calc(14px + var(--safe-top))}
 .vtbar h2{font-size:16px;font-weight:900;color:#fff}
-
 /* SEARCH VIEW */
 #search-view{overflow-y:scroll;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding-bottom:calc(var(--nav-h) + var(--safe-bottom) + 8px)}
 .search-view-inner{padding:12px 14px 0}
@@ -123,7 +106,6 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 #main-search-input::placeholder{color:rgba(255,255,255,0.22)}
 .search-clear-btn{background:none;border:none;color:rgba(229,9,20,0.55);font-size:20px;cursor:pointer;padding:6px;line-height:1;min-width:32px;min-height:32px;display:none;align-items:center;justify-content:center}
 .search-clear-btn.show{display:flex}
-
 /* AUTOCOMPLETE */
 #autocomplete-drop{position:absolute;left:0;right:0;top:calc(100% + 5px);z-index:500;background:#080000;border:1px solid rgba(229,9,20,0.2);border-radius:12px;overflow:hidden;display:none;box-shadow:0 8px 24px rgba(0,0,0,0.95)}
 .ac-section-label{padding:7px 12px 4px;font-size:9px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:rgba(229,9,20,0.58);border-bottom:1px solid rgba(229,9,20,0.06)}
@@ -142,7 +124,6 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 .ac-q-icon{width:32px;height:32px;border-radius:50%;background:rgba(229,9,20,0.09);border:1px solid rgba(229,9,20,0.18);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .ac-q-text{font-size:13px;color:rgba(255,255,255,0.7)}
 .ac-q-text b{color:#fff}
-
 /* RECENT/TRENDING */
 .recent-section{margin-top:16px}
 .recent-header{display:flex;align-items:center;justify-content:space-between;padding:0 0 9px}
@@ -161,7 +142,6 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 .trending-title{font-size:11px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .trending-sub{font-size:9px;color:rgba(255,255,255,0.3);margin-top:2px}
 .trending-thumb{width:36px;height:36px;border-radius:5px;object-fit:cover;flex-shrink:0;border:1px solid rgba(229,9,20,0.12)}
-
 /* RESULTS */
 .results-area{margin-top:14px}
 .results-header{display:flex;align-items:center;justify-content:space-between;padding:0 0 10px}
@@ -179,7 +159,6 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 .no-results-icon{font-size:40px;opacity:0.25}
 .no-results-text{font-size:14px;color:rgba(255,255,255,0.3);text-align:center}
 .no-results-sub{font-size:11px;color:rgba(229,9,20,0.38);text-align:center}
-
 /* DETAIL VIEW */
 #detail-view{overflow-y:scroll;-webkit-overflow-scrolling:touch;padding-bottom:calc(var(--nav-h) + var(--safe-bottom) + 8px)}
 .detail-trailer-top{width:100%;aspect-ratio:16/9;position:relative;background:#000;overflow:hidden}
@@ -211,9 +190,10 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 .info-tbl tbody td{padding:10px 12px;font-size:12px;vertical-align:top;line-height:1.5;border-right:1px solid rgba(255,255,255,0.06)}
 .info-tbl tbody td:first-child{color:rgba(229,9,20,0.8);font-weight:700;font-size:9px;letter-spacing:0.6px;text-transform:uppercase;width:86px;white-space:nowrap}
 .info-tbl tbody td:last-child{color:rgba(255,255,255,0.78);border-right:none}
+/* CAST — square images */
 .cast-row{display:flex;gap:14px;overflow-x:auto;padding:0 0 14px;-webkit-overflow-scrolling:touch;margin-bottom:14px}
 .cast-item{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:6px;width:72px}
-.cast-avatar{width:68px;height:68px;border-radius:50%;overflow:hidden;border:2px solid rgba(229,9,20,0.35);background:rgba(18,0,0,0.8);flex-shrink:0}
+.cast-avatar{width:68px;height:68px;border-radius:8px;overflow:hidden;border:2px solid rgba(229,9,20,0.35);background:rgba(18,0,0,0.8);flex-shrink:0}
 .cast-avatar img{width:100%;height:100%;object-fit:cover;object-position:top}
 .cast-name{font-size:10px;font-weight:700;color:rgba(255,255,255,0.82);text-align:center;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}
 .cast-char{font-size:9px;color:rgba(229,9,20,0.6);text-align:center;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
@@ -233,7 +213,6 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 .ep-thumb{width:68px;height:44px;border-radius:5px;object-fit:cover;flex-shrink:0;border:1px solid rgba(255,255,255,0.07);background:rgba(18,0,0,0.5)}
 .screenshots-row{display:flex;gap:9px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:0 0 14px}
 .screenshot-img{flex-shrink:0;width:220px;height:124px;object-fit:cover;border-radius:8px;border:1px solid rgba(229,9,20,0.15);background:rgba(18,0,0,0.5)}
-
 /* LOADING/ERROR */
 .loading-overlay{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999}
 .ring{width:46px;height:46px;border:3px solid rgba(229,9,20,0.12);border-top-color:var(--red);border-radius:50%;animation:spin 0.72s linear infinite;margin-bottom:13px}
@@ -245,14 +224,30 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 .err-icon{color:var(--red)}
 .err-txt{font-size:12px;color:rgba(255,255,255,0.38);text-align:center}
 .err-sub{font-size:10px;color:rgba(229,9,20,0.4)}
-
 /* WEB SEARCHER */
 .web-searcher-section{margin-bottom:20px}
+/* ENGINES TABLE IN DETAIL */
+.eng-table-wrap{width:100%;border-radius:10px;overflow:hidden;border:1px solid rgba(229,9,20,0.15);margin-bottom:10px}
+.eng-table{width:100%;border-collapse:collapse;background:rgba(6,0,0,0.85)}
+.eng-table thead tr{background:rgba(229,9,20,0.1);border-bottom:1px solid rgba(229,9,20,0.2)}
+.eng-table thead th{padding:9px 10px;font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:rgba(229,9,20,0.65);text-align:left}
+.eng-table tbody tr{border-top:1px solid rgba(255,255,255,0.04)}
+.eng-table tbody tr:nth-child(even){background:rgba(255,255,255,0.012)}
+.eng-table tbody td{padding:10px 10px;vertical-align:middle}
+.et-logo-cell{width:42px}
+.et-logo-wrap{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid rgba(255,255,255,0.07)}
+.et-logo-wrap img{width:22px;height:22px;object-fit:contain}
+.et-name{font-size:12px;font-weight:800;color:#fff;white-space:nowrap;padding-right:6px}
+.et-desc{font-size:10px;color:rgba(255,255,255,0.42);line-height:1.45}
+.et-search-btn{background:var(--red);border:none;border-radius:6px;padding:6px 11px;color:#fff;font-size:10px;font-weight:800;cursor:pointer;white-space:nowrap;-webkit-tap-highlight-color:transparent;letter-spacing:0.3px}
+.et-search-btn:active{background:var(--rd);transform:scale(0.94)}
+.no-eng-row{padding:18px;text-align:center;font-size:11px;color:rgba(255,255,255,0.2);font-style:italic}
+/* WEB SEARCHER QUERY ROW */
 .ws-engines-wrap{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
 .ws-engine-btn{display:flex;align-items:center;gap:6px;background:rgba(8,0,0,0.85);border:1.5px solid rgba(229,9,20,0.18);border-radius:20px;padding:6px 12px 6px 6px;font-size:12px;font-weight:700;color:rgba(255,255,255,0.6);cursor:pointer;transition:all 0.15s;white-space:nowrap;min-height:36px;-webkit-tap-highlight-color:transparent}
 .ws-engine-btn.active{border-color:var(--red);color:#fff;background:rgba(229,9,20,0.14)}
 .ws-engine-btn:active{transform:scale(0.95)}
-.ws-engine-logo{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
+.ws-engine-logo{width:22px;height:22px;border-radius:6px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
 .ws-engine-logo img{width:18px;height:18px;object-fit:contain}
 .ws-no-engines{font-size:11px;color:rgba(255,255,255,0.25);padding:6px 0;font-style:italic}
 .ws-query-row{display:flex;gap:8px;align-items:center}
@@ -263,48 +258,17 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 .ws-go-btn:active{background:var(--rd);transform:scale(0.95)}
 .ws-manage-btn{display:inline-flex;align-items:center;gap:5px;background:transparent;border:1.5px dashed rgba(229,9,20,0.28);border-radius:20px;padding:6px 13px;font-size:11px;font-weight:700;color:rgba(229,9,20,0.5);cursor:pointer;min-height:34px;margin-top:6px;-webkit-tap-highlight-color:transparent}
 .ws-manage-btn:active{border-color:var(--red);color:var(--red)}
-
 /* CHAT VIEW */
-#chat-view{
-  position:absolute;
-  top:0;left:0;right:0;
-  bottom:calc(var(--nav-h) + var(--safe-bottom));
-  display:flex;flex-direction:column;
-  background:#000;
-  opacity:0;pointer-events:none;
-  transition:opacity 0.22s ease;
-  overflow:hidden;
-}
+#chat-view{position:absolute;top:0;left:0;right:0;bottom:calc(var(--nav-h) + var(--safe-bottom));display:flex;flex-direction:column;background:#000;opacity:0;pointer-events:none;transition:opacity 0.22s ease;overflow:hidden}
 #chat-view.active{opacity:1;pointer-events:all}
-
-.chat-header{
-  flex-shrink:0;
-  padding:calc(10px + var(--safe-top)) 12px 8px;
-  background:rgba(0,0,0,0.97);
-  border-bottom:1px solid rgba(229,9,20,0.18);
-  display:flex;align-items:center;gap:8px;
-}
+.chat-header{flex-shrink:0;padding:calc(10px + var(--safe-top)) 12px 8px;background:rgba(0,0,0,0.97);border-bottom:1px solid rgba(229,9,20,0.18);display:flex;align-items:center;gap:8px}
 .chat-header-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 6px #22c55e;animation:blink 2s infinite;flex-shrink:0}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.4}}
 .chat-online{font-size:10px;color:#22c55e;font-weight:700;flex:1}
 .chat-username-btn{flex-shrink:0;background:rgba(229,9,20,0.1);border:1px solid rgba(229,9,20,0.3);border-radius:16px;padding:5px 10px;color:rgba(255,255,255,0.7);font-size:10px;font-weight:700;cursor:pointer;white-space:nowrap;max-width:110px;overflow:hidden;text-overflow:ellipsis;-webkit-tap-highlight-color:transparent}
 .chat-username-btn:active{background:rgba(229,9,20,0.25)}
-
-.chat-messages{
-  flex:1;min-height:0;
-  overflow-y:scroll;overflow-x:hidden;
-  -webkit-overflow-scrolling:touch;
-  padding:10px 12px;
-  display:flex;flex-direction:column;gap:10px;
-}
-
-.chat-input-area{
-  flex-shrink:0;
-  display:flex;align-items:flex-end;gap:7px;
-  padding:8px 10px;
-  background:rgba(0,0,0,0.97);
-  border-top:1px solid rgba(229,9,20,0.18);
-}
+.chat-messages{flex:1;min-height:0;overflow-y:scroll;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:10px 12px;display:flex;flex-direction:column;gap:10px}
+.chat-input-area{flex-shrink:0;display:flex;align-items:flex-end;gap:7px;padding:8px 10px;background:rgba(0,0,0,0.97);border-top:1px solid rgba(229,9,20,0.18)}
 .chat-plus-btn{width:38px;height:38px;border-radius:50%;background:rgba(229,9,20,0.12);border:1.5px solid rgba(229,9,20,0.3);color:var(--red);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;-webkit-tap-highlight-color:transparent}
 .chat-plus-btn:active{background:rgba(229,9,20,0.3);transform:scale(0.93)}
 .chat-plus-btn svg{width:20px;height:20px}
@@ -318,7 +282,6 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 .chat-send-btn{width:38px;height:38px;border-radius:50%;background:var(--red);border:none;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;-webkit-tap-highlight-color:transparent}
 .chat-send-btn:active{background:var(--rd);transform:scale(0.93)}
 .chat-send-btn svg{width:18px;height:18px}
-
 /* CHAT BUBBLES */
 .msg-wrap{display:flex;flex-direction:column;max-width:82%}
 .msg-wrap.me{align-self:flex-end;align-items:flex-end}
@@ -328,37 +291,13 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 .msg-wrap.me .msg-bubble{background:var(--red);color:#fff;border-bottom-right-radius:4px}
 .msg-wrap.other .msg-bubble{background:rgba(30,0,0,0.9);color:rgba(255,255,255,0.88);border:1px solid rgba(229,9,20,0.15);border-bottom-left-radius:4px}
 .msg-time{font-size:9px;color:rgba(255,255,255,0.25);padding:2px 4px}
-
-/* MOVIE CARD IN CHAT — poster ratio same as poster-card (2:3) */
-.chat-movie-card{
-  background:rgba(15,0,0,0.95);
-  border:1px solid rgba(229,9,20,0.25);
-  border-radius:10px;
-  overflow:hidden;
-  cursor:pointer;
-  transition:all 0.15s;
-  width:130px;
-  -webkit-tap-highlight-color:transparent;
-}
+.chat-movie-card{background:rgba(15,0,0,0.95);border:1px solid rgba(229,9,20,0.25);border-radius:10px;overflow:hidden;cursor:pointer;transition:all 0.15s;width:130px;-webkit-tap-highlight-color:transparent}
 .chat-movie-card:active{border-color:var(--red);transform:scale(0.97)}
-.chat-movie-poster{
-  width:100%;
-  aspect-ratio:2/3;
-  object-fit:cover;
-  display:block;
-  background:rgba(229,9,20,0.08);
-}
-.chat-movie-poster-ph{
-  width:100%;
-  aspect-ratio:2/3;
-  background:rgba(229,9,20,0.08);
-  display:flex;align-items:center;justify-content:center;
-  font-size:28px;
-}
+.chat-movie-poster{width:100%;aspect-ratio:2/3;object-fit:cover;display:block;background:rgba(229,9,20,0.08)}
+.chat-movie-poster-ph{width:100%;aspect-ratio:2/3;background:rgba(229,9,20,0.08);display:flex;align-items:center;justify-content:center;font-size:28px}
 .chat-movie-info{padding:6px 8px 8px}
 .chat-movie-title{font-size:11px;font-weight:800;color:#fff;margin-bottom:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.3}
 .chat-movie-meta{font-size:9px;color:rgba(229,9,20,0.65)}
-
 /* SHARE MODAL */
 .share-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:800;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .share-modal-overlay.hidden{display:none}
@@ -369,7 +308,6 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 .share-search-box svg{width:15px;height:15px;color:rgba(229,9,20,0.55);flex-shrink:0}
 #share-search-input{flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:14px;padding:10px 0;caret-color:var(--red);-webkit-appearance:none;font-family:inherit}
 #share-search-input::placeholder{color:rgba(255,255,255,0.22)}
-/* poster grid for share */
 .share-results{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .share-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:4px 0}
 .share-grid-item{border-radius:8px;overflow:hidden;cursor:pointer;position:relative;border:2px solid transparent;transition:border-color 0.15s;-webkit-tap-highlight-color:transparent;background:rgba(8,0,0,0.5)}
@@ -378,7 +316,6 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 .share-grid-item-ph{width:100%;aspect-ratio:2/3;background:rgba(229,9,20,0.08);display:flex;align-items:center;justify-content:center;font-size:24px}
 .share-grid-label{position:absolute;bottom:0;left:0;right:0;padding:4px 5px;background:linear-gradient(to top,rgba(0,0,0,0.9) 0%,transparent 100%);font-size:9px;font-weight:700;color:#fff;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .share-loading{display:flex;justify-content:center;padding:30px}
-
 /* DELETE MODAL */
 .del-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:850;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .del-modal-overlay.hidden{display:none}
@@ -390,7 +327,6 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 .del-cancel{flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px;color:rgba(255,255,255,0.5);font-size:14px;font-weight:700;cursor:pointer}
 .del-confirm{flex:1;background:var(--red);border:none;border-radius:10px;padding:12px;color:#fff;font-size:14px;font-weight:700;cursor:pointer}
 .del-confirm:active{background:var(--rd)}
-
 /* USERNAME MODAL */
 .un-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:950;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .un-modal-overlay.hidden{display:none}
@@ -405,7 +341,6 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 .un-cancel{flex:1;background:rgba(229,9,20,0.07);border:1px solid rgba(229,9,20,0.15);border-radius:10px;padding:13px;color:rgba(255,255,255,0.4);font-size:14px;font-weight:700;cursor:pointer;min-height:48px}
 .un-save{flex:2;background:var(--red);border:none;border-radius:10px;padding:13px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;min-height:48px}
 .un-save:active{background:var(--rd)}
-
 /* ENGINE MODAL */
 .eng-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:900;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .eng-modal-overlay.hidden{display:none}
@@ -419,10 +354,9 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 .eng-input{width:100%;background:rgba(12,0,0,0.95);border:1.5px solid rgba(229,9,20,0.22);border-radius:10px;padding:12px;font-size:14px;color:#fff;outline:none;caret-color:var(--red);min-height:46px;-webkit-appearance:none;font-family:inherit}
 .eng-input:focus{border-color:var(--red)}
 .eng-input::placeholder{color:rgba(255,255,255,0.18)}
-/* URL preview */
 .eng-preview{display:none;align-items:center;gap:10px;background:rgba(229,9,20,0.05);border:1px solid rgba(229,9,20,0.12);border-radius:8px;padding:8px 12px;margin-bottom:10px}
 .eng-preview.show{display:flex}
-.eng-preview-logo{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
+.eng-preview-logo{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
 .eng-preview-logo img{width:22px;height:22px;object-fit:contain}
 .eng-preview-info{flex:1;min-width:0}
 .eng-preview-name{font-size:12px;font-weight:700;color:#fff}
@@ -432,18 +366,76 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 .eng-list-title{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:rgba(229,9,20,0.55);margin-bottom:8px;flex-shrink:0}
 .eng-list{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;gap:8px}
 .eng-item{display:flex;align-items:center;gap:10px;background:rgba(229,9,20,0.05);border:1px solid rgba(229,9,20,0.1);border-radius:10px;padding:10px 12px;min-height:52px;flex-shrink:0}
-.eng-item-logo{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.eng-item-logo{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
 .eng-item-logo img{width:22px;height:22px;object-fit:contain}
 .eng-item-info{flex:1;min-width:0}
 .eng-item-name{font-size:12px;font-weight:700;color:#fff;margin-bottom:2px}
-.eng-item-url{font-size:9px;color:rgba(255,255,255,0.28);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.eng-item-desc{font-size:9px;color:rgba(255,255,255,0.28);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .eng-item-del{background:none;border:none;color:rgba(229,9,20,0.45);font-size:18px;cursor:pointer;padding:4px 8px;min-width:36px;min-height:36px;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
 .eng-item-del:active{color:var(--red)}
 .eng-close-btn{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:13px;color:rgba(255,255,255,0.4);font-size:14px;font-weight:700;cursor:pointer;min-height:48px;width:100%;margin-top:10px;flex-shrink:0}
 .eng-no-engines{padding:20px;text-align:center;font-size:12px;color:rgba(255,255,255,0.2);font-style:italic}
+/* DNS NOTICE MODAL */
+.dns-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.dns-overlay.hidden{display:none}
+.dns-box{background:#0a0000;border:1.5px solid rgba(229,9,20,0.4);border-radius:18px;padding:22px 18px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
+.dns-icon{font-size:36px;text-align:center;margin-bottom:10px}
+.dns-title{font-size:17px;font-weight:900;color:#fff;text-align:center;margin-bottom:6px}
+.dns-sub{font-size:12px;color:rgba(255,255,255,0.45);text-align:center;margin-bottom:16px;line-height:1.5}
+.dns-badge{display:flex;align-items:center;justify-content:center;gap:5px;background:rgba(229,9,20,0.12);border:1px solid rgba(229,9,20,0.3);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:700;color:var(--red);margin:0 auto 16px}
+.dns-steps-title{font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:rgba(229,9,20,0.65);margin-bottom:10px}
+.dns-steps{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.dns-step{display:flex;align-items:flex-start;gap:10px;background:rgba(229,9,20,0.05);border:1px solid rgba(229,9,20,0.1);border-radius:10px;padding:10px 12px}
+.dns-step-num{width:22px;height:22px;border-radius:50%;background:var(--red);color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.dns-step-text{font-size:12px;color:rgba(255,255,255,0.75);line-height:1.5}
+.dns-step-text b{color:#fff}
+.dns-step-text code{background:rgba(229,9,20,0.15);color:var(--red);padding:1px 5px;border-radius:4px;font-size:11px;font-family:monospace}
+.dns-divider{height:1px;background:rgba(229,9,20,0.12);margin:14px 0}
+.dns-note{font-size:11px;color:rgba(255,255,255,0.3);text-align:center;line-height:1.5;margin-bottom:16px}
+.dns-proceed-btn{width:100%;background:var(--red);border:none;border-radius:12px;padding:14px;color:#fff;font-size:15px;font-weight:800;cursor:pointer;min-height:50px;-webkit-tap-highlight-color:transparent}
+.dns-proceed-btn:active{background:var(--rd)}
+.dns-skip{display:block;text-align:center;margin-top:10px;font-size:11px;color:rgba(255,255,255,0.25);cursor:pointer;padding:6px}
 </style>
 </head>
 <body>
+
+<!-- DNS NOTICE MODAL -->
+<div id="dns-notice" class="dns-overlay">
+  <div class="dns-box">
+    <div class="dns-icon">🔒</div>
+    <div class="dns-title">Switch to 1.1.1.1 DNS First</div>
+    <div class="dns-sub">For the best experience and to access all content on this site, please use Cloudflare's <b>1.1.1.1</b> DNS before continuing.</div>
+    <div class="dns-badge">🌐 Recommended DNS: 1.1.1.1 &amp; 1.0.0.1</div>
+    <div class="dns-steps-title">📱 How to Switch DNS on Mobile Browser</div>
+    <div class="dns-steps">
+      <div class="dns-step">
+        <div class="dns-step-num">1</div>
+        <div class="dns-step-text"><b>Easiest — Download App:</b> Install the free <b>1.1.1.1</b> app by Cloudflare from App Store or Google Play, then tap the toggle to enable it.</div>
+      </div>
+      <div class="dns-step">
+        <div class="dns-step-num">2</div>
+        <div class="dns-step-text"><b>Chrome Mobile:</b> Tap <b>⋮ Menu</b> → Settings → Privacy and Security → Use Secure DNS → Choose Custom → enter <code>https://1.1.1.1/dns-query</code></div>
+      </div>
+      <div class="dns-step">
+        <div class="dns-step-num">3</div>
+        <div class="dns-step-text"><b>Firefox Mobile:</b> Tap <b>☰ Menu</b> → Settings → DNS over HTTPS → Custom → enter <code>https://1.1.1.1/dns-query</code></div>
+      </div>
+      <div class="dns-step">
+        <div class="dns-step-num">4</div>
+        <div class="dns-step-text"><b>Wi-Fi DNS (Android):</b> Settings → Wi-Fi → Long press network → Modify → Advanced → IP Settings: <b>Static</b> → DNS 1: <code>1.1.1.1</code> DNS 2: <code>1.0.0.1</code></div>
+      </div>
+      <div class="dns-step">
+        <div class="dns-step-num">5</div>
+        <div class="dns-step-text"><b>Wi-Fi DNS (iPhone):</b> Settings → Wi-Fi → tap ℹ️ next to network → Configure DNS → Manual → add <code>1.1.1.1</code> and <code>1.0.0.1</code></div>
+      </div>
+    </div>
+    <div class="dns-divider"></div>
+    <div class="dns-note">⚡ 1.1.1.1 is faster, more private and bypasses regional restrictions. Cloudflare never sells your data.</div>
+    <button class="dns-proceed-btn" onclick="dismissDnsNotice()">✅ Done — Continue to Site</button>
+    <span class="dns-skip" onclick="dismissDnsNotice()">Skip for now</span>
+  </div>
+</div>
+
 <div id="app">
   <div class="copy-toast" id="copy-toast"></div>
   <div class="loading-overlay" id="global-loading">
@@ -472,7 +464,7 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
   <!-- DELETE MODAL -->
   <div class="del-modal-overlay hidden" id="del-modal">
     <div class="del-modal-box">
-      <div class="del-modal-icon">🗑️</div>
+      <div class="del-modal-icon">🗑</div>
       <div class="del-modal-title">Delete Chat</div>
       <div class="del-modal-sub">This will delete all messages for everyone. Cannot be undone.</div>
       <div class="del-modal-btns">
@@ -506,6 +498,10 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
       <div class="eng-field">
         <label class="eng-label">Search URL</label>
         <input class="eng-input" id="eng-url-inp" placeholder="https://www.google.com/search?q={query}" autocomplete="off" inputmode="url" oninput="previewEngine(this.value)"/>
+      </div>
+      <div class="eng-field">
+        <label class="eng-label">Description <span style="color:rgba(255,255,255,0.2);font-weight:400;text-transform:none;letter-spacing:0;font-size:10px">(optional)</span></label>
+        <input class="eng-input" id="eng-desc-inp" placeholder="e.g. Best for finding movie torrents..." autocomplete="off"/>
       </div>
       <div class="eng-preview" id="eng-preview">
         <div class="eng-preview-logo"><img id="eng-preview-img" src="" alt=""/></div>
@@ -572,7 +568,7 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
       <span>TV Shows</span>
     </button>
     <button class="bnav-item" id="bnav-chat" onclick="goChat()">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
       <span>Chat</span>
     </button>
   </div>
@@ -581,7 +577,6 @@ body{width:100%;height:100%;background:#000;font-family:-apple-system,'Segoe UI'
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 import { getDatabase, ref, push, onValue, remove, serverTimestamp, onDisconnect, set, onChildAdded } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
-
 const firebaseConfig = {
   apiKey:"AIzaSyDLPyDNPw6g30_9KLYmKEgz26ODXl88IT8",
   authDomain:"myown-c1a03.firebaseapp.com",
@@ -591,11 +586,8 @@ const firebaseConfig = {
   messagingSenderId:"231315717244",
   appId:"1:231315717244:web:f2e1d33f9f5080e16b1df9"
 };
-
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-
-/* USER */
 let myUid = localStorage.getItem('cs_uid');
 if(!myUid){myUid='u_'+Math.random().toString(36).substr(2,9);localStorage.setItem('cs_uid',myUid);}
 let myName = localStorage.getItem('cs_username');
@@ -605,8 +597,6 @@ if(!myName){
   myName=a[Math.floor(Math.random()*a.length)]+n[Math.floor(Math.random()*n.length)]+Math.floor(Math.random()*90+10);
   localStorage.setItem('cs_username',myName);
 }
-
-/* PRESENCE */
 const presRef=ref(db,`presence/${myUid}`);
 set(presRef,{username:myName,online:true,ts:serverTimestamp()});
 onDisconnect(presRef).remove();
@@ -615,8 +605,6 @@ onValue(ref(db,'presence'),snap=>{
   const el=document.getElementById('chat-online-count');
   if(el)el.textContent=`${c} online`;
 });
-
-/* CHAT */
 const msgRef=ref(db,'global_chat');
 onChildAdded(msgRef,snap=>{
   const msg=snap.val();
@@ -628,12 +616,9 @@ onValue(msgRef,snap=>{
     if(c)c.innerHTML='';
   }
 },{onlyOnce:false});
-
-/* ENGINES */
 const engRef=ref(db,'search_engines');
 let fbEngines=[];
 let activeEngId=null;
-
 onValue(engRef,snap=>{
   fbEngines=[];
   if(snap.exists())snap.forEach(ch=>{fbEngines.push({fbKey:ch.key,...ch.val()});});
@@ -641,7 +626,6 @@ onValue(engRef,snap=>{
   refreshEngUI();
   renderEngList();
 });
-
 window._myUid=myUid;
 window._myName=myName;
 window._fbEngines=fbEngines;
@@ -649,16 +633,15 @@ window._activeEngId=()=>activeEngId;
 window._setActiveEngId=id=>{activeEngId=id;};
 window._sendMsg=data=>push(msgRef,{...data,ts:serverTimestamp()});
 window._deleteAll=()=>remove(msgRef);
-window._addEngineFB=(name,url,domain)=>push(engRef,{name,url,domain,addedBy:myUid,ts:serverTimestamp()});
+window._addEngineFB=(name,url,domain,desc)=>push(engRef,{name,url,domain,desc:desc||'',addedBy:myUid,ts:serverTimestamp()});
 window._deleteEngineFB=key=>remove(ref(db,`search_engines/${key}`));
 window._updatePresName=n=>{myName=n;window._myName=n;set(presRef,{username:n,online:true,ts:serverTimestamp()});};
-
 function faviconUrl(domain){return`https://www.google.com/s2/favicons?domain=${domain}&sz=64`;}
 window.faviconUrl=faviconUrl;
-
 function refreshEngUI(){
   const wrap=document.getElementById('ws-engines-wrap');
   if(wrap)renderEngButtons(wrap);
+  renderEngTableInDetail();
 }
 function renderEngButtons(wrap){
   if(!fbEngines.length){
@@ -674,6 +657,23 @@ function renderEngButtons(wrap){
     </button>`;
   }).join('');
 }
+function renderEngTableInDetail(){
+  const tbody=document.getElementById('eng-tbl-body');
+  if(!tbody)return;
+  if(!fbEngines.length){
+    tbody.innerHTML=`<tr><td colspan="4" class="no-eng-row">No engines added yet — tap ⚙️ Manage Engines to add one.</td></tr>`;
+    return;
+  }
+  tbody.innerHTML=fbEngines.map(e=>{
+    const fav=faviconUrl(e.domain||e.url);
+    return`<tr>
+      <td class="et-logo-cell"><div class="et-logo-wrap"><img src="${fav}" alt="${escH(e.name)}" onerror="this.style.display='none'"/></div></td>
+      <td class="et-name">${escH(e.name)}</td>
+      <td class="et-desc">${escH(e.desc||'')}</td>
+      <td><button class="et-search-btn" onclick="wsGoWith('${escA(e.fbKey)}')">Search</button></td>
+    </tr>`;
+  }).join('');
+}
 function renderEngList(){
   const list=document.getElementById('eng-list');if(!list)return;
   if(!fbEngines.length){list.innerHTML='<div class="eng-no-engines">No engines yet — add one above!</div>';return;}
@@ -681,7 +681,10 @@ function renderEngList(){
     const fav=faviconUrl(e.domain||e.url);
     return`<div class="eng-item">
       <div class="eng-item-logo"><img src="${fav}" alt="${escH(e.name)}" onerror="this.style.display='none'"/></div>
-      <div class="eng-item-info"><div class="eng-item-name">${escH(e.name)}</div><div class="eng-item-url">${escH(e.url)}</div></div>
+      <div class="eng-item-info">
+        <div class="eng-item-name">${escH(e.name)}</div>
+        <div class="eng-item-desc">${escH(e.desc||e.url)}</div>
+      </div>
       <button class="eng-item-del" onclick="deleteEngine('${e.fbKey}')">✕</button>
     </div>`;
   }).join('');
@@ -692,7 +695,6 @@ window.selectEng=function(key){
   const btn=document.getElementById('eng-btn-'+key);if(btn)btn.classList.add('active');
 };
 window.deleteEngine=function(key){window._deleteEngineFB(key);};
-
 function extractDomain(url){try{return new URL(url).hostname.replace(/^www\./,'');}catch(e){return null;}}
 function domainToName(domain){
   if(!domain)return'';
@@ -717,11 +719,25 @@ window.domainToName=domainToName;
 </script>
 
 <script>
+/* =================== DNS NOTICE =================== */
+(function(){
+  if(!sessionStorage.getItem('dns_dismissed')){
+    document.getElementById('dns-notice').classList.remove('hidden');
+  } else {
+    document.getElementById('dns-notice').classList.add('hidden');
+  }
+})();
+function dismissDnsNotice(){
+  sessionStorage.setItem('dns_dismissed','1');
+  const el=document.getElementById('dns-notice');
+  el.style.transition='opacity 0.3s ease';
+  el.style.opacity='0';
+  setTimeout(()=>{el.classList.add('hidden');el.style.opacity='';el.style.transition='';},300);
+}
 /* =================== HELPERS =================== */
 const API_KEY='d971d4b212180c43e0830d20c04a68b5';
 const BASE='https://api.themoviedb.org/3';
 const IMG='https://image.tmdb.org/t/p/';
-
 let heroItems=[],heroIdx=0,heroTimer=null;
 let genreMap={};
 let prevView='home-view';
@@ -730,7 +746,6 @@ let currentFilter='all',allResults=[];
 let recentSearches=JSON.parse(localStorage.getItem('cs_recent')||'[]');
 let searchBuilt=false,moviesBuilt=false,tvBuilt=false;
 let shareItems=[];
-
 function showToast(msg,dur=2200){
   const t=document.getElementById('copy-toast');
   t.textContent=msg;t.classList.add('show');
@@ -738,10 +753,8 @@ function showToast(msg,dur=2200){
 }
 function escH(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
 function escA(s){return String(s).replace(/'/g,'&#39;').replace(/"/g,'&quot;');}
-
-const noAv=`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72'%3E%3Ccircle cx='36' cy='36' r='36' fill='%23110000'/%3E%3Ccircle cx='36' cy='28' r='12' fill='%23E50914' opacity='.7'/%3E%3Cellipse cx='36' cy='58' rx='18' ry='12' fill='%23E50914' opacity='.5'/%3E%3C/svg%3E`;
+const noAv=`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72'%3E%3Crect width='72' height='72' rx='8' fill='%23110000'/%3E%3Ccircle cx='36' cy='28' r='12' fill='%23E50914' opacity='.7'/%3E%3Cellipse cx='36' cy='58' rx='18' ry='12' fill='%23E50914' opacity='.5'/%3E%3C/svg%3E`;
 const noThumb=`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='44'%3E%3Crect width='70' height='44' fill='%23110000'/%3E%3Cpolygon points='28,14 28,30 46,22' fill='%23E50914' opacity='.6'/%3E%3C/svg%3E`;
-
 const IC={
   film:`<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>`,
   tv:`<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg>`,
@@ -750,10 +763,9 @@ const IC={
   cal:`<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>`,
   copy:`<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>`,
   srch:`<svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>`,
-  warn:`<svg width="32" height="32" viewBox="0 0 24 24" fill="#E50914"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>`,
+  warn:`<svg width="32" height="32" viewBox="0 0 24 24" fill="#E50914"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v4h2v4z"/></svg>`,
   noplay:`<svg width="38" height="38" viewBox="0 0 24 24" fill="rgba(229,9,20,0.28)"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 12l-5-3 5-3v6z"/></svg>`,
 };
-
 async function api(ep,params={}){
   const u=new URL(`${BASE}${ep}`);
   u.searchParams.set('api_key',API_KEY);
@@ -769,13 +781,11 @@ const fmtYear=d=>d?new Date(d).getFullYear()||'N/A':'N/A';
 const errBox=m=>`<div class="err-box"><div class="err-icon">${IC.warn}</div><div class="err-txt">${m}</div><div class="err-sub">TMDB API</div></div>`;
 const skels=n=>Array(n).fill('<div class="skel"></div>').join('');
 const secH=(id,t,n=6)=>`<div class="section"><div class="section-head"><div class="section-bar"></div><div class="section-title">${t}</div></div><div class="h-row" id="${id}">${skels(n)}</div></div>`;
-
 function copyTitle(t){
   if(navigator.clipboard)navigator.clipboard.writeText(t).catch(()=>{});
   else{const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);}
   showToast(`Copied: "${t.substring(0,28)}${t.length>28?'…':''}"`);
 }
-
 /* =================== NAV =================== */
 function showView(id){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
@@ -795,7 +805,6 @@ function goSearch(){
   setTimeout(()=>{const i=document.getElementById('main-search-input');if(i)i.focus();},200);
 }
 function goChat(){showView('chat-view');setBnav('bnav-chat');scrollBottom();}
-
 /* =================== ROW RENDER =================== */
 function renderRow(row,items,type){
   if(!items||!items.length){row.innerHTML=errBox('No content');return;}
@@ -813,7 +822,6 @@ async function loadRow(rowId,ep,type,params={}){
   try{const d=await api(ep,params);renderRow(row,d.results,type);}
   catch(e){if(row)row.innerHTML=errBox('Failed to load');}
 }
-
 /* =================== HOME =================== */
 async function buildHomeView(){
   const hv=document.getElementById('home-view');
@@ -868,7 +876,6 @@ function renderHero(){
 }
 function setHero(i){heroIdx=i;renderHero();clearInterval(heroTimer);startHeroTimer();}
 function startHeroTimer(){heroTimer=setInterval(()=>{heroIdx=(heroIdx+1)%heroItems.length;renderHero();},5500);}
-
 /* =================== MOVIES =================== */
 async function buildMoviesView(){
   const mv=document.getElementById('movies-view');
@@ -892,7 +899,6 @@ async function movieGenre(id,el){
   try{const d=await api('/discover/movie',{with_genres:id,sort_by:'popularity.desc'});renderRow(row,d.results,'movie');}
   catch(e){if(row)row.innerHTML=errBox('Filter failed');}
 }
-
 /* =================== TV =================== */
 async function buildTVView(){
   const tv=document.getElementById('tv-view');
@@ -916,7 +922,6 @@ async function tvGenre(id,el){
   try{const d=await api('/discover/tv',{with_genres:id,sort_by:'popularity.desc'});renderRow(row,d.results,'tv');}
   catch(e){if(row)row.innerHTML=errBox('Filter failed');}
 }
-
 /* =================== SEARCH =================== */
 function buildSearchView(){
   const sv=document.getElementById('search-view');
@@ -965,7 +970,6 @@ function saveRecent(q){recentSearches=[q,...recentSearches.filter(s=>s.toLowerCa
 function removeRecent(q,e){e.stopPropagation();recentSearches=recentSearches.filter(s=>s!==q);localStorage.setItem('cs_recent',JSON.stringify(recentSearches));renderSearchHome();}
 function clearAllRecent(){recentSearches=[];localStorage.setItem('cs_recent',JSON.stringify(recentSearches));renderSearchHome();}
 function recentClick(q){const inp=document.getElementById('main-search-input'),clr=document.getElementById('search-clear');if(inp){inp.value=q;if(clr)clr.classList.add('show');}doSearch(q);}
-
 async function renderSearchHome(){
   const body=document.getElementById('search-body');if(!body)return;
   let html='';
@@ -1004,7 +1008,6 @@ function renderResults(q){
   html+='</div>';body.innerHTML=html;
 }
 function setFilter(type,q){currentFilter=type;renderResults(q);}
-
 /* =================== DETAIL =================== */
 async function openDetail(id,type){
   prevView=document.querySelector('.view.active').id;
@@ -1016,17 +1019,45 @@ async function openDetail(id,type){
     renderDetail(dv,detail,credits,videos,images,type);
   }catch(e){dv.innerHTML=`<button class="detail-back" onclick="closeDetail()">‹</button>${errBox('Failed to load')}`;}
 }
-
 function buildWebSearcher(title,type){
-  const typeLabel='';
   const engs=window._fbEngines||[];
   const activeId=window._activeEngId?window._activeEngId():null;
-  let engHtml=engs.length
+  let engPills=engs.length
     ?engs.map(e=>{const fav=window.faviconUrl?window.faviconUrl(e.domain||e.url):'';return`<button class="ws-engine-btn${e.fbKey===activeId?' active':''}" onclick="selectEng('${e.fbKey}')" id="eng-btn-${e.fbKey}"><span class="ws-engine-logo"><img src="${fav}" alt="${escH(e.name)}" onerror="this.style.display='none'"/></span>${escH(e.name)}</button>`;}).join('')
-    :'<div class="ws-no-engines">No search engines — tap "Manage" to add.</div>';
-  return`<div class="web-searcher-section"><div class="sec-lbl">Web Search<div class="sec-lbl-line"></div></div><div class="ws-engines-wrap" id="ws-engines-wrap">${engHtml}</div><button class="ws-manage-btn" onclick="openEngModal()">⚙️ Manage Engines</button><div class="ws-query-row" style="margin-top:10px"><input class="ws-query-input" id="ws-main-input" value="${escA(title+' '+typeLabel)}" placeholder="Search query..." inputmode="search" onkeydown="if(event.key==='Enter'){this.blur();wsGo();}"/><button class="ws-go-btn" onclick="wsGo()">Search</button></div></div>`;
+    :'<div class="ws-no-engines">No engines added — tap ⚙️ Manage to add one.</div>';
+  let engRows=engs.length
+    ?engs.map(e=>{const fav=window.faviconUrl?window.faviconUrl(e.domain||e.url):'';return`<tr>
+      <td class="et-logo-cell"><div class="et-logo-wrap"><img src="${fav}" alt="${escH(e.name)}" onerror="this.style.display='none'"/></div></td>
+      <td class="et-name">${escH(e.name)}</td>
+      <td class="et-desc">${escH(e.desc||'')}</td>
+      <td><button class="et-search-btn" onclick="wsGoWith('${escA(e.fbKey)}')">Search</button></td>
+    </tr>`;}).join('')
+    :`<tr><td colspan="4" class="no-eng-row">No engines added yet — tap ⚙️ Manage Engines to add one.</td></tr>`;
+  return`<div class="web-searcher-section">
+    <div class="sec-lbl">Web Search<div class="sec-lbl-line"></div></div>
+    <div class="ws-query-row" style="margin-bottom:10px">
+      <input class="ws-query-input" id="ws-main-input" value="${escA(title)}" placeholder="Search query..." inputmode="search" onkeydown="if(event.key==='Enter'){this.blur();wsGo();}"/>
+      <button class="ws-go-btn" onclick="wsGo()">Search</button>
+    </div>
+    <div class="ws-engines-wrap" id="ws-engines-wrap">${engPills}</div>
+    <button class="ws-manage-btn" onclick="openEngModal()">⚙️ Manage Engines</button>
+    <div style="margin-top:14px">
+      <div class="eng-table-wrap">
+        <table class="eng-table">
+          <thead>
+            <tr>
+              <th class="et-logo-cell"></th>
+              <th>Engine</th>
+              <th>Description</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="eng-tbl-body">${engRows}</tbody>
+        </table>
+      </div>
+    </div>
+  </div>`;
 }
-
 function wsGo(){
   const inp=document.getElementById('ws-main-input');if(!inp)return;
   const q=inp.value.trim();if(!q)return;
@@ -1037,7 +1068,13 @@ function wsGo(){
   if(!eng)return;
   window.open(eng.url.replace('{query}',encodeURIComponent(q)),'_blank');
 }
-
+function wsGoWith(fbKey){
+  const inp=document.getElementById('ws-main-input');
+  const q=inp?inp.value.trim():'';if(!q)return;
+  const engs=window._fbEngines||[];
+  const eng=engs.find(e=>e.fbKey===fbKey);if(!eng)return;
+  window.open(eng.url.replace('{query}',encodeURIComponent(q)),'_blank');
+}
 function renderDetail(dv,detail,credits,videos,images,type){
   const title=detail.title||detail.name||'';
   const backdrop=imgUrl(detail.backdrop_path,'w780');
@@ -1088,11 +1125,11 @@ async function loadSeason(showId,seasonNum,btnEl){
   }catch(e){if(list)list.innerHTML=errBox('Failed to load episodes');}
 }
 function closeDetail(){showView(prevView||'home-view');}
-
 /* =================== ENGINE MODAL =================== */
 function openEngModal(){
   document.getElementById('eng-modal').classList.remove('hidden');
   document.getElementById('eng-url-inp').value='';
+  document.getElementById('eng-desc-inp').value='';
   document.getElementById('eng-preview').classList.remove('show');
 }
 function closeEngModal(){document.getElementById('eng-modal').classList.add('hidden');}
@@ -1103,31 +1140,27 @@ function addEngine(){
   const domain=window.extractDomain?window.extractDomain(url):null;
   if(!domain){showToast('Enter a valid URL');return;}
   const name=window.domainToName?window.domainToName(domain):domain;
-  if(window._addEngineFB)window._addEngineFB(name,url,domain);
+  const desc=document.getElementById('eng-desc-inp').value.trim();
+  if(window._addEngineFB)window._addEngineFB(name,url,domain,desc);
   document.getElementById('eng-url-inp').value='';
+  document.getElementById('eng-desc-inp').value='';
   document.getElementById('eng-preview').classList.remove('show');
   showToast(`${name} added!`);
 }
-
 /* =================== CHAT =================== */
 function fmtTime(ts){
   if(!ts)return'';
   try{const d=new Date(typeof ts==='number'?ts:Date.now());return d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});}catch(e){return'';}
 }
-
 window.appendMsg=function(msg,key){
   const container=document.getElementById('chat-messages');if(!container)return;
   const myId=window._myUid||localStorage.getItem('cs_uid');
   const isMe=msg.uid===myId;
   let html='';
-
   if(msg.type==='movie'){
-    /* Use poster with correct 2:3 ratio */
     const hasImg=msg.poster&&msg.poster.startsWith('http');
     const card=`<div class="chat-movie-card" onclick="openDetail(${Number(msg.mediaId)},'${escA(String(msg.mediaType||'movie'))}')">
-      ${hasImg
-        ?`<img class="chat-movie-poster" src="${escA(msg.poster)}" alt="${escH(String(msg.mediaTitle||''))}" onerror="this.outerHTML='<div class=chat-movie-poster-ph>🎬</div>'"/>`
-        :`<div class="chat-movie-poster-ph">🎬</div>`}
+      ${hasImg?`<img class="chat-movie-poster" src="${escA(msg.poster)}" alt="${escH(String(msg.mediaTitle||''))}" onerror="this.outerHTML='<div class=chat-movie-poster-ph>🎬</div>'"/>`:`<div class="chat-movie-poster-ph">🎬</div>`}
       <div class="chat-movie-info">
         <div class="chat-movie-title">${escH(String(msg.mediaTitle||'Unknown'))}</div>
         <div class="chat-movie-meta">${msg.mediaType==='tv'?'📺 TV':'🎬 Movie'}${msg.year?' · '+msg.year:''}</div>
@@ -1138,11 +1171,9 @@ window.appendMsg=function(msg,key){
     if(!msg.text)return;
     html=`<div class="msg-wrap ${isMe?'me':'other'}">${!isMe?`<div class="msg-name">${escH(String(msg.username||'User'))}</div>`:''}<div class="msg-bubble">${escH(String(msg.text))}</div><div class="msg-time">${fmtTime(msg.ts)}</div></div>`;
   }else{return;}
-
   container.insertAdjacentHTML('beforeend',html);
   scrollBottom();
 };
-
 function scrollBottom(){
   const c=document.getElementById('chat-messages');
   if(c)setTimeout(()=>{c.scrollTop=c.scrollHeight;},50);
@@ -1157,13 +1188,9 @@ function sendMsg(){
   if(window._sendMsg)window._sendMsg({type:'text',text,uid:myId,username:myName});
   inp.value='';inp.style.height='auto';
 }
-
-/* DELETE */
 function openDelModal(){document.getElementById('del-modal').classList.remove('hidden');}
 function closeDelModal(){document.getElementById('del-modal').classList.add('hidden');}
 function confirmDeleteChat(){if(window._deleteAll)window._deleteAll();closeDelModal();showToast('Chat cleared');}
-
-/* USERNAME */
 function openUnModal(){
   const modal=document.getElementById('un-modal'),inp=document.getElementById('un-input');
   inp.value=window._myName||localStorage.getItem('cs_username')||'';
@@ -1184,7 +1211,6 @@ function saveUsername(){
   closeUnModal();
   showToast('Username saved: '+val);
 }
-
 /* =================== SHARE MODAL =================== */
 function openShareModal(){
   document.getElementById('share-modal').classList.remove('hidden');
@@ -1192,20 +1218,17 @@ function openShareModal(){
   loadShareTrending();
 }
 function closeShareModal(){document.getElementById('share-modal').classList.add('hidden');}
-
 async function loadShareTrending(){
   const res=document.getElementById('share-results');if(!res)return;
   res.innerHTML='<div class="share-loading"><div class="small-ring"></div></div>';
   try{
     const[mv,tv]=await Promise.all([api('/trending/movie/week'),api('/trending/tv/week')]);
-    /* interleave movies and tv shows */
     const combined=[...mv.results.map(r=>({...r,media_type:'movie'})),...tv.results.map(r=>({...r,media_type:'tv'}))];
     combined.sort((a,b)=>b.popularity-a.popularity);
     shareItems=combined.filter(i=>i.poster_path).slice(0,30);
     renderShareGrid(shareItems);
   }catch(e){res.innerHTML='<div style="padding:20px;text-align:center;font-size:12px;color:rgba(255,255,255,0.3)">Failed to load</div>';}
 }
-
 function searchShareItems(q){
   clearTimeout(shareDebounce);
   if(!q.trim()){loadShareTrending();return;}
@@ -1221,11 +1244,9 @@ function searchShareItems(q){
     }catch(e){res.innerHTML='<div style="padding:20px;text-align:center;font-size:12px;color:rgba(255,255,255,0.3)">Search failed</div>';}
   },300);
 }
-
 function renderShareGrid(items){
   const res=document.getElementById('share-results');if(!res)return;
   if(!items.length){res.innerHTML='<div style="padding:20px;text-align:center;font-size:12px;color:rgba(255,255,255,0.3)">No results</div>';return;}
-  /* Build poster grid — same 2:3 ratio as poster-card */
   res.innerHTML=`<div class="share-grid">${items.map(item=>{
     const t=item.title||item.name||'';
     const p=imgUrl(item.poster_path,'w342');
@@ -1238,30 +1259,17 @@ function renderShareGrid(items){
     </div>`;
   }).join('')}</div>`;
 }
-
 function shareToChat(id,type,title,poster,year){
-  /* Validate id */
   const numId=Number(id);
   if(!numId){showToast('Invalid item');return;}
   closeShareModal();
   const myId=window._myUid||localStorage.getItem('cs_uid');
   const myName=window._myName||localStorage.getItem('cs_username')||'User';
-  /* Ensure full poster URL */
   let posterUrl=poster||'';
   if(posterUrl&&!posterUrl.startsWith('http'))posterUrl=`https://image.tmdb.org/t/p/w342${posterUrl}`;
-  const msgData={
-    type:'movie',
-    mediaId:numId,
-    mediaType:String(type),
-    mediaTitle:String(title),
-    poster:posterUrl,
-    year:String(year||''),
-    uid:myId,
-    username:myName
-  };
+  const msgData={type:'movie',mediaId:numId,mediaType:String(type),mediaTitle:String(title),poster:posterUrl,year:String(year||''),uid:myId,username:myName};
   if(window._sendMsg)window._sendMsg(msgData);
 }
-
 /* =================== INIT =================== */
 async function init(){
   const storedName=localStorage.getItem('cs_username');
