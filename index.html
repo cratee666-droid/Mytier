@@ -20,38 +20,30 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}
 :root{
-  --cream:#FAF8F5;
-  --beige:#EDE8E0;
-  --taupe:#D4C8B8;
-  --tan:#C4AC8C;
-  --dark-tan:#A08060;
-  --text-dark:#2C2416;
-  --text-mid:#5C4A30;
-  --text-light:#8C7A5C;
-  --accent:#8B6914;
-  --accent2:#C4AC8C;
-  --border:rgba(196,172,140,0.3);
-  --border2:rgba(196,172,140,0.15);
-  --card-bg:#F5F0E8;
-  --nav-h:56px;
-  --safe-bottom:env(safe-area-inset-bottom,0px);
-  --safe-top:env(safe-area-inset-top,0px)
+  --cream:#FAF8F5;--beige:#EDE8E0;--taupe:#D4C8B8;--tan:#C4AC8C;--dark-tan:#A08060;
+  --text-dark:#2C2416;--text-mid:#5C4A30;--text-light:#8C7A5C;
+  --accent:#8B6914;--accent2:#C4AC8C;
+  --border:rgba(196,172,140,0.3);--border2:rgba(196,172,140,0.15);
+  --card-bg:#F5F0E8;--nav-h:56px;
+  --safe-bottom:env(safe-area-inset-bottom,0px);--safe-top:env(safe-area-inset-top,0px)
 }
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{width:100%;height:100%;background:var(--cream);font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;color:var(--text-dark);overflow:hidden;touch-action:manipulation;-webkit-font-smoothing:antialiased;position:fixed;inset:0}
 #app{width:100%;height:100%;position:relative;overflow:hidden}
 .view{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity 0.22s ease;overflow:hidden}
 .view.active{opacity:1;pointer-events:all}
-::-webkit-scrollbar{display:none}
-*{scrollbar-width:none}
+::-webkit-scrollbar{display:none} *{scrollbar-width:none}
+
 /* BOTTOM NAV */
 #bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:300;background:var(--cream);border-top:1.5px solid var(--taupe);display:flex;align-items:stretch;height:calc(var(--nav-h) + var(--safe-bottom));padding-bottom:var(--safe-bottom);box-shadow:0 -2px 12px rgba(139,105,20,0.08)}
 .bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:var(--text-light);transition:color 0.15s;border:none;background:none;padding:0;min-height:44px;position:relative;-webkit-tap-highlight-color:transparent}
 .bnav-item.active{color:var(--accent)}
 .bnav-item svg{width:22px;height:22px;flex-shrink:0}
 .bnav-item span{font-size:9px;font-weight:600;letter-spacing:0.2px;line-height:1}
+
 /* SCROLL VIEWS */
 .scroll-view{overflow-y:scroll;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding-bottom:calc(var(--nav-h) + var(--safe-bottom) + 8px);background:var(--cream)}
+
 /* HERO */
 .hero{width:100%;height:54vw;min-height:200px;max-height:290px;position:relative;overflow:hidden}
 .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center top;transition:opacity 0.65s ease}
@@ -67,15 +59,18 @@ body{width:100%;height:100%;background:var(--cream);font-family:-apple-system,'S
 .hero-dots{display:flex;justify-content:center;gap:5px;padding:6px 0 2px;background:var(--cream)}
 .hero-dot{width:16px;height:2.5px;background:var(--taupe);border-radius:2px;cursor:pointer;transition:all 0.2s}
 .hero-dot.active{background:var(--accent);width:26px}
+
 /* GENRES */
 .genres-scroll{display:flex;gap:7px;padding:8px 14px 4px;overflow-x:auto;-webkit-overflow-scrolling:touch;background:var(--cream)}
 .genre-chip{flex-shrink:0;background:var(--beige);border:1px solid var(--taupe);color:var(--text-light);padding:6px 13px;border-radius:20px;font-size:11px;cursor:pointer;transition:all 0.15s;white-space:nowrap;min-height:32px;display:flex;align-items:center}
 .genre-chip.active{background:var(--tan);border-color:var(--accent);color:var(--text-dark)}
+
 /* SECTION */
 .section{padding:6px 0 2px;background:var(--cream)}
 .section-head{display:flex;align-items:center;gap:8px;padding:0 14px 8px}
 .section-bar{width:3px;height:14px;background:var(--accent);border-radius:2px;flex-shrink:0}
 .section-title{font-size:13px;font-weight:800;color:var(--text-dark)}
+
 /* POSTER ROW */
 .h-row{display:flex;gap:9px;padding:0 14px 8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .poster-card{flex-shrink:0;width:98px;border-radius:8px;overflow:hidden;border:1px solid var(--taupe);cursor:pointer;position:relative;transition:transform 0.15s;background:var(--beige);-webkit-tap-highlight-color:transparent}
@@ -83,9 +78,11 @@ body{width:100%;height:100%;background:var(--cream);font-family:-apple-system,'S
 .poster-card img{width:100%;height:147px;object-fit:cover;display:block}
 .skel{flex-shrink:0;width:98px;height:147px;border-radius:8px;background:linear-gradient(90deg,var(--beige) 0%,var(--taupe) 50%,var(--beige) 100%);background-size:200% 100%;animation:shimmer 1.4s infinite}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
 /* VIEW TITLE BAR */
 .vtbar{padding:14px 14px 4px;display:flex;align-items:center;gap:8px;padding-top:calc(14px + var(--safe-top));background:var(--cream)}
 .vtbar h2{font-size:16px;font-weight:900;color:var(--text-dark)}
+
 /* SEARCH VIEW */
 #search-view{overflow-y:scroll;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding-bottom:calc(var(--nav-h) + var(--safe-bottom) + 8px);background:var(--cream)}
 .search-view-inner{padding:12px 14px 0}
@@ -97,6 +94,7 @@ body{width:100%;height:100%;background:var(--cream);font-family:-apple-system,'S
 #main-search-input::placeholder{color:var(--text-light)}
 .search-clear-btn{background:none;border:none;color:var(--text-light);font-size:20px;cursor:pointer;padding:6px;line-height:1;min-width:32px;min-height:32px;display:none;align-items:center;justify-content:center}
 .search-clear-btn.show{display:flex}
+
 /* AUTOCOMPLETE */
 #autocomplete-drop{position:absolute;left:0;right:0;top:calc(100% + 5px);z-index:500;background:var(--cream);border:1px solid var(--taupe);border-radius:12px;overflow:hidden;display:none;box-shadow:0 8px 24px rgba(139,105,20,0.15)}
 .ac-section-label{padding:7px 12px 4px;font-size:9px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:var(--text-light);border-bottom:1px solid var(--border2)}
@@ -115,6 +113,7 @@ body{width:100%;height:100%;background:var(--cream);font-family:-apple-system,'S
 .ac-q-icon{width:32px;height:32px;border-radius:50%;background:var(--beige);border:1px solid var(--taupe);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .ac-q-text{font-size:13px;color:var(--text-mid)}
 .ac-q-text b{color:var(--text-dark)}
+
 /* RECENT/TRENDING */
 .recent-section{margin-top:16px}
 .recent-header{display:flex;align-items:center;justify-content:space-between;padding:0 0 9px}
@@ -133,6 +132,7 @@ body{width:100%;height:100%;background:var(--cream);font-family:-apple-system,'S
 .trending-title{font-size:11px;font-weight:700;color:var(--text-dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .trending-sub{font-size:9px;color:var(--text-light);margin-top:2px}
 .trending-thumb{width:36px;height:36px;border-radius:5px;object-fit:cover;flex-shrink:0;border:1px solid var(--taupe)}
+
 /* RESULTS */
 .results-area{margin-top:14px}
 .results-header{display:flex;align-items:center;justify-content:space-between;padding:0 0 10px}
@@ -150,6 +150,7 @@ body{width:100%;height:100%;background:var(--cream);font-family:-apple-system,'S
 .no-results-icon{font-size:40px;opacity:0.4}
 .no-results-text{font-size:14px;color:var(--text-light);text-align:center}
 .no-results-sub{font-size:11px;color:var(--tan);text-align:center}
+
 /* DETAIL VIEW */
 #detail-view{overflow-y:scroll;-webkit-overflow-scrolling:touch;padding-bottom:calc(var(--nav-h) + var(--safe-bottom) + 8px);background:var(--cream)}
 .detail-trailer-top{width:100%;aspect-ratio:16/9;position:relative;background:var(--beige);overflow:hidden}
@@ -158,11 +159,9 @@ body{width:100%;height:100%;background:var(--cream);font-family:-apple-system,'S
 .detail-trailer-fallback-grad{position:absolute;inset:0;background:linear-gradient(to top,var(--cream) 0%,rgba(237,232,224,0.15) 60%,transparent 100%)}
 .detail-back{position:fixed;top:calc(12px + var(--safe-top));left:12px;z-index:400;background:rgba(250,248,245,0.92);border:1px solid var(--taupe);border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-dark);font-size:26px;line-height:1;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);-webkit-tap-highlight-color:transparent}
 .detail-back:active{background:var(--tan);transform:scale(0.92)}
-/* ===== SHARE BUTTON ON DETAIL PAGE ===== */
 .detail-share-btn{position:fixed;top:calc(12px + var(--safe-top));right:12px;z-index:400;background:rgba(250,248,245,0.92);border:1px solid var(--taupe);border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--accent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);-webkit-tap-highlight-color:transparent;transition:all 0.15s}
 .detail-share-btn:active{background:var(--tan);transform:scale(0.92)}
 .detail-share-btn svg{width:20px;height:20px}
-/* ===== END SHARE BUTTON ===== */
 .detail-body{padding:0 14px 20px;background:var(--cream)}
 .dprow{display:flex;gap:12px;align-items:flex-start;padding:10px 0 10px}
 .dposter{width:88px;flex-shrink:0;border-radius:8px;overflow:hidden;border:1px solid var(--taupe);box-shadow:0 2px 12px rgba(139,105,20,0.12)}
@@ -186,6 +185,7 @@ body{width:100%;height:100%;background:var(--cream);font-family:-apple-system,'S
 .info-tbl tbody td{padding:10px 12px;font-size:12px;vertical-align:top;line-height:1.5;border-right:1px solid var(--border)}
 .info-tbl tbody td:first-child{color:var(--accent);font-weight:700;font-size:9px;letter-spacing:0.6px;text-transform:uppercase;width:86px;white-space:nowrap}
 .info-tbl tbody td:last-child{color:var(--text-mid);border-right:none}
+
 /* USER SCORE */
 .user-score-section{background:var(--beige);border:1px solid var(--taupe);border-radius:12px;padding:14px;margin-bottom:18px}
 .user-score-title{font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
@@ -200,6 +200,7 @@ body{width:100%;height:100%;background:var(--cream);font-family:-apple-system,'S
 .score-bar-fill{height:100%;border-radius:3px;background:var(--accent);transition:width 0.6s ease}
 .score-bar-val{font-size:10px;font-weight:700;color:var(--text-dark);width:26px;text-align:right;flex-shrink:0}
 .score-votes{font-size:10px;color:var(--text-light);margin-top:4px}
+
 /* WHERE TO WATCH */
 .where-to-watch{background:var(--beige);border:1px solid var(--taupe);border-radius:12px;padding:14px;margin-bottom:18px}
 .wtw-title{font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
@@ -212,6 +213,7 @@ body{width:100%;height:100%;background:var(--cream);font-family:-apple-system,'S
 .wtw-logo-ph{width:48px;height:48px;border-radius:10px;background:var(--tan);display:flex;align-items:center;justify-content:center;font-size:20px;border:1px solid var(--taupe)}
 .wtw-name{font-size:8px;font-weight:600;color:var(--text-light);text-align:center;max-width:52px;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .wtw-empty{font-size:12px;color:var(--text-light);text-align:center;padding:10px;width:100%;font-style:italic}
+
 /* CAST */
 .cast-row{display:flex;gap:14px;overflow-x:auto;padding:0 0 14px;-webkit-overflow-scrolling:touch;margin-bottom:14px}
 .cast-item{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:6px;width:90px;cursor:pointer;-webkit-tap-highlight-color:transparent}
@@ -221,6 +223,7 @@ body{width:100%;height:100%;background:var(--cream);font-family:-apple-system,'S
 .cast-name{font-size:10px;font-weight:700;color:var(--text-dark);text-align:center;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word}
 .cast-name-link{color:var(--accent);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px}
 .cast-char{font-size:9px;color:var(--accent);text-align:center;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+
 /* PERSON VIEW */
 #person-view{overflow-y:scroll;-webkit-overflow-scrolling:touch;padding-bottom:calc(var(--nav-h) + var(--safe-bottom) + 8px);background:var(--cream)}
 .person-hero{display:flex;gap:14px;align-items:flex-start;padding:14px 14px 10px;background:var(--cream)}
@@ -241,6 +244,8 @@ body{width:100%;height:100%;background:var(--cream);font-family:-apple-system,'S
 .film-card-label{position:absolute;bottom:0;left:0;right:0;padding:5px 6px;background:linear-gradient(to top,rgba(44,36,22,0.88) 0%,transparent 100%);font-size:9px;font-weight:700;color:#fff;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .film-card-year{position:absolute;top:5px;right:5px;background:rgba(139,105,20,0.85);color:#fff;font-size:8px;font-weight:800;padding:2px 5px;border-radius:4px}
 .film-card-ph{width:100%;aspect-ratio:2/3;background:var(--beige);display:flex;align-items:center;justify-content:center;font-size:28px}
+
+/* SEASONS/EPISODES */
 .season-sel{display:flex;gap:7px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:10px}
 .season-btn{flex-shrink:0;background:var(--beige);border:1px solid var(--taupe);color:var(--text-light);padding:7px 14px;border-radius:20px;font-size:11px;cursor:pointer;transition:all 0.16s;white-space:nowrap;min-height:34px}
 .season-btn.active{background:var(--tan);border-color:var(--accent);color:var(--text-dark)}
@@ -257,6 +262,59 @@ body{width:100%;height:100%;background:var(--cream);font-family:-apple-system,'S
 .ep-thumb{width:68px;height:44px;border-radius:5px;object-fit:cover;flex-shrink:0;border:1px solid var(--taupe);background:var(--beige)}
 .screenshots-row{display:flex;gap:9px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:0 0 14px}
 .screenshot-img{flex-shrink:0;width:220px;height:124px;object-fit:cover;border-radius:8px;border:1px solid var(--taupe);background:var(--beige)}
+
+/* ADD TO PLAYLIST BUTTON */
+.add-playlist-btn{display:inline-flex;align-items:center;gap:6px;background:var(--beige);color:var(--accent);border:1.5px solid var(--accent);border-radius:20px;padding:7px 15px;font-size:11px;font-weight:700;cursor:pointer;margin-bottom:14px;transition:all 0.15s;-webkit-tap-highlight-color:transparent}
+.add-playlist-btn:active{background:var(--tan);transform:scale(0.95)}
+
+/* ===================== MY LIST VIEW ===================== */
+#mylist-view{overflow-y:scroll;-webkit-overflow-scrolling:touch;padding-bottom:calc(var(--nav-h) + var(--safe-bottom) + 8px);background:var(--cream)}
+.mylist-header{padding:calc(14px + var(--safe-top)) 14px 10px;background:var(--cream)}
+.mylist-header h2{font-size:18px;font-weight:900;color:var(--text-dark);margin-bottom:2px}
+.mylist-header p{font-size:11px;color:var(--text-light)}
+
+/* Playlists */
+.playlist-section{padding:0 14px}
+.playlist-create-btn{width:100%;background:var(--beige);border:1.5px dashed var(--tan);border-radius:12px;padding:14px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:700;color:var(--accent);cursor:pointer;margin-bottom:14px;-webkit-tap-highlight-color:transparent}
+.playlist-create-btn:active{background:var(--tan);transform:scale(0.98)}
+.playlist-card{background:var(--beige);border:1px solid var(--taupe);border-radius:12px;margin-bottom:10px;overflow:hidden;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:all 0.15s}
+.playlist-card:active{border-color:var(--accent);transform:scale(0.98)}
+.playlist-card-header{display:flex;align-items:center;gap:10px;padding:12px 12px 10px}
+.playlist-thumb-strip{display:flex;gap:3px;width:62px;flex-shrink:0}
+.playlist-thumb{width:18px;height:28px;border-radius:3px;object-fit:cover;flex-shrink:0;background:var(--taupe)}
+.playlist-thumb-ph{width:18px;height:28px;border-radius:3px;background:var(--tan);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:8px}
+.playlist-meta{flex:1;min-width:0}
+.playlist-name{font-size:14px;font-weight:800;color:var(--text-dark);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.playlist-count{font-size:10px;color:var(--text-light)}
+.playlist-actions{display:flex;gap:4px;align-items:center}
+.playlist-share-btn{background:none;border:none;color:var(--accent);font-size:16px;cursor:pointer;padding:6px;min-width:36px;min-height:36px;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
+.playlist-share-btn:active{color:var(--dark-tan)}
+.playlist-del-btn{background:none;border:none;color:var(--text-light);font-size:18px;cursor:pointer;padding:6px;min-width:36px;min-height:36px;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
+.playlist-del-btn:active{color:var(--accent)}
+
+/* Playlist detail */
+.playlist-items-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:0 14px 14px}
+.pl-item-card{border-radius:8px;overflow:hidden;border:1px solid var(--taupe);cursor:pointer;position:relative;background:var(--beige);-webkit-tap-highlight-color:transparent}
+.pl-item-card:active{border-color:var(--accent);transform:scale(0.95)}
+.pl-item-card img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block}
+.pl-item-remove{position:absolute;top:4px;right:4px;background:rgba(139,105,20,0.85);border:none;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.pl-item-label{position:absolute;bottom:0;left:0;right:0;padding:4px 5px;background:linear-gradient(to top,rgba(44,36,22,0.88) 0%,transparent 100%);font-size:9px;font-weight:700;color:#fff;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* Following empty */
+.following-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;gap:8px;text-align:center}
+.following-empty-icon{font-size:40px;opacity:0.35}
+.following-empty-text{font-size:14px;color:var(--text-light)}
+.following-empty-sub{font-size:11px;color:var(--tan)}
+
+/* USER ID SETUP */
+.uid-banner{background:var(--beige);border:1px solid var(--taupe);border-radius:12px;padding:14px;margin:0 14px 14px;display:flex;flex-direction:column;gap:8px}
+.uid-banner-title{font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--accent)}
+.uid-banner-row{display:flex;gap:8px;align-items:center}
+.uid-banner-val{flex:1;font-size:13px;font-weight:700;color:var(--text-dark);background:var(--cream);border:1px solid var(--taupe);border-radius:8px;padding:8px 10px;font-family:monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.uid-edit-btn{background:var(--accent);border:none;border-radius:8px;padding:8px 12px;color:#fff;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.uid-edit-btn:active{background:var(--dark-tan)}
+.uid-hint{font-size:10px;color:var(--text-light);line-height:1.4}
+
 /* LOADING/ERROR */
 .loading-overlay{position:fixed;inset:0;background:var(--cream);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999}
 .ring{width:46px;height:46px;border:3px solid var(--taupe);border-top-color:var(--accent);border-radius:50%;animation:spin 0.72s linear infinite;margin-bottom:13px}
@@ -268,6 +326,7 @@ body{width:100%;height:100%;background:var(--cream);font-family:-apple-system,'S
 .err-icon{color:var(--accent)}
 .err-txt{font-size:12px;color:var(--text-light);text-align:center}
 .err-sub{font-size:10px;color:var(--tan)}
+
 /* WEB SEARCHER */
 .web-searcher-section{margin-bottom:20px}
 .eng-table-wrap{width:100%;border-radius:10px;overflow:hidden;border:1px solid var(--taupe);margin-bottom:10px}
@@ -300,89 +359,46 @@ body{width:100%;height:100%;background:var(--cream);font-family:-apple-system,'S
 .ws-go-btn:active{background:var(--dark-tan);transform:scale(0.95)}
 .ws-manage-btn{display:inline-flex;align-items:center;gap:5px;background:transparent;border:1.5px dashed var(--taupe);border-radius:20px;padding:6px 13px;font-size:11px;font-weight:700;color:var(--text-light);cursor:pointer;min-height:34px;margin-top:6px;-webkit-tap-highlight-color:transparent}
 .ws-manage-btn:active{border-color:var(--accent);color:var(--accent)}
-/* CHAT VIEW */
-#chat-view{position:absolute;top:0;left:0;right:0;bottom:calc(var(--nav-h) + var(--safe-bottom));display:flex;flex-direction:column;background:var(--cream);opacity:0;pointer-events:none;transition:opacity 0.22s ease;overflow:hidden}
-#chat-view.active{opacity:1;pointer-events:all}
-.chat-header{flex-shrink:0;padding:calc(10px + var(--safe-top)) 12px 8px;background:var(--beige);border-bottom:1px solid var(--taupe);display:flex;align-items:center;gap:8px}
-.chat-header-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 6px #22c55e;animation:blink 2s infinite;flex-shrink:0}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.4}}
-.chat-online{font-size:10px;color:#22c55e;font-weight:700;flex:1}
-.chat-username-btn{flex-shrink:0;background:var(--cream);border:1px solid var(--taupe);border-radius:16px;padding:5px 10px;color:var(--text-mid);font-size:10px;font-weight:700;cursor:pointer;white-space:nowrap;max-width:110px;overflow:hidden;text-overflow:ellipsis;-webkit-tap-highlight-color:transparent}
-.chat-username-btn:active{background:var(--tan)}
-.chat-messages{flex:1;min-height:0;overflow-y:scroll;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:10px 12px;display:flex;flex-direction:column;gap:10px;background:var(--cream)}
-.chat-input-area{flex-shrink:0;display:flex;align-items:flex-end;gap:7px;padding:8px 10px;background:var(--beige);border-top:1px solid var(--taupe)}
-.chat-plus-btn{width:38px;height:38px;border-radius:50%;background:var(--tan);border:1.5px solid var(--taupe);color:var(--text-dark);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;-webkit-tap-highlight-color:transparent}
-.chat-plus-btn:active{background:var(--accent);color:#fff;transform:scale(0.93)}
-.chat-plus-btn svg{width:20px;height:20px}
-.chat-input-wrap{flex:1;min-width:0;background:var(--cream);border:1.5px solid var(--taupe);border-radius:20px;padding:9px 14px;display:flex;align-items:center;min-height:42px;transition:border-color 0.18s}
-.chat-input-wrap:focus-within{border-color:var(--accent)}
-#chat-input{flex:1;background:transparent;border:none;outline:none;color:var(--text-dark);font-size:15px;caret-color:var(--accent);resize:none;max-height:100px;line-height:1.4;-webkit-appearance:none;font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;overflow-y:auto}
-#chat-input::placeholder{color:var(--text-light)}
-.chat-delete-btn{width:38px;height:38px;border-radius:50%;background:var(--beige);border:1.5px solid var(--taupe);color:var(--text-light);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;-webkit-tap-highlight-color:transparent}
-.chat-delete-btn:active{background:var(--tan);color:var(--text-dark);transform:scale(0.93)}
-.chat-delete-btn svg{width:18px;height:18px}
-.chat-send-btn{width:38px;height:38px;border-radius:50%;background:var(--accent);border:none;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;-webkit-tap-highlight-color:transparent}
-.chat-send-btn:active{background:var(--dark-tan);transform:scale(0.93)}
-.chat-send-btn svg{width:18px;height:18px}
-/* CHAT BUBBLES */
-.msg-wrap{display:flex;flex-direction:column;max-width:82%}
-.msg-wrap.me{align-self:flex-end;align-items:flex-end}
-.msg-wrap.other{align-self:flex-start;align-items:flex-start}
-.msg-name{font-size:9px;font-weight:700;color:var(--accent);margin-bottom:2px;padding:0 4px}
-.msg-bubble{padding:9px 13px;border-radius:18px;font-size:13px;line-height:1.45;word-break:break-word}
-.msg-wrap.me .msg-bubble{background:var(--accent);color:#fff;border-bottom-right-radius:4px}
-.msg-wrap.other .msg-bubble{background:var(--beige);color:var(--text-dark);border:1px solid var(--taupe);border-bottom-left-radius:4px}
-.msg-time{font-size:9px;color:var(--text-light);padding:2px 4px}
-.chat-movie-card{background:var(--cream);border:1px solid var(--taupe);border-radius:10px;overflow:hidden;cursor:pointer;transition:all 0.15s;width:130px;-webkit-tap-highlight-color:transparent}
-.chat-movie-card:active{border-color:var(--accent);transform:scale(0.97)}
-.chat-movie-poster{width:100%;aspect-ratio:2/3;object-fit:cover;display:block;background:var(--beige)}
-.chat-movie-poster-ph{width:100%;aspect-ratio:2/3;background:var(--beige);display:flex;align-items:center;justify-content:center;font-size:28px}
-.chat-movie-info{padding:6px 8px 8px}
-.chat-movie-title{font-size:11px;font-weight:800;color:var(--text-dark);margin-bottom:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.3}
-.chat-movie-meta{font-size:9px;color:var(--accent)}
-/* SHARE MODAL */
-.share-modal-overlay{position:fixed;inset:0;background:rgba(44,36,22,0.6);z-index:800;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-.share-modal-overlay.hidden{display:none}
-.share-modal-sheet{background:var(--cream);border:1px solid var(--taupe);border-radius:20px 20px 0 0;padding:16px 14px calc(16px + var(--safe-bottom));width:100%;max-width:520px;max-height:75vh;display:flex;flex-direction:column}
-.share-modal-handle{width:34px;height:3px;background:var(--taupe);border-radius:2px;margin:0 auto 14px}
-.share-modal-title{font-size:15px;font-weight:900;color:var(--text-dark);margin-bottom:10px}
-.share-search-box{display:flex;align-items:center;gap:8px;background:var(--beige);border:1.5px solid var(--taupe);border-radius:10px;padding:0 12px;margin-bottom:10px;min-height:44px;flex-shrink:0}
-.share-search-box svg{width:15px;height:15px;color:var(--text-light);flex-shrink:0}
-#share-search-input{flex:1;background:transparent;border:none;outline:none;color:var(--text-dark);font-size:14px;padding:10px 0;caret-color:var(--accent);-webkit-appearance:none;font-family:inherit}
-#share-search-input::placeholder{color:var(--text-light)}
-.share-results{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
-.share-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:4px 0}
-.share-grid-item{border-radius:8px;overflow:hidden;cursor:pointer;position:relative;border:2px solid transparent;transition:border-color 0.15s;-webkit-tap-highlight-color:transparent;background:var(--beige)}
-.share-grid-item:active{border-color:var(--accent);transform:scale(0.96)}
-.share-grid-item img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block}
-.share-grid-item-ph{width:100%;aspect-ratio:2/3;background:var(--beige);display:flex;align-items:center;justify-content:center;font-size:24px}
-.share-grid-label{position:absolute;bottom:0;left:0;right:0;padding:4px 5px;background:linear-gradient(to top,rgba(44,36,22,0.85) 0%,transparent 100%);font-size:9px;font-weight:700;color:#fff;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.share-loading{display:flex;justify-content:center;padding:30px}
-/* DELETE MODAL */
-.del-modal-overlay{position:fixed;inset:0;background:rgba(44,36,22,0.7);z-index:850;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
-.del-modal-overlay.hidden{display:none}
-.del-modal-box{background:var(--cream);border:1px solid var(--taupe);border-radius:16px;padding:24px 20px;width:calc(100% - 48px);max-width:320px;text-align:center}
-.del-modal-icon{font-size:32px;margin-bottom:10px}
-.del-modal-title{font-size:16px;font-weight:900;color:var(--text-dark);margin-bottom:6px}
-.del-modal-sub{font-size:12px;color:var(--text-light);margin-bottom:20px;line-height:1.5}
-.del-modal-btns{display:flex;gap:10px}
-.del-cancel{flex:1;background:var(--beige);border:1px solid var(--taupe);border-radius:10px;padding:12px;color:var(--text-light);font-size:14px;font-weight:700;cursor:pointer}
-.del-confirm{flex:1;background:var(--accent);border:none;border-radius:10px;padding:12px;color:#fff;font-size:14px;font-weight:700;cursor:pointer}
-.del-confirm:active{background:var(--dark-tan)}
-/* USERNAME MODAL */
-.un-modal-overlay{position:fixed;inset:0;background:rgba(44,36,22,0.7);z-index:950;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-.un-modal-overlay.hidden{display:none}
-.un-modal-box{background:var(--cream);border:1px solid var(--taupe);border-radius:16px;padding:24px 20px;width:calc(100% - 48px);max-width:320px}
-.un-modal-title{font-size:18px;font-weight:900;color:var(--text-dark);margin-bottom:6px;text-align:center}
-.un-modal-sub{font-size:11px;color:var(--text-light);margin-bottom:18px;line-height:1.5;text-align:center}
-.un-input{width:100%;background:var(--beige);border:1.5px solid var(--taupe);border-radius:10px;padding:13px;font-size:16px;color:var(--text-dark);outline:none;caret-color:var(--accent);-webkit-appearance:none;text-align:center;font-family:inherit}
-.un-input:focus{border-color:var(--accent)}
-.un-input::placeholder{color:var(--text-light)}
-.un-hint{font-size:10px;color:var(--tan);text-align:center;margin-top:7px}
-.un-btns{display:flex;gap:10px;margin-top:16px}
-.un-cancel{flex:1;background:var(--beige);border:1px solid var(--taupe);border-radius:10px;padding:13px;color:var(--text-light);font-size:14px;font-weight:700;cursor:pointer;min-height:48px}
-.un-save{flex:2;background:var(--accent);border:none;border-radius:10px;padding:13px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;min-height:48px}
-.un-save:active{background:var(--dark-tan)}
+
+/* ========= MODALS ========= */
+.modal-overlay{position:fixed;inset:0;background:rgba(44,36,22,0.65);z-index:800;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.modal-overlay.hidden{display:none}
+.modal-sheet{background:var(--cream);border:1px solid var(--taupe);border-radius:20px 20px 0 0;padding:20px 18px calc(20px + var(--safe-bottom));width:100%;max-width:520px}
+.modal-handle{width:34px;height:3px;background:var(--taupe);border-radius:2px;margin:0 auto 16px}
+.modal-title{font-size:16px;font-weight:900;color:var(--text-dark);margin-bottom:14px}
+.modal-input{width:100%;background:var(--beige);border:1.5px solid var(--taupe);border-radius:10px;padding:13px;font-size:16px;color:var(--text-dark);outline:none;caret-color:var(--accent);-webkit-appearance:none;font-family:inherit;margin-bottom:12px}
+.modal-input:focus{border-color:var(--accent)}
+.modal-input::placeholder{color:var(--text-light)}
+.modal-btns{display:flex;gap:10px}
+.modal-cancel{flex:1;background:var(--beige);border:1px solid var(--taupe);border-radius:10px;padding:13px;color:var(--text-light);font-size:14px;font-weight:700;cursor:pointer;min-height:48px}
+.modal-confirm{flex:2;background:var(--accent);border:none;border-radius:10px;padding:13px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;min-height:48px}
+.modal-confirm:active{background:var(--dark-tan)}
+.modal-hint{font-size:10px;color:var(--text-light);margin-bottom:12px;line-height:1.5}
+
+/* Add to playlist picker */
+.playlist-picker-overlay{position:fixed;inset:0;background:rgba(44,36,22,0.65);z-index:810;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.playlist-picker-overlay.hidden{display:none}
+.playlist-picker-sheet{background:var(--cream);border:1px solid var(--taupe);border-radius:20px 20px 0 0;padding:20px 18px calc(20px + var(--safe-bottom));width:100%;max-width:520px;max-height:70vh;display:flex;flex-direction:column}
+.playlist-picker-list{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.playlist-picker-item{display:flex;align-items:center;gap:10px;background:var(--beige);border:1px solid var(--taupe);border-radius:10px;padding:12px;cursor:pointer;transition:all 0.14s;-webkit-tap-highlight-color:transparent}
+.playlist-picker-item:active{border-color:var(--accent);background:var(--tan)}
+.playlist-picker-item.already-in{border-color:var(--accent);background:rgba(139,105,20,0.07)}
+.playlist-picker-icon{width:36px;height:36px;border-radius:6px;background:var(--tan);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.playlist-picker-name{flex:1;font-size:13px;font-weight:700;color:var(--text-dark)}
+.playlist-picker-check{font-size:16px;color:var(--accent)}
+
+/* Confirm delete modal */
+.confirm-overlay{position:fixed;inset:0;background:rgba(44,36,22,0.7);z-index:850;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.confirm-overlay.hidden{display:none}
+.confirm-box{background:var(--cream);border:1px solid var(--taupe);border-radius:16px;padding:24px 20px;width:calc(100% - 48px);max-width:320px;text-align:center}
+.confirm-icon{font-size:32px;margin-bottom:10px}
+.confirm-title{font-size:16px;font-weight:900;color:var(--text-dark);margin-bottom:6px}
+.confirm-sub{font-size:12px;color:var(--text-light);margin-bottom:20px;line-height:1.5}
+.confirm-btns{display:flex;gap:10px}
+.confirm-cancel{flex:1;background:var(--beige);border:1px solid var(--taupe);border-radius:10px;padding:12px;color:var(--text-light);font-size:14px;font-weight:700;cursor:pointer}
+.confirm-ok{flex:1;background:var(--accent);border:none;border-radius:10px;padding:12px;color:#fff;font-size:14px;font-weight:700;cursor:pointer}
+.confirm-ok:active{background:var(--dark-tan)}
+
 /* ENGINE MODAL */
 .eng-modal-overlay{position:fixed;inset:0;background:rgba(44,36,22,0.7);z-index:900;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .eng-modal-overlay.hidden{display:none}
@@ -417,7 +433,22 @@ body{width:100%;height:100%;background:var(--cream);font-family:-apple-system,'S
 .eng-item-del:active{color:var(--accent)}
 .eng-close-btn{background:var(--beige);border:1px solid var(--taupe);border-radius:10px;padding:13px;color:var(--text-light);font-size:14px;font-weight:700;cursor:pointer;min-height:48px;width:100%;margin-top:10px;flex-shrink:0}
 .eng-no-engines{padding:20px;text-align:center;font-size:12px;color:var(--text-light);font-style:italic}
-/* DNS NOTICE MODAL */
+
+/* UID MODAL */
+.uid-modal-overlay{position:fixed;inset:0;background:rgba(44,36,22,0.65);z-index:820;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.uid-modal-overlay.hidden{display:none}
+.uid-modal-box{background:var(--cream);border:1px solid var(--taupe);border-radius:18px;padding:24px 18px;width:100%;max-width:360px}
+.uid-modal-title{font-size:16px;font-weight:900;color:var(--text-dark);margin-bottom:6px}
+.uid-modal-sub{font-size:12px;color:var(--text-light);margin-bottom:16px;line-height:1.5}
+.uid-modal-input{width:100%;background:var(--beige);border:1.5px solid var(--taupe);border-radius:10px;padding:13px;font-size:15px;color:var(--text-dark);outline:none;caret-color:var(--accent);-webkit-appearance:none;font-family:monospace;margin-bottom:8px;letter-spacing:0.5px}
+.uid-modal-input:focus{border-color:var(--accent)}
+.uid-modal-hint{font-size:10px;color:var(--text-light);margin-bottom:14px;line-height:1.4}
+.uid-modal-btns{display:flex;gap:10px}
+.uid-modal-cancel{flex:1;background:var(--beige);border:1px solid var(--taupe);border-radius:10px;padding:12px;color:var(--text-light);font-size:14px;font-weight:700;cursor:pointer}
+.uid-modal-save{flex:2;background:var(--accent);border:none;border-radius:10px;padding:12px;color:#fff;font-size:14px;font-weight:700;cursor:pointer}
+.uid-modal-save:active{background:var(--dark-tan)}
+
+/* DNS NOTICE */
 .dns-overlay{position:fixed;inset:0;background:rgba(250,248,245,0.98);z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .dns-overlay.hidden{display:none}
 .dns-box{background:var(--cream);border:1.5px solid var(--taupe);border-radius:18px;padding:22px 18px;width:100%;max-width:420px;max-height:90vh;overflow-y:auto}
@@ -437,10 +468,14 @@ body{width:100%;height:100%;background:var(--cream);font-family:-apple-system,'S
 .dns-proceed-btn{width:100%;background:var(--accent);border:none;border-radius:12px;padding:14px;color:#fff;font-size:15px;font-weight:800;cursor:pointer;min-height:50px;-webkit-tap-highlight-color:transparent}
 .dns-proceed-btn:active{background:var(--dark-tan)}
 .dns-skip{display:block;text-align:center;margin-top:10px;font-size:11px;color:var(--text-light);cursor:pointer;padding:6px}
+
+/* Shared playlist view */
+#shared-playlist-view{overflow-y:scroll;-webkit-overflow-scrolling:touch;padding-bottom:calc(var(--nav-h) + var(--safe-bottom) + 8px);background:var(--cream)}
 </style>
 </head>
 <body>
-<!-- DNS NOTICE MODAL -->
+
+<!-- DNS NOTICE -->
 <div id="dns-notice" class="dns-overlay">
   <div class="dns-box">
     <div class="dns-icon">🔒</div>
@@ -449,26 +484,11 @@ body{width:100%;height:100%;background:var(--cream);font-family:-apple-system,'S
     <div class="dns-badge">🌐 Recommended DNS: 1.1.1.1 &amp; 1.0.0.1</div>
     <div class="dns-steps-title">📱 How to Switch DNS on Mobile Browser</div>
     <div class="dns-steps">
-      <div class="dns-step">
-        <div class="dns-step-num">1</div>
-        <div class="dns-step-text"><b>Easiest — Download App:</b> Install the free <b>1.1.1.1</b> app by Cloudflare from App Store or Google Play, then tap the toggle to enable it.</div>
-      </div>
-      <div class="dns-step">
-        <div class="dns-step-num">2</div>
-        <div class="dns-step-text"><b>Chrome Mobile:</b> Tap <b>⋮ Menu</b> → Settings → Privacy and Security → Use Secure DNS → Choose Custom → enter <code>https://1.1.1.1/dns-query</code></div>
-      </div>
-      <div class="dns-step">
-        <div class="dns-step-num">3</div>
-        <div class="dns-step-text"><b>Firefox Mobile:</b> Tap <b>☰ Menu</b> → Settings → DNS over HTTPS → Custom → enter <code>https://1.1.1.1/dns-query</code></div>
-      </div>
-      <div class="dns-step">
-        <div class="dns-step-num">4</div>
-        <div class="dns-step-text"><b>Wi-Fi DNS (Android):</b> Settings → Wi-Fi → Long press network → Modify → Advanced → IP Settings: <b>Static</b> → DNS 1: <code>1.1.1.1</code> DNS 2: <code>1.0.0.1</code></div>
-      </div>
-      <div class="dns-step">
-        <div class="dns-step-num">5</div>
-        <div class="dns-step-text"><b>Wi-Fi DNS (iPhone):</b> Settings → Wi-Fi → tap ℹ️ next to network → Configure DNS → Manual → add <code>1.1.1.1</code> and <code>1.0.0.1</code></div>
-      </div>
+      <div class="dns-step"><div class="dns-step-num">1</div><div class="dns-step-text"><b>Easiest — Download App:</b> Install the free <b>1.1.1.1</b> app by Cloudflare from App Store or Google Play, then tap the toggle to enable it.</div></div>
+      <div class="dns-step"><div class="dns-step-num">2</div><div class="dns-step-text"><b>Chrome Mobile:</b> Tap <b>⋮ Menu</b> → Settings → Privacy and Security → Use Secure DNS → Choose Custom → enter <code>https://1.1.1.1/dns-query</code></div></div>
+      <div class="dns-step"><div class="dns-step-num">3</div><div class="dns-step-text"><b>Firefox Mobile:</b> Tap <b>☰ Menu</b> → Settings → DNS over HTTPS → Custom → enter <code>https://1.1.1.1/dns-query</code></div></div>
+      <div class="dns-step"><div class="dns-step-num">4</div><div class="dns-step-text"><b>Wi-Fi DNS (Android):</b> Settings → Wi-Fi → Long press network → Modify → Advanced → IP Settings: <b>Static</b> → DNS 1: <code>1.1.1.1</code> DNS 2: <code>1.0.0.1</code></div></div>
+      <div class="dns-step"><div class="dns-step-num">5</div><div class="dns-step-text"><b>Wi-Fi DNS (iPhone):</b> Settings → Wi-Fi → tap ℹ️ next to network → Configure DNS → Manual → add <code>1.1.1.1</code> and <code>1.0.0.1</code></div></div>
     </div>
     <div class="dns-divider"></div>
     <div class="dns-note">⚡ 1.1.1.1 is faster, more private and bypasses regional restrictions. Cloudflare never sells your data.</div>
@@ -476,113 +496,87 @@ body{width:100%;height:100%;background:var(--cream);font-family:-apple-system,'S
     <span class="dns-skip" onclick="dismissDnsNotice()">Skip for now</span>
   </div>
 </div>
+
 <div id="app">
   <div class="copy-toast" id="copy-toast"></div>
-  <div class="loading-overlay" id="global-loading">
-    <div class="ring"></div>
-    <div class="load-text">Loading</div>
-  </div>
-  <!-- SHARE MODAL (Chat Share) -->
-  <div class="share-modal-overlay hidden" id="share-modal">
-    <div class="share-modal-sheet">
-      <div class="share-modal-handle"></div>
-      <div class="share-modal-title">Share to Chat</div>
-      <div class="share-search-box">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-        <input type="text" id="share-search-input" placeholder="Search movies or TV shows..." autocomplete="off" inputmode="search" oninput="searchShareItems(this.value)"/>
-      </div>
-      <div class="share-results" id="share-results">
-        <div class="share-loading"><div class="small-ring"></div></div>
-      </div>
-      <div style="margin-top:10px;flex-shrink:0">
-        <button style="width:100%;background:var(--beige);border:1px solid var(--taupe);border-radius:10px;padding:13px;color:var(--text-light);font-size:14px;font-weight:700;cursor:pointer;min-height:48px" onclick="closeShareModal()">Cancel</button>
+  <div class="loading-overlay" id="global-loading"><div class="ring"></div><div class="load-text">Loading</div></div>
+
+  <!-- PLAYLIST CREATE MODAL -->
+  <div class="modal-overlay hidden" id="pl-create-modal">
+    <div class="modal-sheet">
+      <div class="modal-handle"></div>
+      <div class="modal-title">New Playlist</div>
+      <input class="modal-input" id="pl-name-input" placeholder="Playlist name..." maxlength="40" autocomplete="off" onkeydown="if(event.key==='Enter')confirmCreatePlaylist()"/>
+      <div class="modal-btns">
+        <button class="modal-cancel" onclick="closePlCreateModal()">Cancel</button>
+        <button class="modal-confirm" onclick="confirmCreatePlaylist()">Create</button>
       </div>
     </div>
   </div>
-  <!-- DELETE MODAL -->
-  <div class="del-modal-overlay hidden" id="del-modal">
-    <div class="del-modal-box">
-      <div class="del-modal-icon">🗑</div>
-      <div class="del-modal-title">Delete Chat</div>
-      <div class="del-modal-sub">This will delete all messages for everyone. Cannot be undone.</div>
-      <div class="del-modal-btns">
-        <button class="del-cancel" onclick="closeDelModal()">Cancel</button>
-        <button class="del-confirm" onclick="confirmDeleteChat()">Delete All</button>
+
+  <!-- ADD TO PLAYLIST PICKER -->
+  <div class="playlist-picker-overlay hidden" id="pl-picker-modal">
+    <div class="playlist-picker-sheet">
+      <div class="modal-handle"></div>
+      <div class="modal-title" style="margin-bottom:12px">Add to Playlist</div>
+      <div class="playlist-picker-list" id="pl-picker-list"></div>
+      <button style="width:100%;background:var(--beige);border:1px solid var(--taupe);border-radius:10px;padding:13px;color:var(--text-light);font-size:14px;font-weight:700;cursor:pointer;min-height:48px" onclick="closePlPicker()">Cancel</button>
+    </div>
+  </div>
+
+  <!-- CONFIRM DELETE MODAL -->
+  <div class="confirm-overlay hidden" id="confirm-modal">
+    <div class="confirm-box">
+      <div class="confirm-icon" id="confirm-icon">🗑</div>
+      <div class="confirm-title" id="confirm-title">Delete?</div>
+      <div class="confirm-sub" id="confirm-sub">This cannot be undone.</div>
+      <div class="confirm-btns">
+        <button class="confirm-cancel" onclick="closeConfirmModal()">Cancel</button>
+        <button class="confirm-ok" id="confirm-ok-btn">Delete</button>
       </div>
     </div>
   </div>
-  <!-- USERNAME MODAL -->
-  <div class="un-modal-overlay hidden" id="un-modal">
-    <div class="un-modal-box">
-      <div style="font-size:36px;text-align:center;margin-bottom:10px">👤</div>
-      <div class="un-modal-title">Set Username</div>
-      <div class="un-modal-sub">Your display name in the global chat.</div>
-      <input class="un-input" id="un-input" placeholder="YourUsername" maxlength="20" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeydown="if(event.key==='Enter')saveUsername()"/>
-      <div class="un-hint">3–20 chars · letters, numbers, _ only</div>
-      <div class="un-btns">
-        <button class="un-cancel" onclick="closeUnModal()">Cancel</button>
-        <button class="un-save" onclick="saveUsername()">Save</button>
-      </div>
-    </div>
-  </div>
+
   <!-- ENGINE MODAL -->
   <div class="eng-modal-overlay hidden" id="eng-modal">
     <div class="eng-modal-sheet">
       <div class="eng-modal-handle"></div>
       <div class="eng-modal-title">Search Engines</div>
       <div class="eng-modal-sub">Enter a URL with <code>{query}</code> as placeholder. Logo &amp; name are auto-detected.</div>
-      <div class="eng-field">
-        <label class="eng-label">Search URL</label>
-        <input class="eng-input" id="eng-url-inp" placeholder="https://www.google.com/search?q={query}" autocomplete="off" inputmode="url" oninput="previewEngine(this.value)"/>
-      </div>
-      <div class="eng-field">
-        <label class="eng-label">Description <span style="color:var(--text-light);font-weight:400;text-transform:none;letter-spacing:0;font-size:10px">(optional)</span></label>
-        <input class="eng-input" id="eng-desc-inp" placeholder="e.g. Best for finding movie torrents..." autocomplete="off"/>
-      </div>
-      <div class="eng-preview" id="eng-preview">
-        <div class="eng-preview-logo"><img id="eng-preview-img" src="" alt=""/></div>
-        <div class="eng-preview-info">
-          <div class="eng-preview-name" id="eng-preview-name"></div>
-          <div class="eng-preview-domain" id="eng-preview-domain"></div>
-        </div>
-      </div>
+      <div class="eng-field"><label class="eng-label">Search URL</label><input class="eng-input" id="eng-url-inp" placeholder="https://www.google.com/search?q={query}" autocomplete="off" inputmode="url" oninput="previewEngine(this.value)"/></div>
+      <div class="eng-field"><label class="eng-label">Description <span style="color:var(--text-light);font-weight:400;text-transform:none;letter-spacing:0;font-size:10px">(optional)</span></label><input class="eng-input" id="eng-desc-inp" placeholder="e.g. Best for finding movie torrents..." autocomplete="off"/></div>
+      <div class="eng-preview" id="eng-preview"><div class="eng-preview-logo"><img id="eng-preview-img" src="" alt=""/></div><div class="eng-preview-info"><div class="eng-preview-name" id="eng-preview-name"></div><div class="eng-preview-domain" id="eng-preview-domain"></div></div></div>
       <button class="eng-add-btn" onclick="addEngine()">+ Add Engine</button>
       <div class="eng-list-title">Your Engines</div>
       <div class="eng-list" id="eng-list"></div>
       <button class="eng-close-btn" onclick="closeEngModal()">Done</button>
     </div>
   </div>
+
+  <!-- UID MODAL -->
+  <div class="uid-modal-overlay hidden" id="uid-modal">
+    <div class="uid-modal-box">
+      <div class="uid-modal-title">🪪 Set Your User ID</div>
+      <div class="uid-modal-sub">Choose a unique ID to store your playlists. You can use this ID on any device to access the same playlists.</div>
+      <input class="uid-modal-input" id="uid-modal-input" placeholder="e.g. john_doe_123" maxlength="32" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <div class="uid-modal-hint">Use only letters, numbers, underscores and hyphens. Min 3 characters.</div>
+      <div class="uid-modal-btns">
+        <button class="uid-modal-cancel" onclick="closeUidModal()">Cancel</button>
+        <button class="uid-modal-save" onclick="saveUid()">Save ID</button>
+      </div>
+    </div>
+  </div>
+
   <!-- VIEWS -->
   <div id="home-view" class="view active scroll-view"></div>
   <div id="movies-view" class="view scroll-view"></div>
   <div id="search-view" class="view"></div>
   <div id="tv-view" class="view scroll-view"></div>
-  <!-- PERSON VIEW -->
+  <div id="mylist-view" class="view"></div>
   <div id="person-view" class="view"></div>
-  <!-- CHAT VIEW -->
-  <div id="chat-view" class="view">
-    <div class="chat-header">
-      <div class="chat-header-dot"></div>
-      <div class="chat-online" id="chat-online-count">0 online</div>
-      <button class="chat-username-btn" id="un-btn" onclick="openUnModal()">👤 Set Name</button>
-    </div>
-    <div class="chat-messages" id="chat-messages"></div>
-    <div class="chat-input-area">
-      <button class="chat-plus-btn" onclick="openShareModal()">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-      </button>
-      <div class="chat-input-wrap">
-        <textarea id="chat-input" placeholder="Message..." rows="1" oninput="autoGrow(this)" onkeydown="chatKey(event)"></textarea>
-      </div>
-      <button class="chat-delete-btn" onclick="openDelModal()">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
-      </button>
-      <button class="chat-send-btn" onclick="sendMsg()">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-      </button>
-    </div>
-  </div>
   <div id="detail-view" class="view"></div>
+  <div id="shared-playlist-view" class="view"></div>
+
   <!-- BOTTOM NAV -->
   <div id="bottom-nav">
     <button class="bnav-item active" id="bnav-home" onclick="goHome()">
@@ -601,15 +595,18 @@ body{width:100%;height:100%;background:var(--cream);font-family:-apple-system,'S
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg>
       <span>TV Shows</span>
     </button>
-    <button class="bnav-item" id="bnav-chat" onclick="goChat()">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
-      <span>Chat</span>
+    <button class="bnav-item" id="bnav-mylist" onclick="goMyList()">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/></svg>
+      <span>My List</span>
     </button>
   </div>
 </div>
+
+<!-- FIREBASE MODULE -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-import { getDatabase, ref, push, onValue, remove, serverTimestamp, onDisconnect, set, onChildAdded } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
+import { getDatabase, ref, push, onValue, remove, set, update, serverTimestamp, get } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-database.js";
+
 const firebaseConfig = {
   apiKey:"AIzaSyDLPyDNPw6g30_9KLYmKEgz26ODXl88IT8",
   authDomain:"myown-c1a03.firebaseapp.com",
@@ -619,85 +616,127 @@ const firebaseConfig = {
   messagingSenderId:"231315717244",
   appId:"1:231315717244:web:f2e1d33f9f5080e16b1df9"
 };
+
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-let myUid = localStorage.getItem('cs_uid');
-if(!myUid){myUid='u_'+Math.random().toString(36).substr(2,9);localStorage.setItem('cs_uid',myUid);}
-let myName = localStorage.getItem('cs_username');
-if(!myName){
-  const a=['Cool','Epic','Dark','Neon','Wild','Bold','Star','Cine'];
-  const n=['Viewer','Fan','Critic','Buff','Watcher','Cinephile'];
-  myName=a[Math.floor(Math.random()*a.length)]+n[Math.floor(Math.random()*n.length)]+Math.floor(Math.random()*90+10);
-  localStorage.setItem('cs_username',myName);
+
+/* ── User ID management ── */
+function getMyUid(){ return localStorage.getItem('cs_uid') || null; }
+function setMyUid(uid){ localStorage.setItem('cs_uid', uid); }
+
+// Generate a random ID if none exists
+let myUid = getMyUid();
+if(!myUid){
+  myUid = 'u_' + Math.random().toString(36).substr(2,12);
+  setMyUid(myUid);
 }
-const presRef=ref(db,`presence/${myUid}`);
-set(presRef,{username:myName,online:true,ts:serverTimestamp()});
-onDisconnect(presRef).remove();
-onValue(ref(db,'presence'),snap=>{
-  const c=snap.exists()?Object.keys(snap.val()).length:0;
-  const el=document.getElementById('chat-online-count');
-  if(el)el.textContent=`${c} online`;
-});
-const msgRef=ref(db,'global_chat');
-onChildAdded(msgRef,snap=>{
-  const msg=snap.val();
-  if(msg)window.appendMsg(msg,snap.key);
-});
-onValue(msgRef,snap=>{
-  if(!snap.exists()){
-    const c=document.getElementById('chat-messages');
-    if(c)c.innerHTML='';
-  }
-},{onlyOnce:false});
-const engRef=ref(db,'search_engines');
-let fbEngines=[];
-let activeEngId=null;
-onValue(engRef,snap=>{
-  fbEngines=[];
-  if(snap.exists())snap.forEach(ch=>{fbEngines.push({fbKey:ch.key,...ch.val()});});
-  window._fbEngines=fbEngines;
+window._myUid = myUid;
+window._getMyUid = getMyUid;
+window._setMyUid = (uid) => { setMyUid(uid); myUid = uid; window._myUid = uid; };
+
+/* ── Firebase path helpers ── */
+const userRef = (path) => ref(db, `users/${myUid}/${path}`);
+const playRef = (id) => ref(db, `users/${myUid}/playlists/${id}`);
+const playItemsRef = (plId) => ref(db, `users/${myUid}/playlists/${plId}/items`);
+
+/* ── Switch user (re-subscribe) ── */
+let _unsubPlaylists = null;
+function subscribeToUser(uid){
+  if(_unsubPlaylists) _unsubPlaylists();
+  const plRef = ref(db, `users/${uid}/playlists`);
+  const unsub = onValue(plRef, snap => {
+    _playlists = snap.exists() ? snap.val() : {};
+    window._playlists = _playlists;
+    if(window._onPlaylistsChange) window._onPlaylistsChange();
+  });
+  _unsubPlaylists = unsub;
+}
+
+window._switchUser = async (newUid) => {
+  myUid = newUid;
+  window._myUid = newUid;
+  window._setMyUid(newUid);
+  subscribeToUser(newUid);
+};
+
+/* ══════════════════════════ PLAYLISTS ══════════════════════════ */
+let _playlists = {};
+
+subscribeToUser(myUid);
+
+window._createPlaylist = async (name) => {
+  const r = push(ref(db, `users/${myUid}/playlists`), { name, createdAt: serverTimestamp(), items:{} });
+  return r.key;
+};
+window._deletePlaylist = (plId) => remove(ref(db, `users/${myUid}/playlists/${plId}`));
+window._addToPlaylist = async (plId, item) => {
+  const items = (_playlists[plId] && _playlists[plId].items) ? _playlists[plId].items : {};
+  const exists = Object.values(items).some(i => String(i.id) === String(item.id) && i.type === item.type);
+  if(exists) return 'exists';
+  await push(ref(db, `users/${myUid}/playlists/${plId}/items`), { ...item, addedAt: Date.now() });
+  return 'added';
+};
+window._removeFromPlaylist = (plId, itemFbKey) => remove(ref(db, `users/${myUid}/playlists/${plId}/items/${itemFbKey}`));
+window._isInPlaylist = (plId, mediaId, mediaType) => {
+  const items = (_playlists[plId] && _playlists[plId].items) ? _playlists[plId].items : {};
+  return Object.values(items).some(i => String(i.id) === String(mediaId) && i.type === mediaType);
+};
+window._itemKeyInPlaylist = (plId, mediaId, mediaType) => {
+  const items = (_playlists[plId] && _playlists[plId].items) ? _playlists[plId].items : {};
+  for(const [k,v] of Object.entries(items)){ if(String(v.id)===String(mediaId) && v.type===mediaType) return k; }
+  return null;
+};
+
+/* ── Fetch any user's playlist (for sharing) ── */
+window._fetchSharedPlaylist = async (uid, plId) => {
+  const snap = await get(ref(db, `users/${uid}/playlists/${plId}`));
+  if(snap.exists()) return snap.val();
+  return null;
+};
+
+/* ══════════════════════════ SEARCH ENGINES ══════════════════════════ */
+const engRef = ref(db, 'search_engines');
+let fbEngines = [];
+let activeEngId = null;
+
+onValue(engRef, snap => {
+  fbEngines = [];
+  if(snap.exists()) snap.forEach(ch => { fbEngines.push({fbKey:ch.key,...ch.val()}); });
+  window._fbEngines = fbEngines;
   refreshEngUI();
   renderEngList();
 });
-window._myUid=myUid;
-window._myName=myName;
-window._fbEngines=fbEngines;
-window._activeEngId=()=>activeEngId;
-window._setActiveEngId=id=>{activeEngId=id;};
-window._sendMsg=data=>push(msgRef,{...data,ts:serverTimestamp()});
-window._deleteAll=()=>remove(msgRef);
-window._addEngineFB=(name,url,domain,desc)=>push(engRef,{name,url,domain,desc:desc||'',addedBy:myUid,ts:serverTimestamp()});
-window._deleteEngineFB=key=>remove(ref(db,`search_engines/${key}`));
-window._updatePresName=n=>{myName=n;window._myName=n;set(presRef,{username:n,online:true,ts:serverTimestamp()});};
-function faviconUrl(domain){return`https://www.google.com/s2/favicons?domain=${domain}&sz=64`;}
-window.faviconUrl=faviconUrl;
+
+window._fbEngines = fbEngines;
+window._activeEngId = () => activeEngId;
+window._setActiveEngId = id => { activeEngId = id; };
+window._addEngineFB = (name,url,domain,desc) => push(engRef,{name,url,domain,desc:desc||'',addedBy:myUid,ts:serverTimestamp()});
+window._deleteEngineFB = key => remove(ref(db,`search_engines/${key}`));
+
+function faviconUrl(domain){ return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`; }
+window.faviconUrl = faviconUrl;
+
 function refreshEngUI(){
-  const wrap=document.getElementById('ws-engines-wrap');
-  if(wrap)renderEngButtons(wrap);
+  const wrap = document.getElementById('ws-engines-wrap');
+  if(wrap) renderEngButtons(wrap);
   renderEngTableInDetail();
 }
+
 function renderEngButtons(wrap){
-  if(!fbEngines.length){
-    wrap.innerHTML='<div class="ws-no-engines">No search engines — tap "Manage" to add one.</div>';
-    return;
-  }
-  if(!activeEngId||!fbEngines.find(e=>e.fbKey===activeEngId))activeEngId=fbEngines[0].fbKey;
-  wrap.innerHTML=fbEngines.map(e=>{
+  if(!fbEngines.length){ wrap.innerHTML='<div class="ws-no-engines">No search engines — tap "Manage" to add one.</div>'; return; }
+  if(!activeEngId||!fbEngines.find(e=>e.fbKey===activeEngId)) activeEngId=fbEngines[0].fbKey;
+  wrap.innerHTML = fbEngines.map(e=>{
     const fav=faviconUrl(e.domain||e.url);
     return`<button class="ws-engine-btn${e.fbKey===activeEngId?' active':''}" onclick="selectEng('${e.fbKey}')" id="eng-btn-${e.fbKey}">
-      <span class="ws-engine-logo"><img src="${fav}" alt="${escH(e.name)}" onerror="this.style.display='none'"/></span>
-      ${escH(e.name)}
-    </button>`;
+      <span class="ws-engine-logo"><img src="${fav}" alt="${escH(e.name)}" onerror="this.style.display='none'"/></span>${escH(e.name)}</button>`;
   }).join('');
 }
+
 function renderEngTableInDetail(){
-  const tbody=document.getElementById('eng-tbl-body');
-  if(!tbody)return;
-  if(!fbEngines.length){
-    tbody.innerHTML=`<tr><td colspan="4" class="no-eng-row">No engines added yet — tap ⚙️ Manage Engines to add one.</td></tr>`;
-    return;
-  }
-  tbody.innerHTML=fbEngines.map(e=>{
+  const tbody = document.getElementById('eng-tbl-body');
+  if(!tbody) return;
+  if(!fbEngines.length){ tbody.innerHTML=`<tr><td colspan="4" class="no-eng-row">No engines added yet.</td></tr>`; return; }
+  tbody.innerHTML = fbEngines.map(e=>{
     const fav=faviconUrl(e.domain||e.url);
     return`<tr>
       <td class="et-logo-cell"><div class="et-logo-wrap"><img src="${fav}" alt="${escH(e.name)}" onerror="this.style.display='none'"/></div></td>
@@ -707,88 +746,87 @@ function renderEngTableInDetail(){
     </tr>`;
   }).join('');
 }
+
 function renderEngList(){
-  const list=document.getElementById('eng-list');if(!list)return;
-  if(!fbEngines.length){list.innerHTML='<div class="eng-no-engines">No engines yet — add one above!</div>';return;}
-  list.innerHTML=fbEngines.map(e=>{
+  const list = document.getElementById('eng-list');
+  if(!list) return;
+  if(!fbEngines.length){ list.innerHTML='<div class="eng-no-engines">No engines yet — add one above!</div>'; return; }
+  list.innerHTML = fbEngines.map(e=>{
     const fav=faviconUrl(e.domain||e.url);
     return`<div class="eng-item">
       <div class="eng-item-logo"><img src="${fav}" alt="${escH(e.name)}" onerror="this.style.display='none'"/></div>
-      <div class="eng-item-info">
-        <div class="eng-item-name">${escH(e.name)}</div>
-        <div class="eng-item-desc">${escH(e.desc||e.url)}</div>
-      </div>
+      <div class="eng-item-info"><div class="eng-item-name">${escH(e.name)}</div><div class="eng-item-desc">${escH(e.desc||e.url)}</div></div>
       <button class="eng-item-del" onclick="deleteEngine('${e.fbKey}')">✕</button>
     </div>`;
   }).join('');
 }
-window.selectEng=function(key){
-  activeEngId=key;
+
+window.selectEng = key => {
+  activeEngId = key;
   document.querySelectorAll('.ws-engine-btn').forEach(b=>b.classList.remove('active'));
-  const btn=document.getElementById('eng-btn-'+key);if(btn)btn.classList.add('active');
+  const btn = document.getElementById('eng-btn-'+key);
+  if(btn) btn.classList.add('active');
 };
-window.deleteEngine=function(key){window._deleteEngineFB(key);};
-function extractDomain(url){try{return new URL(url).hostname.replace(/^www\./,'');}catch(e){return null;}}
-function domainToName(domain){
-  if(!domain)return'';
-  const n=domain.split('.')[0];
-  return n.charAt(0).toUpperCase()+n.slice(1);
-}
-window.previewEngine=function(url){
-  const prev=document.getElementById('eng-preview');
-  const img=document.getElementById('eng-preview-img');
-  const nameEl=document.getElementById('eng-preview-name');
-  const domEl=document.getElementById('eng-preview-domain');
-  if(!prev||!img||!nameEl||!domEl)return;
+window.deleteEngine = key => window._deleteEngineFB(key);
+
+function extractDomain(url){ try{ return new URL(url).hostname.replace(/^www\./,''); }catch(e){ return null; } }
+function domainToName(domain){ if(!domain)return''; const n=domain.split('.')[0]; return n.charAt(0).toUpperCase()+n.slice(1); }
+
+window.previewEngine = url => {
+  const prev=document.getElementById('eng-preview'),img=document.getElementById('eng-preview-img'),
+    nameEl=document.getElementById('eng-preview-name'),domEl=document.getElementById('eng-preview-domain');
+  if(!prev||!img||!nameEl||!domEl) return;
   const domain=extractDomain(url);
-  if(!domain||!url.includes('{query}')){prev.classList.remove('show');return;}
-  img.src=faviconUrl(domain);
-  nameEl.textContent=domainToName(domain);
-  domEl.textContent=domain;
-  prev.classList.add('show');
+  if(!domain||!url.includes('{query}')){ prev.classList.remove('show'); return; }
+  img.src=faviconUrl(domain); nameEl.textContent=domainToName(domain); domEl.textContent=domain; prev.classList.add('show');
 };
-window.extractDomain=extractDomain;
-window.domainToName=domainToName;
+window.extractDomain = extractDomain;
+window.domainToName = domainToName;
 </script>
+
 <script>
-/* =================== DNS NOTICE =================== */
+/* =================== DNS =================== */
 (function(){
-  if(!sessionStorage.getItem('dns_dismissed')){
-    document.getElementById('dns-notice').classList.remove('hidden');
-  } else {
-    document.getElementById('dns-notice').classList.add('hidden');
-  }
+  if(!sessionStorage.getItem('dns_dismissed')) document.getElementById('dns-notice').classList.remove('hidden');
+  else document.getElementById('dns-notice').classList.add('hidden');
 })();
 function dismissDnsNotice(){
   sessionStorage.setItem('dns_dismissed','1');
   const el=document.getElementById('dns-notice');
-  el.style.transition='opacity 0.3s ease';
-  el.style.opacity='0';
+  el.style.transition='opacity 0.3s'; el.style.opacity='0';
   setTimeout(()=>{el.classList.add('hidden');el.style.opacity='';el.style.transition='';},300);
 }
-/* =================== HELPERS =================== */
-const API_KEY='d971d4b212180c43e0830d20c04a68b5';
-const BASE='https://api.themoviedb.org/3';
-const IMG='https://image.tmdb.org/t/p/';
-const SITE_URL='https://vegamoviesss.netlify.app'; // ← base URL for share links
+
+/* =================== CONSTANTS & STATE =================== */
+const API_KEY = 'd971d4b212180c43e0830d20c04a68b5';
+const BASE = 'https://api.themoviedb.org/3';
+const IMG = 'https://image.tmdb.org/t/p/';
+const SITE_URL = 'https://vegamoviesss.netlify.app';
+
 let heroItems=[],heroIdx=0,heroTimer=null;
 let genreMap={};
 let prevViewStack=[];
-let searchDebounce=null,shareDebounce=null;
+let searchDebounce=null;
 let currentFilter='all',allResults=[];
 let recentSearches=JSON.parse(localStorage.getItem('cs_recent')||'[]');
-let searchBuilt=false,moviesBuilt=false,tvBuilt=false;
-let shareItems=[];
+let searchBuilt=false,moviesBuilt=false,tvBuilt=false,mylistBuilt=false;
+let activePlId=null;
+let pendingPlItem=null;
+let confirmCb=null;
+
+/* =================== HELPERS =================== */
 function showToast(msg,dur=2200){
   const t=document.getElementById('copy-toast');
-  t.textContent=msg;t.classList.add('show');
+  t.textContent=msg; t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),dur);
 }
 function escH(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
 function escA(s){return String(s).replace(/'/g,'&#39;').replace(/"/g,'&quot;');}
+
 const noAv=`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84'%3E%3Crect width='84' height='84' rx='10' fill='%23EDE8E0'/%3E%3Ccircle cx='42' cy='32' r='14' fill='%23C4AC8C' opacity='.7'/%3E%3Cellipse cx='42' cy='66' rx='21' ry='14' fill='%23C4AC8C' opacity='.5'/%3E%3C/svg%3E`;
 const noThumb=`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='44'%3E%3Crect width='70' height='44' fill='%23EDE8E0'/%3E%3Cpolygon points='28,14 28,30 46,22' fill='%238B6914' opacity='.6'/%3E%3C/svg%3E`;
 const noPoster=`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='98' height='147'%3E%3Crect width='98' height='147' fill='%23EDE8E0'/%3E%3Ctext x='49' y='80' text-anchor='middle' font-size='32' fill='%23C4AC8C'%3E🎬%3C/text%3E%3C/svg%3E`;
+
 const IC={
   film:`<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>`,
   tv:`<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg>`,
@@ -797,21 +835,23 @@ const IC={
   cal:`<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>`,
   copy:`<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>`,
   srch:`<svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>`,
-  warn:`<svg width="32" height="32" viewBox="0 0 24 24" fill="#8B6914"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h2v4h2v4z"/></svg>`,
+  warn:`<svg width="32" height="32" viewBox="0 0 24 24" fill="#8B6914"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>`,
   noplay:`<svg width="38" height="38" viewBox="0 0 24 24" fill="rgba(139,105,20,0.28)"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 12l-5-3 5-3v6z"/></svg>`,
-  person:`<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>`,
   back:`<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>`,
-  // Share icon (native share / upload arrow)
   share:`<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>`,
+  plus:`<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>`,
+  list:`<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/></svg>`,
 };
+
 async function api(ep,params={}){
   const u=new URL(`${BASE}${ep}`);
   u.searchParams.set('api_key',API_KEY);
   Object.entries(params).forEach(([k,v])=>u.searchParams.set(k,v));
   const r=await fetch(u.toString());
-  if(!r.ok)throw new Error(`TMDB ${r.status}`);
+  if(!r.ok) throw new Error(`TMDB ${r.status}`);
   return r.json();
 }
+
 const imgUrl=(p,s='w342')=>p?`${IMG}${s}${p}`:null;
 const money=n=>!n?'N/A':n>=1e9?`$${(n/1e9).toFixed(2)}B`:n>=1e6?`$${(n/1e6).toFixed(1)}M`:`$${n.toLocaleString()}`;
 const fmtDate=d=>{if(!d)return'N/A';const dt=new Date(d);return isNaN(dt)?'N/A':dt.toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});};
@@ -819,74 +859,133 @@ const fmtYear=d=>d?new Date(d).getFullYear()||'':'';
 const errBox=m=>`<div class="err-box"><div class="err-icon">${IC.warn}</div><div class="err-txt">${m}</div><div class="err-sub">TMDB API</div></div>`;
 const skels=n=>Array(n).fill('<div class="skel"></div>').join('');
 const secH=(id,t,n=6)=>`<div class="section"><div class="section-head"><div class="section-bar"></div><div class="section-title">${t}</div></div><div class="h-row" id="${id}">${skels(n)}</div></div>`;
+
 function copyTitle(t){
-  if(navigator.clipboard)navigator.clipboard.writeText(t).catch(()=>{});
-  else{const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);}
+  if(navigator.clipboard) navigator.clipboard.writeText(t).catch(()=>{});
+  else{ const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta); }
   showToast(`Copied: "${t.substring(0,28)}${t.length>28?'…':''}"`);
 }
 
-/* =================== NATIVE SHARE (Detail Page) =================== */
-// Called from the Share button on movie/TV detail pages.
-// Builds a deep-link URL using the hash format #detail/{type}/{id}
-// so the recipient lands directly on that title's detail page.
-function shareDetail(id, type, title, posterPath){
-  const deepLink = `${SITE_URL}/#detail/${type}/${id}`;
-  const text = `Check out "${title}" on CineStream!`;
-  if(navigator.share){
-    navigator.share({
-      title: title,
-      text: text,
-      url: deepLink,
-    }).catch(err=>{
-      // User cancelled or share failed silently
-      if(err.name !== 'AbortError') showToast('Share failed');
-    });
-  } else {
-    // Fallback: copy the link to clipboard
-    if(navigator.clipboard){
-      navigator.clipboard.writeText(deepLink).then(()=>{
-        showToast('Link copied to clipboard!');
-      }).catch(()=>{
-        showToast('Share not supported on this browser');
-      });
+/* =================== UID MANAGEMENT =================== */
+function openUidModal(){
+  const input = document.getElementById('uid-modal-input');
+  if(input) input.value = window._myUid || '';
+  document.getElementById('uid-modal').classList.remove('hidden');
+  setTimeout(()=>input&&input.focus(),100);
+}
+function closeUidModal(){ document.getElementById('uid-modal').classList.add('hidden'); }
+async function saveUid(){
+  const input = document.getElementById('uid-modal-input');
+  const val = (input ? input.value : '').trim();
+  if(!val || val.length < 3){ showToast('ID must be at least 3 characters'); return; }
+  if(!/^[a-zA-Z0-9_\-]+$/.test(val)){ showToast('Only letters, numbers, _ and - allowed'); return; }
+  if(val === window._myUid){ closeUidModal(); return; }
+  closeUidModal();
+  if(window._switchUser) await window._switchUser(val);
+  showToast(`Switched to ID: ${val} ✓`);
+  // re-render mylist if open
+  if(document.getElementById('mylist-view').classList.contains('active')) buildMyListView();
+}
+window.openUidModal = openUidModal;
+window.closeUidModal = closeUidModal;
+window.saveUid = saveUid;
+
+/* =================== SHARE =================== */
+function shareDetail(id,type,title){
+  const url=`${SITE_URL}/#detail/${type}/${id}`;
+  if(navigator.share){ navigator.share({title,text:`Check out "${title}" on CineStream!`,url}).catch(()=>{}); }
+  else { navigator.clipboard&&navigator.clipboard.writeText(url).then(()=>showToast('Link copied!')); }
+}
+
+function sharePlaylist(ownerUid, plId, plName, e){
+  if(e) e.stopPropagation();
+  const url=`${SITE_URL}/#playlist/${ownerUid}/${plId}`;
+  if(navigator.share){ navigator.share({title:plName,text:`Check out my playlist "${plName}" on CineStream!`,url}).catch(()=>{}); }
+  else { navigator.clipboard&&navigator.clipboard.writeText(url).then(()=>showToast('Playlist link copied!')); }
+}
+
+/* =================== DEEP LINK =================== */
+function handleDeepLink(){
+  // detail link
+  const m=window.location.hash.match(/^#detail\/(movie|tv)\/(\d+)$/);
+  if(m){ openDetail(parseInt(m[2]),m[1]); return true; }
+  // shared playlist link
+  const p=window.location.hash.match(/^#playlist\/([^\/]+)\/([^\/]+)$/);
+  if(p){ openSharedPlaylist(p[1], p[2]); return true; }
+  return false;
+}
+
+/* =================== SHARED PLAYLIST VIEW =================== */
+async function openSharedPlaylist(ownerUid, plId){
+  const curActive = document.querySelector('.view.active');
+  if(curActive) prevViewStack.push(curActive.id);
+  showView('shared-playlist-view');
+  setBnav(null);
+  const sv = document.getElementById('shared-playlist-view');
+  sv.innerHTML = `<button class="detail-back" onclick="closeSharedPlaylist()">‹</button>
+    <div style="display:flex;align-items:center;justify-content:center;height:100%"><div class="ring"></div></div>`;
+  try {
+    const pl = await window._fetchSharedPlaylist(ownerUid, plId);
+    if(!pl){ sv.innerHTML=`<button class="detail-back" onclick="closeSharedPlaylist()">‹</button>${errBox('Playlist not found')}`; return; }
+    const items = pl.items ? Object.entries(pl.items) : [];
+    const name = pl.name || 'Untitled';
+    const isOwn = ownerUid === window._myUid;
+    let grid = '';
+    if(!items.length){
+      grid = `<div style="padding:40px 20px;text-align:center;grid-column:span 3">
+        <div style="font-size:36px;opacity:0.3;margin-bottom:8px">🎬</div>
+        <div style="font-size:13px;color:var(--text-light)">No titles in this playlist yet</div>
+      </div>`;
     } else {
-      const ta=document.createElement('textarea');
-      ta.value=deepLink;
-      ta.style.cssText='position:fixed;opacity:0';
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-      showToast('Link copied to clipboard!');
+      grid = items.map(([fbKey,it])=>{
+        const poster = it.poster ? `${IMG}w342${it.poster}` : null;
+        return `<div class="pl-item-card" onclick="openDetail(${it.id},'${it.type}')">
+          ${poster ? `<img src="${poster}" alt="${escH(it.title||'')}" loading="lazy" onerror="this.src='${noPoster}'">` : `<div style="width:100%;aspect-ratio:2/3;background:var(--beige);display:flex;align-items:center;justify-content:center;font-size:28px">🎬</div>`}
+          <div class="pl-item-label">${escH(it.title||'')}</div>
+        </div>`;
+      }).join('');
     }
+    const shareUrl = `${SITE_URL}/#playlist/${ownerUid}/${plId}`;
+    sv.innerHTML = `
+      <button class="detail-back" onclick="closeSharedPlaylist()">‹</button>
+      <button class="detail-share-btn" onclick="sharePlaylist('${escA(ownerUid)}','${escA(plId)}','${escA(name)}')" title="Share">${IC.share}</button>
+      <div style="padding:calc(14px + var(--safe-top)) 14px 10px;padding-top:calc(60px + var(--safe-top))">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+          <div style="font-size:20px">📋</div>
+          <h2 style="font-size:18px;font-weight:900;color:var(--text-dark);flex:1">${escH(name)}</h2>
+        </div>
+        <div style="font-size:11px;color:var(--text-light);margin-bottom:4px">${items.length} title${items.length!==1?'s':''}</div>
+        <div style="font-size:10px;color:var(--tan);margin-bottom:12px">by ${escH(ownerUid)}</div>
+        ${!isOwn ? `<div style="background:var(--beige);border:1px solid var(--taupe);border-radius:8px;padding:10px 12px;margin-bottom:14px;font-size:11px;color:var(--text-light)">
+          📖 Viewing shared playlist — <a href="${escH(shareUrl)}" style="color:var(--accent);text-decoration:none">copy link</a>
+        </div>` : ''}
+        <div class="playlist-items-grid">${grid}</div>
+      </div>`;
+  } catch(e) {
+    sv.innerHTML = `<button class="detail-back" onclick="closeSharedPlaylist()">‹</button>${errBox('Failed to load playlist')}`;
   }
 }
 
-/* =================== DEEP LINK HANDLER =================== */
-// Reads the URL hash on load. If it matches #detail/{type}/{id},
-// it opens that item's detail page directly — no external redirect.
-function handleDeepLink(){
-  const hash = window.location.hash; // e.g. "#detail/movie/550"
-  if(!hash) return false;
-  const match = hash.match(/^#detail\/(movie|tv)\/(\d+)$/);
-  if(!match) return false;
-  const type = match[1];
-  const id   = parseInt(match[2], 10);
-  if(!id) return false;
-  // Open the detail view for this item
-  openDetail(id, type);
-  return true;
+function closeSharedPlaylist(){
+  if(window.location.hash.startsWith('#playlist')) history.replaceState(null,'',window.location.pathname+window.location.search);
+  const prev = prevViewStack.pop();
+  showView(prev||'home-view');
+  if(!prev||prev==='home-view') setBnav('bnav-home');
+  else if(prev==='movies-view') setBnav('bnav-movies');
+  else if(prev==='tv-view') setBnav('bnav-tv');
+  else if(prev==='search-view') setBnav('bnav-search');
+  else if(prev==='mylist-view') setBnav('bnav-mylist');
 }
 
 /* =================== NAV =================== */
 function showView(id){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   const el=document.getElementById(id);
-  if(el){el.classList.add('active');if(id!=='detail-view'&&id!=='chat-view'&&id!=='person-view')el.scrollTop=0;}
+  if(el){ el.classList.add('active'); if(id!=='detail-view'&&id!=='person-view'&&id!=='shared-playlist-view') el.scrollTop=0; }
 }
 function setBnav(id){
   document.querySelectorAll('.bnav-item').forEach(b=>b.classList.remove('active'));
-  if(id)document.getElementById(id).classList.add('active');
+  if(id) { const el = document.getElementById(id); if(el) el.classList.add('active'); }
 }
 function goHome(){prevViewStack=[];showView('home-view');setBnav('bnav-home');}
 function goMovies(){showView('movies-view');setBnav('bnav-movies');if(!moviesBuilt){moviesBuilt=true;buildMoviesView();}}
@@ -896,16 +995,15 @@ function goSearch(){
   if(!searchBuilt){searchBuilt=true;buildSearchView();}else renderSearchHome();
   setTimeout(()=>{const i=document.getElementById('main-search-input');if(i)i.focus();},200);
 }
-function goChat(){showView('chat-view');setBnav('bnav-chat');scrollBottom();}
+function goMyList(){showView('mylist-view');setBnav('bnav-mylist');buildMyListView();}
+
 /* =================== ROW RENDER =================== */
 function renderRow(row,items,type){
   if(!items||!items.length){row.innerHTML=errBox('No content');return;}
   const f=items.filter(i=>i.poster_path);
   if(!f.length){row.innerHTML=errBox('No poster data');return;}
   row.innerHTML=f.map(item=>{
-    const t=item.title||item.name||'';
-    const p=imgUrl(item.poster_path,'w342');
-    const mt=item.media_type||type;
+    const t=item.title||item.name||'',p=imgUrl(item.poster_path,'w342'),mt=item.media_type||type;
     return`<div class="poster-card" onclick="openDetail(${item.id},'${mt}')"><img src="${p}" alt="${escH(t)}" loading="lazy" onerror="this.parentElement.style.display='none'"/></div>`;
   }).join('');
 }
@@ -914,6 +1012,7 @@ async function loadRow(rowId,ep,type,params={}){
   try{const d=await api(ep,params);renderRow(row,d.results,type);}
   catch(e){if(row)row.innerHTML=errBox('Failed to load');}
 }
+
 /* =================== HOME =================== */
 async function buildHomeView(){
   const hv=document.getElementById('home-view');
@@ -937,15 +1036,13 @@ async function loadHomeGenres(){
   const bar=document.getElementById('home-genres');if(!bar)return;
   try{
     const[mv,tv]=await Promise.all([api('/genre/movie/list'),api('/genre/tv/list')]);
-    const all=[...mv.genres,...tv.genres];
-    all.forEach(g=>{genreMap[g.id]=g.name;});
+    const all=[...mv.genres,...tv.genres]; all.forEach(g=>{genreMap[g.id]=g.name;});
     const unique=[...new Map(all.map(g=>[g.id,g])).values()].slice(0,22);
     bar.innerHTML=unique.map(g=>`<div class="genre-chip" onclick="homeGenre(${g.id},this)">${g.name}</div>`).join('');
   }catch(e){if(bar)bar.style.display='none';}
 }
 async function homeGenre(id,el){
-  document.querySelectorAll('#home-genres .genre-chip').forEach(c=>c.classList.remove('active'));
-  el.classList.add('active');
+  document.querySelectorAll('#home-genres .genre-chip').forEach(c=>c.classList.remove('active')); el.classList.add('active');
   const rm=document.getElementById('tr-movie'),rt=document.getElementById('tr-tv');
   if(rm)rm.innerHTML=skels(5);if(rt)rt.innerHTML=skels(5);
   try{
@@ -963,15 +1060,22 @@ function renderHero(){
   const t=item.title||item.name||'',r=item.vote_average?item.vote_average.toFixed(1):'N/A';
   const y=fmtYear(item.release_date||item.first_air_date),mt=item.media_type==='tv'?'TV Show':'Movie';
   const ov=(item.overview||'').substring(0,100)+((item.overview||'').length>100?'…':'');
-  cnt.innerHTML=`<div class="hero-badge">${IC.film} Trending</div><div class="hero-title">${escH(t)}</div><div class="hero-meta"><div class="hero-rating">${IC.star} ${r}</div><div class="hero-pill">${y}</div><div class="hero-pill">${mt}</div></div><div style="font-size:11px;line-height:1.5;color:var(--text-mid);margin-bottom:9px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${escH(ov)}</div><button class="hero-btn" onclick="openDetail(${item.id},'${item.media_type||(item.first_air_date?'tv':'movie')}')">${IC.play} View Details</button>`;
+  cnt.innerHTML=`<div class="hero-badge">${IC.film} Trending</div>
+    <div class="hero-title">${escH(t)}</div>
+    <div class="hero-meta"><div class="hero-rating">${IC.star} ${r}</div><div class="hero-pill">${y}</div><div class="hero-pill">${mt}</div></div>
+    <div style="font-size:11px;line-height:1.5;color:var(--text-mid);margin-bottom:9px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden">${escH(ov)}</div>
+    <button class="hero-btn" onclick="openDetail(${item.id},'${item.media_type||(item.first_air_date?'tv':'movie')}')">${IC.play} View Details</button>`;
   dots.innerHTML=heroItems.map((_,i)=>`<div class="hero-dot${i===heroIdx?' active':''}" onclick="setHero(${i})"></div>`).join('');
 }
 function setHero(i){heroIdx=i;renderHero();clearInterval(heroTimer);startHeroTimer();}
 function startHeroTimer(){heroTimer=setInterval(()=>{heroIdx=(heroIdx+1)%heroItems.length;renderHero();},5500);}
+
 /* =================== MOVIES =================== */
 async function buildMoviesView(){
   const mv=document.getElementById('movies-view');
-  mv.innerHTML=`<div class="vtbar"><div class="section-bar"></div><h2>Movies</h2></div><div class="genres-scroll" id="movie-genres"></div>${secH('mv-trending','Trending')}${secH('mv-popular','Popular')}${secH('mv-toprated','Top Rated')}${secH('mv-upcoming','Upcoming')}`;
+  mv.innerHTML=`<div class="vtbar"><div class="section-bar"></div><h2>Movies</h2></div>
+    <div class="genres-scroll" id="movie-genres"></div>
+    ${secH('mv-trending','Trending')}${secH('mv-popular','Popular')}${secH('mv-toprated','Top Rated')}${secH('mv-upcoming','Upcoming')}`;
   loadMovieGenres();
   loadRow('mv-trending','/trending/movie/week','movie');
   loadRow('mv-popular','/movie/popular','movie');
@@ -984,17 +1088,18 @@ async function loadMovieGenres(){
   catch(e){if(bar)bar.style.display='none';}
 }
 async function movieGenre(id,el){
-  document.querySelectorAll('#movie-genres .genre-chip').forEach(c=>c.classList.remove('active'));
-  el.classList.add('active');
-  const row=document.getElementById('mv-trending');if(!row)return;
-  row.innerHTML=skels(5);
+  document.querySelectorAll('#movie-genres .genre-chip').forEach(c=>c.classList.remove('active')); el.classList.add('active');
+  const row=document.getElementById('mv-trending');if(!row)return; row.innerHTML=skels(5);
   try{const d=await api('/discover/movie',{with_genres:id,sort_by:'popularity.desc'});renderRow(row,d.results,'movie');}
   catch(e){if(row)row.innerHTML=errBox('Filter failed');}
 }
+
 /* =================== TV =================== */
 async function buildTVView(){
   const tv=document.getElementById('tv-view');
-  tv.innerHTML=`<div class="vtbar"><div class="section-bar"></div><h2>TV Shows</h2></div><div class="genres-scroll" id="tv-genres"></div>${secH('tv-trending','Trending')}${secH('tv-popular','Popular')}${secH('tv-toprated','Top Rated')}${secH('tv-airing','Airing Today')}`;
+  tv.innerHTML=`<div class="vtbar"><div class="section-bar"></div><h2>TV Shows</h2></div>
+    <div class="genres-scroll" id="tv-genres"></div>
+    ${secH('tv-trending','Trending')}${secH('tv-popular','Popular')}${secH('tv-toprated','Top Rated')}${secH('tv-airing','Airing Today')}`;
   loadTVGenres();
   loadRow('tv-trending','/trending/tv/week','tv');
   loadRow('tv-popular','/tv/popular','tv');
@@ -1007,17 +1112,19 @@ async function loadTVGenres(){
   catch(e){if(bar)bar.style.display='none';}
 }
 async function tvGenre(id,el){
-  document.querySelectorAll('#tv-genres .genre-chip').forEach(c=>c.classList.remove('active'));
-  el.classList.add('active');
-  const row=document.getElementById('tv-trending');if(!row)return;
-  row.innerHTML=skels(5);
+  document.querySelectorAll('#tv-genres .genre-chip').forEach(c=>c.classList.remove('active')); el.classList.add('active');
+  const row=document.getElementById('tv-trending');if(!row)return; row.innerHTML=skels(5);
   try{const d=await api('/discover/tv',{with_genres:id,sort_by:'popularity.desc'});renderRow(row,d.results,'tv');}
   catch(e){if(row)row.innerHTML=errBox('Filter failed');}
 }
+
 /* =================== SEARCH =================== */
 function buildSearchView(){
   const sv=document.getElementById('search-view');
-  sv.innerHTML=`<div class="search-view-inner"><div class="search-box-wrap"><div class="search-box" id="search-box">${IC.srch}<input type="text" id="main-search-input" placeholder="Movies, shows, actors..." autocomplete="off" inputmode="search"/><button class="search-clear-btn" id="search-clear" onclick="clearSearch()">✕</button></div><div id="autocomplete-drop"></div></div><div id="search-body"></div></div>`;
+  sv.innerHTML=`<div class="search-view-inner"><div class="search-box-wrap"><div class="search-box" id="search-box">${IC.srch}
+    <input type="text" id="main-search-input" placeholder="Movies, shows..." autocomplete="off" inputmode="search"/>
+    <button class="search-clear-btn" id="search-clear" onclick="clearSearch()">✕</button></div>
+    <div id="autocomplete-drop"></div></div><div id="search-body"></div></div>`;
   setupSearchInput();renderSearchHome();
 }
 function setupSearchInput(){
@@ -1027,8 +1134,7 @@ function setupSearchInput(){
   inp.addEventListener('blur',()=>setTimeout(()=>box.classList.remove('focused'),200));
   inp.addEventListener('input',function(){
     const q=this.value.trim();
-    const clr=document.getElementById('search-clear');
-    if(clr)clr.classList.toggle('show',q.length>0);
+    const clr=document.getElementById('search-clear'); if(clr)clr.classList.toggle('show',q.length>0);
     clearTimeout(searchDebounce);
     if(q.length<1){hideAC();renderSearchHome();return;}
     if(q.length<2){hideAC();return;}
@@ -1094,16 +1200,214 @@ async function doSearch(q){
 function renderResults(q){
   const body=document.getElementById('search-body');if(!body)return;
   const filtered=currentFilter==='all'?allResults:allResults.filter(r=>r._t===currentFilter);
-  let html=`<div class="results-area"><div class="results-header"><div class="results-title">Results for <b>"${escH(q)}"</b></div><div class="results-count">${filtered.length} found</div></div><div class="results-filter"><button class="filter-btn${currentFilter==='all'?' active':''}" onclick="setFilter('all','${escA(q)}')">All (${allResults.length})</button><button class="filter-btn${currentFilter==='movie'?' active':''}" onclick="setFilter('movie','${escA(q)}')">Movies (${allResults.filter(r=>r._t==='movie').length})</button><button class="filter-btn${currentFilter==='tv'?' active':''}" onclick="setFilter('tv','${escA(q)}')">TV (${allResults.filter(r=>r._t==='tv').length})</button></div>`;
+  let html=`<div class="results-area">
+    <div class="results-header"><div class="results-title">Results for <b>"${escH(q)}"</b></div><div class="results-count">${filtered.length} found</div></div>
+    <div class="results-filter">
+      <button class="filter-btn${currentFilter==='all'?' active':''}" onclick="setFilter('all','${escA(q)}')">All (${allResults.length})</button>
+      <button class="filter-btn${currentFilter==='movie'?' active':''}" onclick="setFilter('movie','${escA(q)}')">Movies (${allResults.filter(r=>r._t==='movie').length})</button>
+      <button class="filter-btn${currentFilter==='tv'?' active':''}" onclick="setFilter('tv','${escA(q)}')">TV (${allResults.filter(r=>r._t==='tv').length})</button>
+    </div>`;
   if(!filtered.length)html+=`<div class="no-results"><div class="no-results-icon">🎬</div><div class="no-results-text">No results</div><div class="no-results-sub">Try different keywords</div></div>`;
-  else html+=`<div class="results-grid">${filtered.map(r=>{
-    const t=r.title||r.name||'';
-    const p=imgUrl(r.poster_path,'w342');
-    return`<div class="result-card" onclick="openDetail(${r.id},'${r._t}')"><img src="${p}" alt="${escH(t)}" loading="lazy" onerror="this.src='${noPoster}'"/></div>`;
-  }).join('')}</div>`;
+  else html+=`<div class="results-grid">${filtered.map(r=>{const t=r.title||r.name||'';const p=imgUrl(r.poster_path,'w342');return`<div class="result-card" onclick="openDetail(${r.id},'${r._t}')"><img src="${p}" alt="${escH(t)}" loading="lazy" onerror="this.src='${noPoster}'"/></div>`;}).join('')}</div>`;
   html+='</div>';body.innerHTML=html;
 }
 function setFilter(type,q){currentFilter=type;renderResults(q);}
+
+/* =================== MY LIST VIEW (Playlists only) =================== */
+function buildMyListView(){
+  const v=document.getElementById('mylist-view');
+  const uid = window._myUid || '...';
+  v.innerHTML=`
+    <div class="mylist-header">
+      <h2>My Playlists</h2>
+      <p>Create and share your movie collections</p>
+    </div>
+    <div class="uid-banner">
+      <div class="uid-banner-title">🪪 Your User ID</div>
+      <div class="uid-banner-row">
+        <div class="uid-banner-val" id="uid-display">${escH(uid)}</div>
+        <button class="uid-edit-btn" onclick="openUidModal()">Change ID</button>
+      </div>
+      <div class="uid-hint">Share your ID with others so they can find your playlists. Use the same ID on any device to access your playlists.</div>
+    </div>
+    <div id="mylist-tab-body"></div>`;
+  renderPlaylistsTab(document.getElementById('mylist-tab-body'));
+  window._onPlaylistsChange = () => {
+    const body = document.getElementById('mylist-tab-body');
+    if(body) renderPlaylistsTab(body);
+    const uidDisplay = document.getElementById('uid-display');
+    if(uidDisplay) uidDisplay.textContent = window._myUid || '...';
+  };
+}
+
+function renderPlaylistsTab(body){
+  const pls=window._playlists||{};
+  const keys=Object.keys(pls);
+  const ownerUid = window._myUid || '';
+  let html=`<div class="playlist-section">
+    <button class="playlist-create-btn" onclick="openPlCreateModal()">${IC.plus} New Playlist</button>`;
+  if(!keys.length){
+    html+=`<div class="following-empty"><div class="following-empty-icon">📋</div><div class="following-empty-text">No playlists yet</div><div class="following-empty-sub">Create one to save your favourite titles</div></div>`;
+  } else {
+    keys.forEach(plId=>{
+      const pl=pls[plId];
+      const items=pl.items?Object.values(pl.items):[];
+      const count=items.length;
+      const thumbs=items.slice(0,3).map(it=>{
+        const src=it.poster?`${IMG}w92${it.poster}`:null;
+        return src?`<img class="playlist-thumb" src="${src}" alt="" onerror="this.outerHTML='<div class=playlist-thumb-ph>🎬</div>'">`:`<div class="playlist-thumb-ph">🎬</div>`;
+      }).join('');
+      html+=`<div class="playlist-card" onclick="openPlaylist('${escA(plId)}')">
+        <div class="playlist-card-header">
+          <div class="playlist-thumb-strip">${thumbs||'<div class="playlist-thumb-ph">🎬</div>'}</div>
+          <div class="playlist-meta">
+            <div class="playlist-name">${escH(pl.name||'Untitled')}</div>
+            <div class="playlist-count">${count} title${count!==1?'s':''}</div>
+          </div>
+          <div class="playlist-actions">
+            <button class="playlist-share-btn" onclick="sharePlaylist('${escA(ownerUid)}','${escA(plId)}','${escA(pl.name||'Untitled')}',event)" title="Share">${IC.share}</button>
+            <button class="playlist-del-btn" onclick="event.stopPropagation();confirmDeletePlaylist('${escA(plId)}','${escA(pl.name||'Untitled')}')">🗑</button>
+          </div>
+        </div>
+      </div>`;
+    });
+  }
+  html+='</div>';
+  body.innerHTML=html;
+}
+
+/* open playlist detail */
+function openPlaylist(plId){
+  activePlId=plId;
+  const curActive=document.querySelector('.view.active');
+  if(curActive)prevViewStack.push(curActive.id);
+  renderPlaylistDetail(plId);
+  showView('mylist-view');
+}
+
+function renderPlaylistDetail(plId){
+  const v=document.getElementById('mylist-view');
+  const pl=(window._playlists||{})[plId];
+  if(!pl){v.innerHTML=errBox('Playlist not found');return;}
+  const items=pl.items?Object.entries(pl.items):[];
+  const name=pl.name||'Untitled';
+  const ownerUid = window._myUid || '';
+  let grid='';
+  if(!items.length){
+    grid=`<div style="padding:40px 20px;text-align:center;grid-column:span 3">
+      <div style="font-size:36px;opacity:0.3;margin-bottom:8px">🎬</div>
+      <div style="font-size:13px;color:var(--text-light)">No titles yet</div>
+      <div style="font-size:11px;color:var(--tan);margin-top:4px">Add movies &amp; shows from their detail pages</div>
+    </div>`;
+  } else {
+    grid=items.map(([fbKey,it])=>{
+      const poster=it.poster?`${IMG}w342${it.poster}`:null;
+      return`<div class="pl-item-card">
+        ${poster?`<img src="${poster}" alt="${escH(it.title||'')}" loading="lazy" onerror="this.src='${noPoster}'" onclick="openDetail(${it.id},'${it.type}')">`:`<div style="width:100%;aspect-ratio:2/3;background:var(--beige);display:flex;align-items:center;justify-content:center;font-size:28px" onclick="openDetail(${it.id},'${it.type}')">🎬</div>`}
+        <button class="pl-item-remove" onclick="removeFromPlaylist('${escA(plId)}','${escA(fbKey)}')" title="Remove">✕</button>
+        <div class="pl-item-label" onclick="openDetail(${it.id},'${it.type}')">${escH(it.title||'')}</div>
+      </div>`;
+    }).join('');
+  }
+  v.innerHTML=`
+    <button class="detail-back" onclick="closePlaylistDetail()">‹</button>
+    <button class="detail-share-btn" onclick="sharePlaylist('${escA(ownerUid)}','${escA(plId)}','${escA(name)}')" title="Share">${IC.share}</button>
+    <div style="padding:calc(14px + var(--safe-top)) 14px 10px;padding-top:calc(60px + var(--safe-top))">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+        <div style="font-size:20px">📋</div>
+        <h2 style="font-size:18px;font-weight:900;color:var(--text-dark);flex:1">${escH(name)}</h2>
+      </div>
+      <div style="font-size:11px;color:var(--text-light);margin-bottom:16px">${items.length} title${items.length!==1?'s':''}</div>
+      <div class="playlist-items-grid">${grid}</div>
+    </div>`;
+  window._onPlaylistsChange = () => renderPlaylistDetail(plId);
+}
+
+function closePlaylistDetail(){
+  window._onPlaylistsChange = () => {
+    const body = document.getElementById('mylist-tab-body');
+    if(body) renderPlaylistsTab(body);
+  };
+  const prev=prevViewStack.pop();
+  if(prev==='mylist-view'||!prev){
+    activePlId=null;
+    buildMyListView();
+    showView('mylist-view');
+    setBnav('bnav-mylist');
+  } else { showView(prev); }
+}
+
+function removeFromPlaylist(plId,fbKey){
+  if(window._removeFromPlaylist) window._removeFromPlaylist(plId,fbKey);
+  showToast('Removed from playlist');
+}
+
+/* ── Playlist create modal ── */
+function openPlCreateModal(){
+  document.getElementById('pl-create-modal').classList.remove('hidden');
+  document.getElementById('pl-name-input').value='';
+  setTimeout(()=>document.getElementById('pl-name-input').focus(),100);
+}
+function closePlCreateModal(){document.getElementById('pl-create-modal').classList.add('hidden');}
+async function confirmCreatePlaylist(){
+  const name=document.getElementById('pl-name-input').value.trim();
+  if(!name){showToast('Enter a playlist name');return;}
+  closePlCreateModal();
+  if(window._createPlaylist) await window._createPlaylist(name);
+  showToast(`"${name}" created!`);
+}
+
+/* ── Playlist picker modal ── */
+function openPlPicker(mediaId,mediaType,mediaTitle,mediaPoster){
+  pendingPlItem={id:mediaId,type:mediaType,title:mediaTitle,poster:mediaPoster||''};
+  const modal=document.getElementById('pl-picker-modal');
+  modal.classList.remove('hidden');
+  renderPlPickerList();
+}
+function closePlPicker(){document.getElementById('pl-picker-modal').classList.add('hidden');pendingPlItem=null;}
+function renderPlPickerList(){
+  const list=document.getElementById('pl-picker-list');if(!list)return;
+  const pls=window._playlists||{};
+  const keys=Object.keys(pls);
+  if(!keys.length){
+    list.innerHTML=`<div style="padding:20px;text-align:center;font-size:13px;color:var(--text-light)">No playlists yet.<br><span style="color:var(--accent);cursor:pointer" onclick="closePlPicker();openPlCreateModal()">Create one first</span></div>`;
+    return;
+  }
+  list.innerHTML=keys.map(plId=>{
+    const pl=pls[plId];
+    const alreadyIn=pendingPlItem&&window._isInPlaylist&&window._isInPlaylist(plId,pendingPlItem.id,pendingPlItem.type);
+    return`<div class="playlist-picker-item${alreadyIn?' already-in':''}" onclick="addItemToPlaylist('${escA(plId)}')">
+      <div class="playlist-picker-icon">📋</div>
+      <div class="playlist-picker-name">${escH(pl.name||'Untitled')}</div>
+      ${alreadyIn?`<div class="playlist-picker-check">✓</div>`:''}
+    </div>`;
+  }).join('');
+}
+async function addItemToPlaylist(plId){
+  if(!pendingPlItem){closePlPicker();return;}
+  const result=await window._addToPlaylist(plId,pendingPlItem);
+  closePlPicker();
+  if(result==='exists') showToast('Already in this playlist');
+  else showToast('Added to playlist ✓');
+}
+
+/* ── Confirm modal ── */
+function showConfirm(icon,title,sub,cb){
+  document.getElementById('confirm-icon').textContent=icon;
+  document.getElementById('confirm-title').textContent=title;
+  document.getElementById('confirm-sub').textContent=sub;
+  const btn=document.getElementById('confirm-ok-btn');
+  btn.onclick=()=>{closeConfirmModal();cb&&cb();};
+  document.getElementById('confirm-modal').classList.remove('hidden');
+}
+function closeConfirmModal(){document.getElementById('confirm-modal').classList.add('hidden');}
+function confirmDeletePlaylist(plId,name){
+  showConfirm('🗑',`Delete "${name}"?`,'All titles in this playlist will be lost.',()=>{
+    if(window._deletePlaylist) window._deletePlaylist(plId);
+    showToast('Playlist deleted');
+  });
+}
+
 /* =================== WHERE TO WATCH =================== */
 function switchWtwTab(key,btn){
   btn.closest('.where-to-watch').querySelectorAll('.wtw-tab').forEach(t=>t.classList.remove('active'));
@@ -1112,34 +1416,27 @@ function switchWtwTab(key,btn){
   const target=document.getElementById('wtw-'+key);
   if(target)target.style.display='flex';
 }
+
 /* =================== USER SCORE =================== */
 function buildUserScore(detail){
-  const rating=detail.vote_average||0;
-  const votes=detail.vote_count||0;
-  const percentage=Math.round(rating*10);
-  const excellent=Math.round(percentage*0.4);
-  const good=Math.round(percentage*0.3);
-  const average=Math.round(percentage*0.2);
-  let scoreColor='#22c55e';
-  if(percentage<50)scoreColor='#ef4444';
-  else if(percentage<70)scoreColor='#f59e0b';
+  const rating=detail.vote_average||0,votes=detail.vote_count||0;
+  const pct=Math.round(rating*10),exc=Math.round(pct*0.4),good=Math.round(pct*0.3),avg=Math.round(pct*0.2);
+  let col='#22c55e';if(pct<50)col='#ef4444';else if(pct<70)col='#f59e0b';
   return`<div class="user-score-section">
     <div class="user-score-title">⭐ User Score</div>
     <div class="user-score-content">
-      <div class="score-circle">
-        <div class="score-number" style="color:${scoreColor}">${percentage}</div>
-        <div class="score-label">%</div>
-      </div>
+      <div class="score-circle"><div class="score-number" style="color:${col}">${pct}</div><div class="score-label">%</div></div>
       <div class="score-details">
-        <div class="score-bar-row"><div class="score-bar-label">Excellent</div><div class="score-bar-track"><div class="score-bar-fill" style="width:${excellent}%;background:${scoreColor}"></div></div><div class="score-bar-val">${excellent}%</div></div>
+        <div class="score-bar-row"><div class="score-bar-label">Excellent</div><div class="score-bar-track"><div class="score-bar-fill" style="width:${exc}%;background:${col}"></div></div><div class="score-bar-val">${exc}%</div></div>
         <div class="score-bar-row"><div class="score-bar-label">Good</div><div class="score-bar-track"><div class="score-bar-fill" style="width:${good}%;background:var(--tan)"></div></div><div class="score-bar-val">${good}%</div></div>
-        <div class="score-bar-row"><div class="score-bar-label">Average</div><div class="score-bar-track"><div class="score-bar-fill" style="width:${average}%;background:var(--taupe)"></div></div><div class="score-bar-val">${average}%</div></div>
+        <div class="score-bar-row"><div class="score-bar-label">Average</div><div class="score-bar-track"><div class="score-bar-fill" style="width:${avg}%;background:var(--taupe)"></div></div><div class="score-bar-val">${avg}%</div></div>
         <div class="score-votes">${votes.toLocaleString()} votes · ${rating.toFixed(1)}/10 TMDB</div>
       </div>
     </div>
   </div>`;
 }
-/* =================== PERSON / FILMOGRAPHY =================== */
+
+/* =================== PERSON =================== */
 async function openPerson(personId){
   const curActive=document.querySelector('.view.active');
   if(curActive)prevViewStack.push(curActive.id);
@@ -1147,69 +1444,27 @@ async function openPerson(personId){
   showView('person-view');
   pv.innerHTML=`<button class="detail-back" onclick="closePerson()">‹</button><div style="display:flex;align-items:center;justify-content:center;height:100%"><div class="ring"></div></div>`;
   try{
-    const[person,credits]=await Promise.all([
-      api(`/person/${personId}`),
-      api(`/person/${personId}/combined_credits`)
-    ]);
+    const[person,credits]=await Promise.all([api(`/person/${personId}`),api(`/person/${personId}/combined_credits`)]);
     renderPerson(pv,person,credits);
-  }catch(e){
-    pv.innerHTML=`<button class="detail-back" onclick="closePerson()">‹</button>${errBox('Failed to load person')}`;
-  }
+  }catch(e){pv.innerHTML=`<button class="detail-back" onclick="closePerson()">‹</button>${errBox('Failed to load person')}`;}
 }
 function renderPerson(pv,person,credits){
-  const name=person.name||'';
-  const photo=imgUrl(person.profile_path,'w342');
-  const dept=person.known_for_department||'Acting';
-  const bday=person.birthday?fmtDate(person.birthday):'';
-  const dday=person.deathday?fmtDate(person.deathday):'';
-  const place=person.place_of_birth||'';
-  const bio=person.biography||'';
-  const popularity=person.popularity?person.popularity.toFixed(1):'';
-  const castItems=(credits.cast||[]).map(m=>({
-    id:m.id,title:m.title||m.name||'',poster:m.poster_path,
-    date:m.release_date||m.first_air_date||'',type:m.media_type||'movie',
-    role:m.character||'',dept:'Cast',vote:m.vote_average||0
-  }));
-  const crewItems=(credits.crew||[]).map(m=>({
-    id:m.id,title:m.title||m.name||'',poster:m.poster_path,
-    date:m.release_date||m.first_air_date||'',type:m.media_type||'movie',
-    role:m.job||'',dept:'Crew',vote:m.vote_average||0
-  }));
+  const name=person.name||'',photo=imgUrl(person.profile_path,'w342'),dept=person.known_for_department||'Acting';
+  const bday=person.birthday?fmtDate(person.birthday):'',dday=person.deathday?fmtDate(person.deathday):'';
+  const place=person.place_of_birth||'',bio=person.biography||'',popularity=person.popularity?person.popularity.toFixed(1):'';
+  const castItems=(credits.cast||[]).map(m=>({id:m.id,title:m.title||m.name||'',poster:m.poster_path,date:m.release_date||m.first_air_date||'',type:m.media_type||'movie',vote:m.vote_average||0}));
+  const crewItems=(credits.crew||[]).map(m=>({id:m.id,title:m.title||m.name||'',poster:m.poster_path,date:m.release_date||m.first_air_date||'',type:m.media_type||'movie',vote:m.vote_average||0}));
   const seen=new Set();
-  const allCredits=[...castItems,...crewItems].filter(m=>{
-    if(seen.has(m.id))return false;seen.add(m.id);return true;
-  }).filter(m=>m.poster).sort((a,b)=>{
-    if(!a.date&&!b.date)return b.vote-a.vote;
-    if(!a.date)return 1;if(!b.date)return -1;
-    return b.date.localeCompare(a.date);
-  });
-  const metaPills=[
-    bday?`Born: ${bday}`:'',dday?`Died: ${dday}`:'',place?place:'',popularity?`Popularity: ${popularity}`:'',
-  ].filter(Boolean).map(p=>`<span class="person-meta-pill">${escH(p)}</span>`).join('');
-  const bioId='person-bio-'+person.id;
-  const bioShort=bio.length>280;
-  const bioHtml=bio
-    ?`<div class="person-bio${bioShort?' person-bio-short':''}" id="${bioId}">${escH(bio)}</div>${bioShort?`<span class="person-bio-toggle" onclick="expandBio('${bioId}',this)">Read more ▾</span>`:''}`
-    :'';
-  const filmGrid=allCredits.length
-    ?allCredits.map(m=>{
-      const p=imgUrl(m.poster,'w342');
-      const yr=m.date?fmtYear(m.date):'';
-      const mt=m.type==='tv'?'tv':'movie';
-      return`<div class="film-card" onclick="openDetail(${m.id},'${mt}')">
-        <img src="${p}" alt="${escH(m.title)}" loading="lazy" onerror="this.outerHTML='<div class=film-card-ph>🎬</div>'"/>
-        ${yr?`<div class="film-card-year">${yr}</div>`:''}
-        <div class="film-card-label">${escH(m.title)}</div>
-      </div>`;
-    }).join('')
-    :`<div style="padding:30px;text-align:center;font-size:13px;color:var(--text-light);grid-column:span 3">No filmography available</div>`;
+  const allCredits=[...castItems,...crewItems].filter(m=>{if(seen.has(m.id))return false;seen.add(m.id);return true;}).filter(m=>m.poster).sort((a,b)=>{if(!a.date&&!b.date)return b.vote-a.vote;if(!a.date)return 1;if(!b.date)return -1;return b.date.localeCompare(a.date);});
+  const metaPills=[bday?`Born: ${bday}`:'',dday?`Died: ${dday}`:'',place,popularity?`Popularity: ${popularity}`:''].filter(Boolean).map(p=>`<span class="person-meta-pill">${escH(p)}</span>`).join('');
+  const bioId='pbio-'+person.id,bioShort=bio.length>280;
+  const bioHtml=bio?`<div class="person-bio${bioShort?' person-bio-short':''}" id="${bioId}">${escH(bio)}</div>${bioShort?`<span class="person-bio-toggle" onclick="expandBio('${bioId}',this)">Read more ▾</span>`:''}`:' ';
+  const filmGrid=allCredits.length?allCredits.map(m=>{const p=imgUrl(m.poster,'w342'),yr=m.date?fmtYear(m.date):'',mt=m.type==='tv'?'tv':'movie';return`<div class="film-card" onclick="openDetail(${m.id},'${mt}')"><img src="${p}" alt="${escH(m.title)}" loading="lazy" onerror="this.outerHTML='<div class=film-card-ph>🎬</div>'"/>${yr?`<div class="film-card-year">${yr}</div>`:''}<div class="film-card-label">${escH(m.title)}</div></div>`;}).join(''):`<div style="padding:30px;text-align:center;font-size:13px;color:var(--text-light);grid-column:span 3">No filmography available</div>`;
   pv.innerHTML=`
     <button class="detail-back" onclick="closePerson()">‹</button>
-    <div style="padding-top:calc(56px + var(--safe-top))">
+    <div style="padding-top:calc(56px + var(--safe-top));overflow-y:auto;height:100%">
       <div class="person-hero">
-        <div class="person-avatar-wrap">
-          <img src="${photo||noAv}" alt="${escH(name)}" onerror="this.src='${noAv}'"/>
-        </div>
+        <div class="person-avatar-wrap"><img src="${photo||noAv}" alt="${escH(name)}" onerror="this.src='${noAv}'"/></div>
         <div class="person-info">
           <div class="person-name">${escH(name)}</div>
           <div class="person-dept">${escH(dept)}</div>
@@ -1217,20 +1472,13 @@ function renderPerson(pv,person,credits){
         </div>
       </div>
       ${bioHtml}
-      <div style="padding:0 14px 10px">
-        <div class="sec-lbl">Filmography <span style="color:var(--text-light);font-size:9px;font-weight:600;text-transform:none;letter-spacing:0">(${allCredits.length} titles)</span><div class="sec-lbl-line"></div></div>
-      </div>
+      <div style="padding:0 14px 10px"><div class="sec-lbl">Filmography <span style="color:var(--text-light);font-size:9px;font-weight:600;text-transform:none;letter-spacing:0">(${allCredits.length} titles)</span><div class="sec-lbl-line"></div></div></div>
       <div class="filmography-grid">${filmGrid}</div>
     </div>`;
 }
-function expandBio(id,btn){
-  const el=document.getElementById(id);
-  if(el){el.classList.remove('person-bio-short');btn.style.display='none';}
-}
-function closePerson(){
-  const prev=prevViewStack.pop();
-  showView(prev||'home-view');
-}
+function expandBio(id,btn){const el=document.getElementById(id);if(el){el.classList.remove('person-bio-short');btn.style.display='none';}}
+function closePerson(){const prev=prevViewStack.pop();showView(prev||'home-view');}
+
 /* =================== DETAIL =================== */
 async function openDetail(id,type){
   const curActive=document.querySelector('.view.active');
@@ -1240,29 +1488,18 @@ async function openDetail(id,type){
   dv.innerHTML=`<button class="detail-back" onclick="closeDetail()">‹</button><div style="display:flex;align-items:center;justify-content:center;height:100%"><div class="ring"></div></div>`;
   try{
     const[detail,credits,videos,images,providers]=await Promise.all([
-      api(`/${type}/${id}`),
-      api(`/${type}/${id}/credits`),
-      api(`/${type}/${id}/videos`),
-      api(`/${type}/${id}/images`),
-      api(`/${type}/${id}/watch/providers`)
+      api(`/${type}/${id}`),api(`/${type}/${id}/credits`),api(`/${type}/${id}/videos`),
+      api(`/${type}/${id}/images`),api(`/${type}/${id}/watch/providers`)
     ]);
     renderDetail(dv,detail,credits,videos,images,type,providers);
   }catch(e){dv.innerHTML=`<button class="detail-back" onclick="closeDetail()">‹</button>${errBox('Failed to load')}`;}
 }
-function buildWebSearcher(title,type){
+
+function buildWebSearcher(title){
   const engs=window._fbEngines||[];
   const activeId=window._activeEngId?window._activeEngId():null;
-  let engPills=engs.length
-    ?engs.map(e=>{const fav=window.faviconUrl?window.faviconUrl(e.domain||e.url):'';return`<button class="ws-engine-btn${e.fbKey===activeId?' active':''}" onclick="selectEng('${e.fbKey}')" id="eng-btn-${e.fbKey}"><span class="ws-engine-logo"><img src="${fav}" alt="${escH(e.name)}" onerror="this.style.display='none'"/></span>${escH(e.name)}</button>`;}).join('')
-    :'<div class="ws-no-engines">No engines added — tap ⚙️ Manage to add one.</div>';
-  let engRows=engs.length
-    ?engs.map(e=>{const fav=window.faviconUrl?window.faviconUrl(e.domain||e.url):'';return`<tr>
-      <td class="et-logo-cell"><div class="et-logo-wrap"><img src="${fav}" alt="${escH(e.name)}" onerror="this.style.display='none'"/></div></td>
-      <td class="et-name">${escH(e.name)}</td>
-      <td class="et-desc">${escH(e.desc||'')}</td>
-      <td><button class="et-search-btn" onclick="wsGoWith('${escA(e.fbKey)}')">Search</button></td>
-    </tr>`;}).join('')
-    :`<tr><td colspan="4" class="no-eng-row">No engines added yet — tap ⚙️ Manage Engines to add one.</td></tr>`;
+  let engPills=engs.length?engs.map(e=>{const fav=window.faviconUrl?window.faviconUrl(e.domain||e.url):'';return`<button class="ws-engine-btn${e.fbKey===activeId?' active':''}" onclick="selectEng('${e.fbKey}')" id="eng-btn-${e.fbKey}"><span class="ws-engine-logo"><img src="${fav}" alt="${escH(e.name)}" onerror="this.style.display='none'"/></span>${escH(e.name)}</button>`;}).join(''):'<div class="ws-no-engines">No engines added — tap ⚙️ Manage to add one.</div>';
+  let engRows=engs.length?engs.map(e=>{const fav=window.faviconUrl?window.faviconUrl(e.domain||e.url):'';return`<tr><td class="et-logo-cell"><div class="et-logo-wrap"><img src="${fav}" onerror="this.style.display='none'"/></div></td><td class="et-name">${escH(e.name)}</td><td class="et-desc">${escH(e.desc||'')}</td><td><button class="et-search-btn" onclick="wsGoWith('${escA(e.fbKey)}')">Search</button></td></tr>`;}).join(''):`<tr><td colspan="4" class="no-eng-row">No engines added yet.</td></tr>`;
   return`<div class="web-searcher-section">
     <div class="sec-lbl">Web Search<div class="sec-lbl-line"></div></div>
     <div class="ws-query-row" style="margin-bottom:10px">
@@ -1271,68 +1508,54 @@ function buildWebSearcher(title,type){
     </div>
     <div class="ws-engines-wrap" id="ws-engines-wrap">${engPills}</div>
     <button class="ws-manage-btn" onclick="openEngModal()">⚙️ Manage Engines</button>
-    <div style="margin-top:14px">
-      <div class="eng-table-wrap">
-        <table class="eng-table">
-          <thead><tr><th class="et-logo-cell"></th><th>Engine</th><th>Description</th><th></th></tr></thead>
-          <tbody id="eng-tbl-body">${engRows}</tbody>
-        </table>
-      </div>
-    </div>
+    <div style="margin-top:14px"><div class="eng-table-wrap">
+      <table class="eng-table"><thead><tr><th class="et-logo-cell"></th><th>Engine</th><th>Description</th><th></th></tr></thead><tbody id="eng-tbl-body">${engRows}</tbody></table>
+    </div></div>
   </div>`;
 }
+
 function wsGo(){
   const inp=document.getElementById('ws-main-input');if(!inp)return;
   const q=inp.value.trim();if(!q)return;
-  const engs=window._fbEngines||[];
-  if(!engs.length){showToast('Add a search engine first');openEngModal();return;}
-  const activeId=window._activeEngId?window._activeEngId():null;
-  const eng=engs.find(e=>e.fbKey===activeId)||engs[0];
+  const engs=window._fbEngines||[];if(!engs.length){showToast('Add a search engine first');openEngModal();return;}
+  const eng=engs.find(e=>e.fbKey===(window._activeEngId?window._activeEngId():null))||engs[0];
   if(!eng)return;
   window.open(eng.url.replace('{query}',encodeURIComponent(q)),'_blank');
 }
 function wsGoWith(fbKey){
-  const inp=document.getElementById('ws-main-input');
-  const q=inp?inp.value.trim():'';if(!q)return;
-  const engs=window._fbEngines||[];
-  const eng=engs.find(e=>e.fbKey===fbKey);if(!eng)return;
+  const inp=document.getElementById('ws-main-input');const q=inp?inp.value.trim():'';if(!q)return;
+  const eng=(window._fbEngines||[]).find(e=>e.fbKey===fbKey);if(!eng)return;
   window.open(eng.url.replace('{query}',encodeURIComponent(q)),'_blank');
 }
+
 async function renderDetail(dv,detail,credits,videos,images,type,providersData){
   const title=detail.title||detail.name||'';
-  const backdrop=imgUrl(detail.backdrop_path,'w780');
-  const poster=imgUrl(detail.poster_path,'w342');
-  const overview=detail.overview||'No overview available.';
-  const tagline=detail.tagline||'';
-  const rating=detail.vote_average?detail.vote_average.toFixed(1):'N/A';
-  const votes=detail.vote_count?detail.vote_count.toLocaleString():'0';
+  const backdrop=imgUrl(detail.backdrop_path,'w780'),poster=imgUrl(detail.poster_path,'w342');
+  const overview=detail.overview||'No overview available.',tagline=detail.tagline||'';
+  const rating=detail.vote_average?detail.vote_average.toFixed(1):'N/A',votes=detail.vote_count?detail.vote_count.toLocaleString():'0';
   const releaseDate=fmtDate(detail.release_date||detail.first_air_date);
   const genres=(detail.genres||[]).map(g=>g.name).join(', ')||'N/A';
   const budget=money(detail.budget),revenue=money(detail.revenue);
   const runtime=detail.runtime?`${detail.runtime} min`:(detail.episode_run_time&&detail.episode_run_time[0]?`${detail.episode_run_time[0]} min/ep`:'N/A');
-  const status=detail.status||'N/A';
-  const langs=(detail.spoken_languages||[]).map(l=>l.english_name).join(', ')||'N/A';
+  const status=detail.status||'N/A',langs=(detail.spoken_languages||[]).map(l=>l.english_name).join(', ')||'N/A';
   const origLang=detail.original_language?detail.original_language.toUpperCase():'N/A';
   const country=(detail.production_countries||[]).map(c=>c.name).join(', ')||'N/A';
-  const studio=(detail.production_companies||[]).slice(0,2).map(c=>c.name).join(', ')||'N/A';
+  const studios=(detail.production_companies||[]).slice(0,3);
+  const studioNames=studios.map(c=>c.name).join(', ')||'N/A';
   const seasons=detail.number_of_seasons,epTotal=detail.number_of_episodes;
   const validSeasons=(detail.seasons||[]).filter(s=>s.season_number>0);
   const trailer=(videos.results||[]).find(v=>v.type==='Trailer'&&v.site==='YouTube')||(videos.results||[]).find(v=>v.site==='YouTube');
   const cast=(credits.cast||[]).slice(0,16);
   const directorsList=(credits.crew||[]).filter(c=>c.job==='Director');
   const writersList=(credits.crew||[]).filter(c=>c.department==='Writing').slice(0,3);
-  const directorsHtml=directorsList.length
-    ?directorsList.map(c=>`<span class="person-link" onclick="openPerson(${c.id})">${escH(c.name)}</span>`).join(', ')
-    :'N/A';
-  const writersHtml=writersList.length
-    ?writersList.map(c=>`<span class="person-link" onclick="openPerson(${c.id})">${escH(c.name)}</span>`).join(', ')
-    :'N/A';
+  const directorsHtml=directorsList.length?directorsList.map(c=>`<span class="person-link" onclick="openPerson(${c.id})">${escH(c.name)}</span>`).join(', '):'N/A';
+  const writersHtml=writersList.length?writersList.map(c=>`<span class="person-link" onclick="openPerson(${c.id})">${escH(c.name)}</span>`).join(', '):'N/A';
   const backdrops=(images.backdrops||[]).slice(0,12);
+  const studioHtml=studioNames;
   const tRows=[
-    ['Release',releaseDate],['Genre',genres],
-    ['Rating',`${IC.star} ${rating}/10 (${votes} votes)`],
+    ['Release',releaseDate],['Genre',genres],['Rating',`${IC.star} ${rating}/10 (${votes} votes)`],
     ['Status',status],['Runtime',runtime],['Language',langs],
-    ['Orig. Lang',origLang],['Country',country],['Studio',studio],
+    ['Orig. Lang',origLang],['Country',country],['Studio',studioHtml],
     ...(type==='movie'?[['Director',directorsHtml],['Writer',writersHtml],['Budget',budget],['Revenue',revenue]]:[]),
     ...(seasons?[['Seasons',`${seasons}`]]:[]),
     ...(epTotal?[['Episodes',`${epTotal}`]]:[])
@@ -1340,95 +1563,70 @@ async function renderDetail(dv,detail,credits,videos,images,type,providersData){
   const trailerSec=trailer
     ?`<div class="detail-trailer-top"><iframe src="https://www.youtube.com/embed/${trailer.key}?rel=0&modestbranding=1&playsinline=1&autoplay=0" allowfullscreen allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture"></iframe></div>`
     :backdrop
-      ?`<div class="detail-trailer-top" style="position:relative;overflow:hidden"><div class="detail-trailer-fallback" style="background-image:url(${backdrop})"></div><div class="detail-trailer-fallback-grad"></div><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px">${IC.noplay}<span style="font-size:11px;color:var(--text-light)">No trailer</span></div></div>`
-      :`<div class="detail-trailer-top" style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">${IC.noplay}<span style="font-size:11px;color:var(--text-light)">No trailer</span></div>`;
+    ?`<div class="detail-trailer-top" style="position:relative;overflow:hidden"><div class="detail-trailer-fallback" style="background-image:url(${backdrop})"></div><div class="detail-trailer-fallback-grad"></div><div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px">${IC.noplay}<span style="font-size:11px;color:var(--text-light)">No trailer</span></div></div>`
+    :`<div class="detail-trailer-top" style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">${IC.noplay}<span style="font-size:11px;color:var(--text-light)">No trailer</span></div>`;
   const scrSec=backdrops.length?`<div class="sec-lbl">Screenshots<div class="sec-lbl-line"></div></div><div class="screenshots-row">${backdrops.map(b=>`<img class="screenshot-img" src="${imgUrl(b.file_path,'w780')}" loading="lazy" alt="Screenshot" onerror="this.style.display='none'"/>`).join('')}</div>`:'';
-  // Where to watch
   let wtwHtml='';
   try{
-    const country='IN';
     const results=providersData&&providersData.results?providersData.results:{};
-    const regionData=results[country]||results['US']||Object.values(results)[0]||null;
+    const regionData=results['IN']||results['US']||Object.values(results)[0]||null;
     if(regionData){
-      const tabs=[
-        {key:'flatrate',label:'Stream 📺'},{key:'rent',label:'Rent 💰'},
-        {key:'buy',label:'Buy 🛒'},{key:'free',label:'Free 🎁'},
-      ];
+      const tabs=[{key:'flatrate',label:'Stream 📺'},{key:'rent',label:'Rent 💰'},{key:'buy',label:'Buy 🛒'},{key:'free',label:'Free 🎁'}];
       let tabsHtml='',contentHtml='',firstActive='';
       tabs.forEach(tab=>{
         const providers=regionData[tab.key]||[];
         if(providers.length){
           if(!firstActive)firstActive=tab.key;
           tabsHtml+=`<button class="wtw-tab${firstActive===tab.key?' active':''}" onclick="switchWtwTab('${tab.key}',this)">${tab.label}</button>`;
-          const provHtml=providers.map(p=>{
-            const logo=p.logo_path?`${IMG}w92${p.logo_path}`:null;
-            return`<div class="wtw-provider">${logo?`<img class="wtw-logo" src="${logo}" alt="${escH(p.provider_name)}" loading="lazy" onerror="this.outerHTML='<div class=wtw-logo-ph style=display:flex;align-items:center;justify-content:center;font-size:18px>📺</div>'">`:`<div class="wtw-logo-ph" style="display:flex;align-items:center;justify-content:center;font-size:18px">📺</div>`}<div class="wtw-name">${escH(p.provider_name)}</div></div>`;
-          }).join('');
+          const provHtml=providers.map(p=>{const logo=p.logo_path?`${IMG}w92${p.logo_path}`:null;return`<div class="wtw-provider">${logo?`<img class="wtw-logo" src="${logo}" alt="${escH(p.provider_name)}" loading="lazy" onerror="this.outerHTML='<div class=wtw-logo-ph>📺</div>'">`:`<div class="wtw-logo-ph">📺</div>`}<div class="wtw-name">${escH(p.provider_name)}</div></div>`;}).join('');
           contentHtml+=`<div class="wtw-providers" id="wtw-${tab.key}" style="display:${firstActive===tab.key?'flex':'none'};flex-wrap:wrap;gap:10px">${provHtml}</div>`;
         }
       });
-      if(firstActive){
-        const link=regionData.link?`<a href="${regionData.link}" target="_blank" style="font-size:10px;color:var(--accent);text-decoration:none;margin-top:8px;display:inline-block;opacity:0.7">OTT platforms</a>`:'';
-        wtwHtml=`<div class="where-to-watch"><div class="wtw-title">🎬 Where to Watch</div><div class="wtw-tabs">${tabsHtml}</div>${contentHtml}${link}</div>`;
-      }else{
-        wtwHtml=`<div class="where-to-watch"><div class="wtw-title">🎬 Where to Watch</div><div class="wtw-empty">No streaming info available</div></div>`;
-      }
-    }else{
-      wtwHtml=`<div class="where-to-watch"><div class="wtw-title">🎬 Where to Watch</div><div class="wtw-empty" style="font-size:12px;color:var(--text-light);padding:6px 0;font-style:italic">Not available in your region</div></div>`;
+      wtwHtml=firstActive
+        ?`<div class="where-to-watch"><div class="wtw-title">🎬 Where to Watch</div><div class="wtw-tabs">${tabsHtml}</div>${contentHtml}</div>`
+        :`<div class="where-to-watch"><div class="wtw-title">🎬 Where to Watch</div><div class="wtw-empty">No streaming info available</div></div>`;
+    } else {
+      wtwHtml=`<div class="where-to-watch"><div class="wtw-title">🎬 Where to Watch</div><div class="wtw-empty">Not available in your region</div></div>`;
     }
   }catch(e){wtwHtml='';}
-  const userScoreHtml=buildUserScore(detail);
   const castHtml=cast.length?`<div class="sec-lbl">Cast<div class="sec-lbl-line"></div></div>
-    <div class="cast-row">${cast.map(a=>{
-      const ph=imgUrl(a.profile_path,'w185');
-      return`<div class="cast-item" onclick="openPerson(${a.id})">
-        <div class="cast-avatar"><img src="${ph||noAv}" alt="${escH(a.name)}" loading="lazy" onerror="this.src='${noAv}'"/></div>
-        <div class="cast-name cast-name-link">${escH(a.name)}</div>
-        <div class="cast-char">${escH((a.character||'').substring(0,22))}</div>
-      </div>`;
-    }).join('')}</div>`:'';
-
-  // ---- Build the Share button data attributes for inline onclick ----
-  const safeTitle = escA(title);
-  const safePoster = escA(detail.poster_path||'');
-
+    <div class="cast-row">${cast.map(a=>{const ph=imgUrl(a.profile_path,'w185');return`<div class="cast-item" onclick="openPerson(${a.id})"><div class="cast-avatar"><img src="${ph||noAv}" alt="${escH(a.name)}" loading="lazy" onerror="this.src='${noAv}'"/></div><div class="cast-name cast-name-link">${escH(a.name)}</div><div class="cast-char">${escH((a.character||'').substring(0,22))}</div></div>`;}).join('')}</div>`:'';
+  const safeTitle=escA(title),safePoster=escA(detail.poster_path||'');
   dv.innerHTML=`
-  <button class="detail-back" onclick="closeDetail()">‹</button>
-  <button class="detail-share-btn" onclick="shareDetail(${detail.id},'${type}','${safeTitle}','${safePoster}')" title="Share">
-    ${IC.share}
-  </button>
-  ${trailerSec}
-  <div class="detail-body">
-    <div class="dprow">
-      ${poster?`<div class="dposter"><img src="${poster}" alt="${escH(title)}" onerror="this.style.display='none'"/></div>`:''}
-      <div class="dpinfo">
-        <div class="dbadges"><span class="badge-r">${type==='tv'?'TV Show':'Movie'}</span><span class="badge-o">${IC.star} ${rating}</span></div>
-        <div class="dtitle" onclick="copyTitle('${escA(title)}')">${escH(title)} <span style="display:inline-flex;margin-left:4px;vertical-align:middle;opacity:0.35">${IC.copy}</span></div>
-        ${tagline?`<div class="dtagline">"${escH(tagline)}"</div>`:''}
-        <div class="ddate">${IC.cal} ${releaseDate}</div>
+    <button class="detail-back" onclick="closeDetail()">‹</button>
+    <button class="detail-share-btn" onclick="shareDetail(${detail.id},'${type}','${safeTitle}')" title="Share">${IC.share}</button>
+    ${trailerSec}
+    <div class="detail-body">
+      <div class="dprow">
+        ${poster?`<div class="dposter"><img src="${poster}" alt="${escH(title)}" onerror="this.style.display='none'"/></div>`:''}
+        <div class="dpinfo">
+          <div class="dbadges"><span class="badge-r">${type==='tv'?'TV Show':'Movie'}</span><span class="badge-o">${IC.star} ${rating}</span></div>
+          <div class="dtitle" onclick="copyTitle('${escA(title)}')">${escH(title)} <span style="display:inline-flex;margin-left:4px;vertical-align:middle;opacity:0.35">${IC.copy}</span></div>
+          ${tagline?`<div class="dtagline">"${escH(tagline)}"</div>`:''}
+          <div class="ddate">${IC.cal} ${releaseDate}</div>
+        </div>
       </div>
-    </div>
-    <div class="doverview">${escH(overview)}</div>
-    ${userScoreHtml}
-    ${wtwHtml}
-    <div class="sec-lbl">Details<div class="sec-lbl-line"></div></div>
-    <table class="info-tbl"><tbody>${tRows.map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join('')}</tbody></table>
-    ${scrSec}
-    ${buildWebSearcher(title,type)}
-    ${castHtml}
-    ${type==='tv'&&validSeasons.length?`<div class="sec-lbl">Episodes<div class="sec-lbl-line"></div></div>
-    <div class="season-sel" id="season-sel">${validSeasons.map((s,i)=>`<button class="season-btn${i===0?' active':''}" onclick="loadSeason(${detail.id},${s.season_number},this)">Season ${s.season_number}</button>`).join('')}</div>
-    <div class="ep-list" id="ep-list"><div class="small-ring"></div></div>`:''}
-  </div>`;
-
+      <button class="add-playlist-btn" onclick="openPlPicker(${detail.id},'${type}','${safeTitle}','${safePoster}')">${IC.plus} Add to Playlist</button>
+      <div class="doverview">${escH(overview)}</div>
+      ${buildUserScore(detail)}
+      ${wtwHtml}
+      <div class="sec-lbl">Details<div class="sec-lbl-line"></div></div>
+      <table class="info-tbl"><tbody>${tRows.map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join('')}</tbody></table>
+      ${scrSec}
+      ${buildWebSearcher(title)}
+      ${castHtml}
+      ${type==='tv'&&validSeasons.length?`<div class="sec-lbl">Episodes<div class="sec-lbl-line"></div></div>
+        <div class="season-sel" id="season-sel">${validSeasons.map((s,i)=>`<button class="season-btn${i===0?' active':''}" onclick="loadSeason(${detail.id},${s.season_number},this)">Season ${s.season_number}</button>`).join('')}</div>
+        <div class="ep-list" id="ep-list"><div class="small-ring"></div></div>`:''}
+    </div>`;
   if(!document.getElementById('person-link-style')){
-    const st=document.createElement('style');
-    st.id='person-link-style';
+    const st=document.createElement('style');st.id='person-link-style';
     st.textContent=`.person-link{color:var(--accent);cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px;font-weight:700}.person-link:active{opacity:0.6}`;
     document.head.appendChild(st);
   }
   if(type==='tv'&&validSeasons.length)loadSeason(detail.id,validSeasons[0].season_number,null);
 }
+
 async function loadSeason(showId,seasonNum,btnEl){
   if(btnEl){document.querySelectorAll('.season-btn').forEach(b=>b.classList.remove('active'));btnEl.classList.add('active');}
   const list=document.getElementById('ep-list');if(!list)return;
@@ -1444,23 +1642,22 @@ async function loadSeason(showId,seasonNum,btnEl){
     }).join('');
   }catch(e){if(list)list.innerHTML=errBox('Failed to load episodes');}
 }
+
 function closeDetail(){
-  // Clear the hash so back-navigation doesn't re-trigger the deep link
-  if(window.location.hash && window.location.hash.startsWith('#detail')){
-    history.replaceState(null,'',window.location.pathname+window.location.search);
-  }
+  if(window.location.hash.startsWith('#detail'))history.replaceState(null,'',window.location.pathname+window.location.search);
   const prev=prevViewStack.pop();
   showView(prev||'home-view');
   if(!prev||prev==='home-view')setBnav('bnav-home');
   else if(prev==='movies-view')setBnav('bnav-movies');
   else if(prev==='tv-view')setBnav('bnav-tv');
   else if(prev==='search-view')setBnav('bnav-search');
+  else if(prev==='mylist-view')setBnav('bnav-mylist');
 }
+
 /* =================== ENGINE MODAL =================== */
 function openEngModal(){
   document.getElementById('eng-modal').classList.remove('hidden');
-  document.getElementById('eng-url-inp').value='';
-  document.getElementById('eng-desc-inp').value='';
+  document.getElementById('eng-url-inp').value='';document.getElementById('eng-desc-inp').value='';
   document.getElementById('eng-preview').classList.remove('show');
 }
 function closeEngModal(){document.getElementById('eng-modal').classList.add('hidden');}
@@ -1473,145 +1670,22 @@ function addEngine(){
   const name=window.domainToName?window.domainToName(domain):domain;
   const desc=document.getElementById('eng-desc-inp').value.trim();
   if(window._addEngineFB)window._addEngineFB(name,url,domain,desc);
-  document.getElementById('eng-url-inp').value='';
-  document.getElementById('eng-desc-inp').value='';
+  document.getElementById('eng-url-inp').value='';document.getElementById('eng-desc-inp').value='';
   document.getElementById('eng-preview').classList.remove('show');
   showToast(`${name} added!`);
 }
-/* =================== CHAT =================== */
-function fmtTime(ts){
-  if(!ts)return'';
-  try{const d=new Date(typeof ts==='number'?ts:Date.now());return d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});}catch(e){return'';}
-}
-window.appendMsg=function(msg,key){
-  const container=document.getElementById('chat-messages');if(!container)return;
-  const myId=window._myUid||localStorage.getItem('cs_uid');
-  const isMe=msg.uid===myId;
-  let html='';
-  if(msg.type==='movie'){
-    const hasImg=msg.poster&&msg.poster.startsWith('http');
-    const card=`<div class="chat-movie-card" onclick="openDetail(${Number(msg.mediaId)},'${escA(String(msg.mediaType||'movie'))}')">
-      ${hasImg?`<img class="chat-movie-poster" src="${escA(msg.poster)}" alt="${escH(String(msg.mediaTitle||''))}" onerror="this.outerHTML='<div class=chat-movie-poster-ph>🎬</div>'">`:`<div class="chat-movie-poster-ph">🎬</div>`}
-      <div class="chat-movie-info">
-        <div class="chat-movie-title">${escH(String(msg.mediaTitle||'Unknown'))}</div>
-        <div class="chat-movie-meta">${msg.mediaType==='tv'?'📺 TV':'🎬 Movie'}${msg.year?' · '+msg.year:''}</div>
-      </div>
-    </div>`;
-    html=`<div class="msg-wrap ${isMe?'me':'other'}">${!isMe?`<div class="msg-name">${escH(String(msg.username||'User'))}</div>`:''}${card}<div class="msg-time">${fmtTime(msg.ts)}</div></div>`;
-  }else if(msg.type==='text'){
-    if(!msg.text)return;
-    html=`<div class="msg-wrap ${isMe?'me':'other'}">${!isMe?`<div class="msg-name">${escH(String(msg.username||'User'))}</div>`:''}<div class="msg-bubble">${escH(String(msg.text))}</div><div class="msg-time">${fmtTime(msg.ts)}</div></div>`;
-  }else{return;}
-  container.insertAdjacentHTML('beforeend',html);
-  scrollBottom();
-};
-function scrollBottom(){
-  const c=document.getElementById('chat-messages');
-  if(c)setTimeout(()=>{c.scrollTop=c.scrollHeight;},50);
-}
-function autoGrow(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,100)+'px';}
-function chatKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}}
-function sendMsg(){
-  const inp=document.getElementById('chat-input');if(!inp)return;
-  const text=inp.value.trim();if(!text)return;
-  const myId=window._myUid||localStorage.getItem('cs_uid');
-  const myName=window._myName||localStorage.getItem('cs_username')||'User';
-  if(window._sendMsg)window._sendMsg({type:'text',text,uid:myId,username:myName});
-  inp.value='';inp.style.height='auto';
-}
-function openDelModal(){document.getElementById('del-modal').classList.remove('hidden');}
-function closeDelModal(){document.getElementById('del-modal').classList.add('hidden');}
-function confirmDeleteChat(){if(window._deleteAll)window._deleteAll();closeDelModal();showToast('Chat cleared');}
-function openUnModal(){
-  const modal=document.getElementById('un-modal'),inp=document.getElementById('un-input');
-  inp.value=window._myName||localStorage.getItem('cs_username')||'';
-  modal.classList.remove('hidden');
-  setTimeout(()=>inp.focus(),100);
-}
-function closeUnModal(){document.getElementById('un-modal').classList.add('hidden');}
-function saveUsername(){
-  const val=document.getElementById('un-input').value.trim();
-  if(val.length<3){showToast('Min 3 characters');return;}
-  if(val.length>20){showToast('Max 20 characters');return;}
-  if(!/^[a-zA-Z0-9_]+$/.test(val)){showToast('Letters, numbers, _ only');return;}
-  localStorage.setItem('cs_username',val);
-  window._myName=val;
-  const btn=document.getElementById('un-btn');
-  if(btn)btn.textContent='👤 '+val;
-  if(window._updatePresName)window._updatePresName(val);
-  closeUnModal();
-  showToast('Username saved: '+val);
-}
-/* =================== CHAT SHARE MODAL =================== */
-function openShareModal(){
-  document.getElementById('share-modal').classList.remove('hidden');
-  document.getElementById('share-search-input').value='';
-  loadShareTrending();
-}
-function closeShareModal(){document.getElementById('share-modal').classList.add('hidden');}
-async function loadShareTrending(){
-  const res=document.getElementById('share-results');if(!res)return;
-  res.innerHTML='<div class="share-loading"><div class="small-ring"></div></div>';
-  try{
-    const[mv,tv]=await Promise.all([api('/trending/movie/week'),api('/trending/tv/week')]);
-    const combined=[...mv.results.map(r=>({...r,media_type:'movie'})),...tv.results.map(r=>({...r,media_type:'tv'}))];
-    combined.sort((a,b)=>b.popularity-a.popularity);
-    shareItems=combined.filter(i=>i.poster_path).slice(0,30);
-    renderShareGrid(shareItems);
-  }catch(e){res.innerHTML='<div style="padding:20px;text-align:center;font-size:12px;color:var(--text-light)">Failed to load</div>';}
-}
-function searchShareItems(q){
-  clearTimeout(shareDebounce);
-  if(!q.trim()){loadShareTrending();return;}
-  shareDebounce=setTimeout(async()=>{
-    const res=document.getElementById('share-results');if(!res)return;
-    res.innerHTML='<div class="share-loading"><div class="small-ring"></div></div>';
-    try{
-      const[mv,tv]=await Promise.all([api('/search/movie',{query:q}),api('/search/tv',{query:q})]);
-      const combined=[...mv.results.map(r=>({...r,media_type:'movie'})),...tv.results.map(r=>({...r,media_type:'tv'}))].filter(r=>r.poster_path);
-      combined.sort((a,b)=>b.popularity-a.popularity);
-      shareItems=combined.slice(0,30);
-      renderShareGrid(shareItems);
-    }catch(e){res.innerHTML='<div style="padding:20px;text-align:center;font-size:12px;color:var(--text-light)">Search failed</div>';}
-  },300);
-}
-function renderShareGrid(items){
-  const res=document.getElementById('share-results');if(!res)return;
-  if(!items.length){res.innerHTML='<div style="padding:20px;text-align:center;font-size:12px;color:var(--text-light)">No results</div>';return;}
-  res.innerHTML=`<div class="share-grid">${items.map(item=>{
-    const t=item.title||item.name||'';
-    const p=imgUrl(item.poster_path,'w342');
-    const mt=item.media_type||'movie';
-    const yr=fmtYear(item.release_date||item.first_air_date);
-    const id=item.id;
-    return`<div class="share-grid-item" onclick="shareToChat(${id},'${escA(mt)}','${escA(t)}','${escA(p||'')}','${yr}')">
-      ${p?`<img src="${p}" alt="${escH(t)}" loading="lazy" onerror="this.outerHTML='<div class=share-grid-item-ph>🎬</div>'">`:`<div class="share-grid-item-ph">🎬</div>`}
-      <div class="share-grid-label">${escH(t)}</div>
-    </div>`;
-  }).join('')}</div>`;
-}
-function shareToChat(id,type,title,poster,year){
-  const numId=Number(id);
-  if(!numId){showToast('Invalid item');return;}
-  closeShareModal();
-  const myId=window._myUid||localStorage.getItem('cs_uid');
-  const myName=window._myName||localStorage.getItem('cs_username')||'User';
-  let posterUrl=poster||'';
-  if(posterUrl&&!posterUrl.startsWith('http'))posterUrl=`https://image.tmdb.org/t/p/w342${posterUrl}`;
-  const msgData={type:'movie',mediaId:numId,mediaType:String(type),mediaTitle:String(title),poster:posterUrl,year:String(year||''),uid:myId,username:myName};
-  if(window._sendMsg)window._sendMsg(msgData);
-}
+
 /* =================== INIT =================== */
 async function init(){
-  const storedName=localStorage.getItem('cs_username');
-  if(storedName){const btn=document.getElementById('un-btn');if(btn)btn.textContent='👤 '+storedName;}
   await buildHomeView();
   document.getElementById('global-loading').style.display='none';
-  // ---- Handle deep links AFTER the home view is built ----
-  // If the URL contains a deep-link hash (e.g. #detail/movie/550),
-  // open that detail page. The home view is built first so the
-  // back button works correctly.
   handleDeepLink();
+  window._onPlaylistsChange=()=>{
+    if(document.getElementById('mylist-view').classList.contains('active')){
+      const body=document.getElementById('mylist-tab-body');
+      if(body) renderPlaylistsTab(body);
+    }
+  };
 }
 init();
 </script>
