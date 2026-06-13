@@ -371,7 +371,7 @@ window.saveUid=saveUid;
 /* =================== SHARE =================== */
 function shareDetail(id,type,title){
   const url=`${SITE_URL}/#detail/${type}/${id}`;
-  if(navigator.share){navigator.share({title,text:`Check out "${title}" on CineStream!`,url}).catch(()=>{});}
+  if(navigator.share){navigator.share({title,text:`Check out "${title}" on justwatchh!`,url}).catch(()=>{});}
   else{navigator.clipboard&&navigator.clipboard.writeText(url).then(()=>showToast('Link copied!'));}
 }
 function sharePlaylist(ownerUid,plId,plName,e){
