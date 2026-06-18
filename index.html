@@ -242,12 +242,39 @@ window._fetchSharedPlaylist = async (uid,plId) => { const snap=await get(ref(db,
 /* ── Search Engines ── */
 const engRef = ref(db,'search_engines');
 let fbEngines=[],activeEngId=null;
-onValue(engRef,snap=>{ fbEngines=[]; if(snap.exists())snap.forEach(ch=>{fbEngines.push({fbKey:ch.key,...ch.val()});}); window._fbEngines=fbEngines; refreshEngUI(); renderEngList(); });
+function sortEngines(){
+  fbEngines.sort((a,b)=>{
+    const ao=Number.isFinite(Number(a.order))?Number(a.order):a._idx;
+    const bo=Number.isFinite(Number(b.order))?Number(b.order):b._idx;
+    if(ao!==bo)return ao-bo;
+    return String(a.name||'').localeCompare(String(b.name||''));
+  });
+}
+onValue(engRef,snap=>{
+  fbEngines=[];
+  let idx=0;
+  if(snap.exists())snap.forEach(ch=>{fbEngines.push({fbKey:ch.key,_idx:idx++,...ch.val()});});
+  sortEngines();
+  window._fbEngines=fbEngines;
+  refreshEngUI();
+  renderEngList();
+});
 window._fbEngines=fbEngines;
 window._activeEngId=()=>activeEngId;
 window._setActiveEngId=id=>{activeEngId=id;};
-window._addEngineFB=(name,url,domain,desc)=>push(engRef,{name,url,domain,desc:desc||'',addedBy:myUid,ts:serverTimestamp()});
+window._addEngineFB=(name,url,domain,desc)=>push(engRef,{name,url,domain,desc:desc||'',addedBy:myUid,order:Date.now(),ts:serverTimestamp()});
 window._deleteEngineFB=key=>remove(ref(db,`search_engines/${key}`));
+window._moveEngineFB=async(key,dir)=>{
+  sortEngines();
+  const i=fbEngines.findIndex(e=>e.fbKey===key);
+  if(i<0)return;
+  const ni=i+dir;
+  if(ni<0||ni>=fbEngines.length)return;
+  const reordered=[...fbEngines];
+  const [item]=reordered.splice(i,1);
+  reordered.splice(ni,0,item);
+  await Promise.all(reordered.map((e,idx)=>set(ref(db,`search_engines/${e.fbKey}/order`),(idx+1)*1000)));
+};
 
 function faviconUrl(domain){return`https://www.google.com/s2/favicons?domain=${domain}&sz=64`;}
 window.faviconUrl=faviconUrl;
@@ -255,10 +282,24 @@ window.faviconUrl=faviconUrl;
 function refreshEngUI(){ const wrap=document.getElementById('ws-engines-wrap'); if(wrap)renderEngButtons(wrap); renderEngTableInDetail(); }
 function renderEngButtons(wrap){ if(!fbEngines.length){wrap.innerHTML='<div class="ws-no-engines">No search engines — tap "Manage" to add one.</div>';return;} if(!activeEngId||!fbEngines.find(e=>e.fbKey===activeEngId))activeEngId=fbEngines[0].fbKey; wrap.innerHTML=fbEngines.map(e=>{const fav=faviconUrl(e.domain||e.url);return`<button class="ws-engine-btn${e.fbKey===activeEngId?' active':''}" onclick="selectEng('${e.fbKey}')" id="eng-btn-${e.fbKey}"><span class="ws-engine-logo"><img src="${fav}" alt="${escH(e.name)}" onerror="this.style.display='none'"/></span>${escH(e.name)}</button>`;}).join('');}
 function renderEngTableInDetail(){ const tbody=document.getElementById('eng-tbl-body'); if(!tbody)return; if(!fbEngines.length){tbody.innerHTML=`<tr><td colspan="4" class="no-eng-row">No engines added yet.</td></tr>`;return;} tbody.innerHTML=fbEngines.map(e=>{const fav=faviconUrl(e.domain||e.url);return`<tr><td class="et-logo-cell"><div class="et-logo-wrap"><img src="${fav}" alt="${escH(e.name)}" onerror="this.style.display='none'"/></div></td><td class="et-name">${escH(e.name)}</td><td class="et-desc">${escH(e.desc||'')}</td><td><button class="et-search-btn" onclick="wsGoWith('${escA(e.fbKey)}')">Search</button></td></tr>`;}).join('');}
-function renderEngList(){ const list=document.getElementById('eng-list'); if(!list)return; if(!fbEngines.length){list.innerHTML='<div class="eng-no-engines">No engines yet — add one above!</div>';return;} list.innerHTML=fbEngines.map(e=>{const fav=faviconUrl(e.domain||e.url);return`<div class="eng-item"><div class="eng-item-logo"><img src="${fav}" alt="${escH(e.name)}" onerror="this.style.display='none'"/></div><div class="eng-item-info"><div class="eng-item-name">${escH(e.name)}</div><div class="eng-item-desc">${escH(e.desc||e.url)}</div></div><button class="eng-item-del" onclick="deleteEngine('${e.fbKey}')">✕</button></div>`;}).join('');}
+function renderEngList(){
+  const list=document.getElementById('eng-list');
+  if(!list)return;
+  if(!fbEngines.length){list.innerHTML='<div class="eng-no-engines">No engines yet — add one above!</div>';return;}
+  list.innerHTML=fbEngines.map((e,i)=>{const fav=faviconUrl(e.domain||e.url);return`<div class="eng-item">
+    <div class="eng-reorder">
+      <button class="eng-order-btn" onclick="moveEngine('${e.fbKey}',-1)" ${i===0?'disabled':''} title="Move up" aria-label="Move ${escH(e.name)} up">↑</button>
+      <button class="eng-order-btn" onclick="moveEngine('${e.fbKey}',1)" ${i===fbEngines.length-1?'disabled':''} title="Move down" aria-label="Move ${escH(e.name)} down">↓</button>
+    </div>
+    <div class="eng-item-logo"><img src="${fav}" alt="${escH(e.name)}" onerror="this.style.display='none'"/></div>
+    <div class="eng-item-info"><div class="eng-item-name">${escH(e.name)}</div><div class="eng-item-desc">${escH(e.desc||e.url)}</div></div>
+    <button class="eng-item-del" onclick="deleteEngine('${e.fbKey}')">✕</button>
+  </div>`;}).join('');
+}
 
 window.selectEng=key=>{activeEngId=key;document.querySelectorAll('.ws-engine-btn').forEach(b=>b.classList.remove('active'));const btn=document.getElementById('eng-btn-'+key);if(btn)btn.classList.add('active');};
 window.deleteEngine=key=>window._deleteEngineFB(key);
+window.moveEngine=(key,dir)=>{if(window._moveEngineFB)window._moveEngineFB(key,dir);};
 function extractDomain(url){try{return new URL(url).hostname.replace(/^www\./,'');}catch(e){return null;}}
 function domainToName(domain){if(!domain)return'';const n=domain.split('.')[0];return n.charAt(0).toUpperCase()+n.slice(1);}
 window.previewEngine=url=>{const prev=document.getElementById('eng-preview'),img=document.getElementById('eng-preview-img'),nameEl=document.getElementById('eng-preview-name'),domEl=document.getElementById('eng-preview-domain');if(!prev||!img||!nameEl||!domEl)return;const domain=extractDomain(url);if(!domain||!url.includes('{query}')){prev.classList.remove('show');return;}img.src=faviconUrl(domain);nameEl.textContent=domainToName(domain);domEl.textContent=domain;prev.classList.add('show');};
