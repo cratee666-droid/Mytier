@@ -4,7 +4,7 @@
 <meta name="msvalidate.01" content="44FCC46C00C6835F9DB7281DF8C4263A" />
 <meta name="yandex-verification" content="c92c192c363fc5a6" />
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
 <meta name="description" content="Download latest Bollywood, Hollywood & Tamil movies for free. HD, 1080p, 4K quality available.">
 <meta name="keywords" content="download movies, free movies, HD movies, bollywood movies download, hollywood movies, justwatchh">
 <meta name="robots" content="index, follow">
@@ -17,6 +17,13 @@
 <link rel="icon" type="image/png" href="https://ibb.co/1fkNFcZy">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="application-name" content="Justwatchh">
+<meta name="apple-mobile-web-app-title" content="Justwatchh">
+<meta name="mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="format-detection" content="telephone=no">
+<meta name="color-scheme" content="light dark">
+<link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#FAF8F5">
 <title>Justwatchh</title>
 <link rel="stylesheet" href="style.css">
@@ -287,6 +294,30 @@ let recentSearches=JSON.parse(localStorage.getItem('cs_recent')||'[]');
 let searchBuilt=false,moviesBuilt=false,tvBuilt=false;
 let activePlId=null;
 let pendingPlItem=null;
+
+/* =================== THEME MODE =================== */
+const THEME_KEY='jw_theme';
+function applyTheme(theme){
+  const next=theme==='dark'?'dark':'light';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem(THEME_KEY,next);
+  const meta=document.querySelector('meta[name="theme-color"]');
+  if(meta)meta.setAttribute('content',next==='dark'?'#0F1115':'#FAF8F5');
+  const label=document.getElementById('theme-card-label');
+  if(label)label.textContent=next==='dark'?'Dark Mode':'Light Mode';
+  const icon=document.getElementById('theme-card-icon');
+  if(icon)icon.textContent=next==='dark'?'☀️':'🌙';
+}
+function toggleTheme(){
+  const current=document.documentElement.getAttribute('data-theme')||localStorage.getItem(THEME_KEY)||'light';
+  applyTheme(current==='dark'?'light':'dark');
+  if(typeof showToast==='function')showToast((current==='dark'?'Light':'Dark')+' mode enabled');
+}
+(function initTheme(){
+  const saved=localStorage.getItem(THEME_KEY);
+  const prefersDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(saved||(prefersDark?'dark':'light'));
+})();
 
 /* =================== SVG ICONS =================== */
 const IC={
@@ -685,6 +716,16 @@ function buildMyListView(){
       <div class="playlist-section" id="mylist-pl-section"></div>
     </div>
     <div class="mylist-bottom-bar">
+      <div class="theme-card">
+        <div class="theme-card-info">
+          <div class="theme-card-title">Appearance</div>
+          <div class="theme-card-sub">Switch between light and dark mode.</div>
+        </div>
+        <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle dark mode">
+          <span class="theme-toggle-icon" id="theme-card-icon">🌙</span>
+          <span id="theme-card-label">Light Mode</span>
+        </button>
+      </div>
       <button class="pl-create-fab" onclick="openPlCreateModal()">
         <span class="pl-create-fab-icon">${IC.add}</span>
         <span class="pl-create-fab-label">New Playlist</span>
@@ -710,6 +751,7 @@ function buildMyListView(){
         </button>
       </div>
     </div>`;
+  applyTheme(document.documentElement.getAttribute('data-theme')||localStorage.getItem(THEME_KEY)||'light');
   renderPlaylistsSection(document.getElementById('mylist-pl-section'));
   window._onPlaylistsChange=()=>{
     const sec=document.getElementById('mylist-pl-section');
@@ -1055,7 +1097,7 @@ async function renderDetail(dv,detail,credits,videos,images,type,providersData){
   const safeTitle=escA(title),safePoster=escA(detail.poster_path||'');
   dv.innerHTML=`
     <button class="detail-back" onclick="closeDetail()">‹</button>
-    <button class="detail-share-btn" onclick="shareDetail(${detail.id},'${type}','${safeTitle}')" title="Share">${IC.share}</button>
+    <button class="detail-share-btn detail-share-side-btn" onclick="shareDetail(${detail.id},'${type}','${safeTitle}')" title="Share">${IC.share}</button>
     <button class="detail-playlist-btn" onclick="openPlPicker(${detail.id},'${type}','${safeTitle}','${safePoster}')" title="Add to Playlist">${IC.plus}</button>
     ${trailerSec}
     <div class="detail-body">
