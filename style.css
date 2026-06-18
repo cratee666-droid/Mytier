@@ -1140,3 +1140,37 @@ img{max-width:100%;height:auto}
   .bnav-item span{display:none}
   .detail-trailer-top{max-height:60vh}
 }
+
+/* =================== SEARCH ENGINE ORDER CONTROLS =================== */
+.eng-reorder{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  flex-shrink:0;
+}
+.eng-order-btn{
+  width:30px;
+  height:24px;
+  min-width:30px;
+  min-height:24px;
+  border:1px solid var(--taupe);
+  border-radius:7px;
+  background:var(--cream);
+  color:var(--accent);
+  font-size:14px;
+  font-weight:900;
+  line-height:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+.eng-order-btn:active:not(:disabled){background:var(--tan);transform:scale(.94)}
+.eng-order-btn:disabled{opacity:.28;color:var(--text-light);cursor:default}
+.eng-item{padding-left:8px}
+@media (max-width:380px){
+  .eng-item{gap:8px;padding:9px 8px}
+  .eng-order-btn{width:28px;min-width:28px}
+}
