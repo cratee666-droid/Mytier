@@ -743,116 +743,145 @@ function renderResults(q){
 function setFilter(type,q){currentFilter=type;renderResults(q);}
 
 /* =================== MY LIST VIEW =================== */
+function getPlaylistStats(){
+  const pls=window._playlists||{};
+  const keys=Object.keys(pls);
+  let titles=0;
+  keys.forEach(k=>{ titles+=pls[k]&&pls[k].items?Object.keys(pls[k].items).length:0; });
+  return {playlists:keys.length,titles};
+}
+function updateMyListStats(){
+  const st=getPlaylistStats();
+  const p=document.getElementById('ml-stat-playlists');
+  const t=document.getElementById('ml-stat-titles');
+  const u=document.getElementById('ml-user-id');
+  const c=document.getElementById('ml-section-count');
+  if(p)p.textContent=st.playlists;
+  if(t)t.textContent=st.titles;
+  if(u)u.textContent=window._myUid||'...';
+  if(c)c.textContent=`${st.playlists} playlist${st.playlists!==1?'s':''} • ${st.titles} title${st.titles!==1?'s':''}`;
+}
 function buildMyListView(){
   const v=document.getElementById('mylist-view');
+  const st=getPlaylistStats();
   v.innerHTML=`
-    <div class="mylist-scroll-area" id="mylist-scroll">
-      <div class="mylist-top-header">
-        <div class="mylist-top-icon">${IC.playlist}</div>
-        <div class="mylist-top-info">
-          <h2 class="mylist-top-title">My Playlists</h2>
-          <p class="mylist-top-sub">Create &amp; share your collections</p>
-        </div>
-      </div>
-      <div class="playlist-section" id="mylist-pl-section"></div>
-    </div>
-    <div class="mylist-bottom-bar">
-      <div class="theme-card">
-        <div class="theme-card-info">
-          <div class="theme-card-title">Appearance</div>
-          <div class="theme-card-sub">Switch between light and dark mode.</div>
-        </div>
-        <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle dark mode">
-          <span class="theme-toggle-icon" id="theme-card-icon">🌙</span>
-          <span id="theme-card-label">Light Mode</span>
-        </button>
-      </div>
-      <button class="pl-create-fab" onclick="openPlCreateModal()">
-        <span class="pl-create-fab-icon">${IC.add}</span>
-        <span class="pl-create-fab-label">New Playlist</span>
-      </button>
-      <div class="uid-card">
-        <div class="uid-card-left">
-          <div class="uid-card-icon-wrap">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
-              <circle cx="8.5" cy="12" r="2" fill="currentColor"/>
-              <path d="M13 9h5M13 12h5M13 15h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="uid-card-text">
-            <div class="uid-card-label">Your User ID</div>
-            <div class="uid-card-val" id="uid-card-display">${escH(window._myUid||'...')}</div>
-            <div class="uid-card-hint">Share your ID so others can find your playlists. Use same ID on any device.</div>
+    <div class="mylist-scroll-area mylist-redesign" id="mylist-scroll">
+      <div class="ml-hero-card">
+        <div class="ml-hero-top">
+          <div class="ml-hero-icon">${IC.playlist}</div>
+          <div class="ml-hero-copy">
+            <div class="ml-kicker">Personal Library</div>
+            <h2>My List</h2>
+            <p>Save, organize and share your favourite movies and shows.</p>
           </div>
         </div>
-        <button class="uid-card-btn" onclick="openUidModal()">
-          <span class="uid-card-btn-icon">${IC.edit}</span>
-          <span>Change ID</span>
+        <div class="ml-user-strip" onclick="openUidModal()">
+          <span class="ml-user-label">User ID</span>
+          <span class="ml-user-value" id="ml-user-id">${escH(window._myUid||'...')}</span>
+          <span class="ml-user-edit">Edit</span>
+        </div>
+      </div>
+
+      <div class="ml-stats-grid">
+        <div class="ml-stat-card">
+          <span class="ml-stat-num" id="ml-stat-playlists">${st.playlists}</span>
+          <span class="ml-stat-label">Playlists</span>
+        </div>
+        <div class="ml-stat-card">
+          <span class="ml-stat-num" id="ml-stat-titles">${st.titles}</span>
+          <span class="ml-stat-label">Saved titles</span>
+        </div>
+      </div>
+
+      <div class="ml-actions-grid">
+        <button class="ml-action-card primary" onclick="openPlCreateModal()">
+          <span class="ml-action-icon">${IC.add}</span>
+          <span><b>New Playlist</b><small>Create a collection</small></span>
+        </button>
+        <button class="ml-action-card" onclick="toggleTheme()" aria-label="Toggle dark mode">
+          <span class="ml-action-icon" id="theme-card-icon">🌙</span>
+          <span><b id="theme-card-label">Light Mode</b><small>Change appearance</small></span>
         </button>
       </div>
+
+      <div class="ml-section-head">
+        <div>
+          <div class="ml-section-kicker">Collections</div>
+          <h3>Your Playlists</h3>
+        </div>
+        <div class="ml-section-count" id="ml-section-count">${st.playlists} playlist${st.playlists!==1?'s':''} • ${st.titles} title${st.titles!==1?'s':''}</div>
+      </div>
+      <div class="playlist-section ml-playlist-section" id="mylist-pl-section"></div>
     </div>`;
   applyTheme(document.documentElement.getAttribute('data-theme')||localStorage.getItem(THEME_KEY)||'light');
   renderPlaylistsSection(document.getElementById('mylist-pl-section'));
+  updateMyListStats();
   window._onPlaylistsChange=()=>{
     const sec=document.getElementById('mylist-pl-section');
     if(sec)renderPlaylistsSection(sec);
-    const disp=document.getElementById('uid-card-display');
-    if(disp)disp.textContent=window._myUid||'...';
+    updateMyListStats();
   };
 }
 
 function renderPlaylistsSection(sec){
   const pls=window._playlists||{};
-  const keys=Object.keys(pls);
+  const keys=Object.keys(pls).sort((a,b)=>{
+    const at=pls[a]&&pls[a].createdAt?pls[a].createdAt:0;
+    const bt=pls[b]&&pls[b].createdAt?pls[b].createdAt:0;
+    return bt-at;
+  });
   const ownerUid=window._myUid||'';
   if(!keys.length){
     sec.innerHTML=`
-      <div class="pl-empty">
-        <div class="pl-empty-icon">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-            <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/>
-            <path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <div class="pl-empty ml-empty-redesign">
+        <div class="pl-empty-icon ml-empty-icon">
+          <svg width="58" height="58" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="4" width="18" height="16" rx="4" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/>
+            <path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
           </svg>
         </div>
-        <div class="pl-empty-title">No playlists yet</div>
-        <div class="pl-empty-sub">Tap <b>New Playlist</b> below to get started</div>
+        <div class="pl-empty-title">Start your library</div>
+        <div class="pl-empty-sub">Create playlists for favourites, watch later, Bollywood, K-drama or anything you like.</div>
+        <button class="ml-empty-btn" onclick="openPlCreateModal()">${IC.add} Create first playlist</button>
       </div>`;
     return;
   }
   sec.innerHTML=keys.map(plId=>{
-    const pl=pls[plId];
+    const pl=pls[plId]||{};
     const items=pl.items?Object.values(pl.items):[];
     const count=items.length;
-    const thumbs=items.slice(0,3).map(it=>{
-      const src=it.poster?`${IMG}w92${it.poster}`:null;
+    const thumbs=items.slice(0,4).map(it=>{
+      const src=it.poster?`${IMG}w185${it.poster}`:null;
       return src
-        ?`<img class="pl-thumb" src="${src}" alt="" onerror="this.outerHTML='<div class=pl-thumb-ph><svg width=10 height=10 viewBox=\\'0 0 24 24\\' fill=\\'currentColor\\'><path d=\\'M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z\\'/></svg></div>'">`
-        :`<div class="pl-thumb-ph"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg></div>`;
+        ?`<img class="pl-thumb" src="${src}" alt="" loading="lazy" onerror="this.outerHTML='<div class=pl-thumb-ph>🎬</div>'">`
+        :`<div class="pl-thumb-ph">🎬</div>`;
     }).join('');
+    const latest=items[0]&&items[0].title?items[0].title:'Add titles from detail pages';
     return`
-      <div class="pl-card" onclick="openPlaylist('${escA(plId)}')">
-        <div class="pl-card-thumbs">
-          ${thumbs||'<div class="pl-thumb-ph"><svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg></div>'}
+      <div class="pl-card ml-pl-card" onclick="openPlaylist('${escA(plId)}')">
+        <div class="pl-card-thumbs ml-pl-collage">
+          ${thumbs||'<div class="pl-thumb-ph">+</div>'}
         </div>
-        <div class="pl-card-info">
+        <div class="pl-card-info ml-pl-info">
           <div class="pl-card-name">${escH(pl.name||'Untitled')}</div>
-          <div class="pl-card-meta">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg>
-            ${count} title${count!==1?'s':''}
+          <div class="pl-card-meta ml-pl-meta">
+            <span>${count} title${count!==1?'s':''}</span>
+            <span>•</span>
+            <span>${escH(latest)}</span>
           </div>
         </div>
-        <div class="pl-card-actions">
-          <button class="pl-action-btn pl-share-btn" onclick="sharePlaylist('${escA(ownerUid)}','${escA(plId)}','${escA(pl.name||'Untitled')}',event)" title="Share">
+        <div class="pl-card-actions ml-pl-actions">
+          <button class="pl-action-btn pl-share-btn" onclick="sharePlaylist('${escA(ownerUid)}','${escA(plId)}','${escA(pl.name||'Untitled')}',event)" title="Share" aria-label="Share playlist">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
           </button>
-          <button class="pl-action-btn pl-del-btn" onclick="event.stopPropagation();confirmDeletePlaylist('${escA(plId)}','${escA(pl.name||'Untitled')}')" title="Delete">
+          <button class="pl-action-btn pl-del-btn" onclick="event.stopPropagation();confirmDeletePlaylist('${escA(plId)}','${escA(pl.name||'Untitled')}')" title="Delete" aria-label="Delete playlist">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
           </button>
         </div>
       </div>`;
   }).join('');
 }
+
 
 /* open playlist detail */
 function openPlaylist(plId){
@@ -1045,7 +1074,7 @@ function renderPerson(pv,person,credits){
       <div class="filmography-grid">${filmGrid}</div>
     </div>`;
 }
-function expandBio(id,btn){const el=document.getElementById(id);if(el){el.classList.remo ('person-bio-short');btn.style.display='none';}}
+function expandBio(id,btn){const el=document.getElementById(id);if(el){el.classList.remove('person-bio-short');btn.style.display='none';}}
 function closePerson(){const prev=prevViewStack.pop();showView(prev||'home-view');}
 
 /* =================== DETAIL =================== */
