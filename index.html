@@ -6,14 +6,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="description" content="Download latest Bollywood, Hollywood & Tamil movies for free. HD, 1080p, 4K quality available.">
-<meta name="keywords" content="download movies, free movies, HD movies, bollywood movies download, hollywood movies, justwatchh">
+<meta name="keywords" content="download movies, free movies, HD movies, bollywood movies download, hollywood movies, cinestream">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://justwatchh.netlify.app/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="justwatchh - Download Latest Movies Free">
+<meta property="og:title" content="CineStream - Download Latest Movies Free">
 <meta property="og:description" content="Download HD Movies Free - Bollywood, Hollywood, Tamil, Telugu">
 <meta property="og:url" content="https://justwatchh.netlify.app/">
-<meta property="og:site_name" content="justwatchh">
+<meta property="og:site_name" content="CineStream">
 <link rel="icon" type="image/png" href="https://ibb.co/1fkNFcZy">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -47,6 +47,7 @@
 
 <div id="app">
   <div class="copy-toast" id="copy-toast"></div>
+  <div class="preview-overlay hidden" id="preview-overlay"></div>
   <div class="loading-overlay" id="global-loading"><div class="ring"></div><div class="load-text">Loading</div></div>
 
   <!-- PLAYLIST CREATE MODAL -->
@@ -345,6 +346,47 @@ function copyTitle(t){
   else{const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);}
   showToast(`Copied: "${t.substring(0,28)}${t.length>28?'…':''}"`);
 }
+function copyActorName(name){
+  if(navigator.clipboard)navigator.clipboard.writeText(name).catch(()=>{});
+  else{const ta=document.createElement('textarea');ta.value=name;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);}
+  showToast(`Copied: "${name}"`);
+}
+function showPreview(id,type,title,poster,rating,year,typeLabel,overview){
+  const overlay=document.getElementById('preview-overlay');
+  const posterImg=poster?`<img class="preview-poster" src="${poster}" alt="${escH(title)}" onerror="this.style.display='none'"/>`:`<div style="width:100%;aspect-ratio:2/3;background:var(--beige);display:flex;align-items:center;justify-content:center;font-size:48px">🎬</div>`;
+  const safeId=parseInt(id),safeType=type;
+  overlay.innerHTML=`
+    <div class="preview-card" onclick="event.stopPropagation()">
+      <div class="preview-poster-wrap">
+        ${posterImg}
+        <span class="preview-badge">${typeLabel}</span>
+        <button class="preview-close" onclick="closePreview()">✕</button>
+      </div>
+      <div class="preview-info">
+        <div class="preview-title">${escH(title)}</div>
+        <div class="preview-meta">
+          ${rating?`<span class="preview-rating">${IC.star} ${rating}</span>`:''}
+          ${year?`<span class="preview-year">${year}</span>`:''}
+          <span class="preview-type">${typeLabel}</span>
+        </div>
+        <div class="preview-ov">${escH(overview)}</div>
+        <div class="preview-btns">
+          <button class="preview-btn preview-btn-primary" onclick="closePreview();openDetail(${id},'${type}')">${IC.play} View Details</button>
+          <button class="preview-btn preview-btn-secondary" onclick="openPlPicker(${id},'${type}','${escA(title)}','${poster?escA(poster.replace(IMG+'w342','')):''}')">${IC.plus} Add</button>
+        </div>
+      </div>
+    </div>`;
+  overlay.classList.remove('hidden');
+}
+function closePreview(){
+  document.getElementById('preview-overlay').classList.add('hidden');
+}
+document.addEventListener('click',function(e){
+  const overlay=document.getElementById('preview-overlay');
+  if(!e.target.closest('.preview-card')&&!e.target.closest('.result-card')){
+    closePreview();
+  }
+});
 
 /* =================== UID MANAGEMENT =================== */
 function openUidModal(){
@@ -378,7 +420,7 @@ function shareDetail(id,type,title){
 function sharePlaylist(ownerUid,plId,plName,e){
   if(e)e.stopPropagation();
   const url=`${SITE_URL}/#playlist/${ownerUid}/${plId}`;
-  if(navigator.share){navigator.share({title:plName,text:`Check out my playlist "${plName}" on justwatchh!`,url}).catch(()=>{});}
+  if(navigator.share){navigator.share({title:plName,text:`Check out my playlist "${plName}" on CineStream!`,url}).catch(()=>{});}
   else{navigator.clipboard&&navigator.clipboard.writeText(url).then(()=>showToast('Playlist link copied!'));}
 }
 
@@ -479,9 +521,7 @@ async function buildHomeView(){
   hv.innerHTML=`
     <div class="hero"><div class="hero-bg" id="hero-bg"></div><div class="hero-grad"></div><div class="hero-content" id="hero-content"><div class="small-ring"></div></div></div>
     <div class="hero-dots" id="hero-dots"></div>
-    <div class="genres-scroll" id="home-genres"></div>
     ${secH('tr-movie','Trending Movies')}${secH('pop-movie','Popular Movies')}${secH('tr-tv','Trending TV')}${secH('pop-tv','Popular TV Shows')}`;
-  loadHomeGenres();
   try{
     const d=await api('/trending/movie/week');
     heroItems=d.results.filter(i=>i.backdrop_path).slice(0,8);
@@ -491,24 +531,6 @@ async function buildHomeView(){
   loadRow('pop-movie','/movie/popular','movie');
   loadRow('tr-tv','/trending/tv/week','tv');
   loadRow('pop-tv','/tv/popular','tv');
-}
-async function loadHomeGenres(){
-  const bar=document.getElementById('home-genres');if(!bar)return;
-  try{
-    const[mv,tv]=await Promise.all([api('/genre/movie/list'),api('/genre/tv/list')]);
-    const all=[...mv.genres,...tv.genres];all.forEach(g=>{genreMap[g.id]=g.name;});
-    const unique=[...new Map(all.map(g=>[g.id,g])).values()].slice(0,22);
-    bar.innerHTML=unique.map(g=>`<div class="genre-chip" onclick="homeGenre(${g.id},this)">${g.name}</div>`).join('');
-  }catch(e){if(bar)bar.style.display='none';}
-}
-async function homeGenre(id,el){
-  document.querySelectorAll('#home-genres .genre-chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');
-  const rm=document.getElementById('tr-movie'),rt=document.getElementById('tr-tv');
-  if(rm)rm.innerHTML=skels(5);if(rt)rt.innerHTML=skels(5);
-  try{
-    const[mv,tv]=await Promise.all([api('/discover/movie',{with_genres:id,sort_by:'popularity.desc'}),api('/discover/tv',{with_genres:id,sort_by:'popularity.desc'})]);
-    if(rm)renderRow(rm,mv.results,'movie');if(rt)renderRow(rt,tv.results,'tv');
-  }catch(e){if(rm)rm.innerHTML=errBox('Filter failed');}
 }
 function renderHero(){
   if(!heroItems.length)return;
@@ -534,48 +556,22 @@ function startHeroTimer(){heroTimer=setInterval(()=>{heroIdx=(heroIdx+1)%heroIte
 async function buildMoviesView(){
   const mv=document.getElementById('movies-view');
   mv.innerHTML=`<div class="vtbar"><div class="section-bar"></div><h2>Movies</h2></div>
-    <div class="genres-scroll" id="movie-genres"></div>
     ${secH('mv-trending','Trending')}${secH('mv-popular','Popular')}${secH('mv-toprated','Top Rated')}${secH('mv-upcoming','Upcoming')}`;
-  loadMovieGenres();
   loadRow('mv-trending','/trending/movie/week','movie');
   loadRow('mv-popular','/movie/popular','movie');
   loadRow('mv-toprated','/movie/top_rated','movie');
   loadRow('mv-upcoming','/movie/upcoming','movie');
-}
-async function loadMovieGenres(){
-  const bar=document.getElementById('movie-genres');if(!bar)return;
-  try{const d=await api('/genre/movie/list');d.genres.forEach(g=>{genreMap[g.id]=g.name;});bar.innerHTML=d.genres.slice(0,20).map(g=>`<div class="genre-chip" onclick="movieGenre(${g.id},this)">${g.name}</div>`).join('');}
-  catch(e){if(bar)bar.style.display='none';}
-}
-async function movieGenre(id,el){
-  document.querySelectorAll('#movie-genres .genre-chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');
-  const row=document.getElementById('mv-trending');if(!row)return;row.innerHTML=skels(5);
-  try{const d=await api('/discover/movie',{with_genres:id,sort_by:'popularity.desc'});renderRow(row,d.results,'movie');}
-  catch(e){if(row)row.innerHTML=errBox('Filter failed');}
 }
 
 /* =================== TV =================== */
 async function buildTVView(){
   const tv=document.getElementById('tv-view');
   tv.innerHTML=`<div class="vtbar"><div class="section-bar"></div><h2>TV Shows</h2></div>
-    <div class="genres-scroll" id="tv-genres"></div>
     ${secH('tv-trending','Trending')}${secH('tv-popular','Popular')}${secH('tv-toprated','Top Rated')}${secH('tv-airing','Airing Today')}`;
-  loadTVGenres();
   loadRow('tv-trending','/trending/tv/week','tv');
   loadRow('tv-popular','/tv/popular','tv');
   loadRow('tv-toprated','/tv/top_rated','tv');
   loadRow('tv-airing','/tv/airing_today','tv');
-}
-async function loadTVGenres(){
-  const bar=document.getElementById('tv-genres');if(!bar)return;
-  try{const d=await api('/genre/tv/list');d.genres.forEach(g=>{genreMap[g.id]=g.name;});bar.innerHTML=d.genres.slice(0,20).map(g=>`<div class="genre-chip" onclick="tvGenre(${g.id},this)">${g.name}</div>`).join('');}
-  catch(e){if(bar)bar.style.display='none';}
-}
-async function tvGenre(id,el){
-  document.querySelectorAll('#tv-genres .genre-chip').forEach(c=>c.classList.remove('active'));el.classList.add('active');
-  const row=document.getElementById('tv-trending');if(!row)return;row.innerHTML=skels(5);
-  try{const d=await api('/discover/tv',{with_genres:id,sort_by:'popularity.desc'});renderRow(row,d.results,'tv');}
-  catch(e){if(row)row.innerHTML=errBox('Filter failed');}
 }
 
 /* =================== SEARCH =================== */
@@ -584,7 +580,8 @@ function buildSearchView(){
   sv.innerHTML=`<div class="search-view-inner"><div class="search-box-wrap"><div class="search-box" id="search-box">${IC.srch}
     <input type="text" id="main-search-input" placeholder="Movies, shows..." autocomplete="off" inputmode="search"/>
     <button class="search-clear-btn" id="search-clear" onclick="clearSearch()">✕</button></div>
-    <div id="autocomplete-drop"></div></div><div id="search-body"></div></div>`;
+    <div id="autocomplete-drop"></div></div>
+    <div id="search-body"></div></div>`;
   setupSearchInput();renderSearchHome();
 }
 function setupSearchInput(){
@@ -668,7 +665,7 @@ function renderResults(q){
       <button class="filter-btn${currentFilter==='tv'?' active':''}" onclick="setFilter('tv','${escA(q)}')">TV (${allResults.filter(r=>r._t==='tv').length})</button>
     </div>`;
   if(!filtered.length)html+=`<div class="no-results"><div class="no-results-icon">🎬</div><div class="no-results-text">No results</div><div class="no-results-sub">Try different keywords</div></div>`;
-  else html+=`<div class="results-grid">${filtered.map(r=>{const t=r.title||r.name||'';const p=imgUrl(r.poster_path,'w342');return`<div class="result-card" onclick="openDetail(${r.id},'${r._t}')"><img src="${p}" alt="${escH(t)}" loading="lazy" onerror="this.src='${noPoster}'"/></div>`;}).join('')}</div>`;
+  else html+=`<div class="results-grid">${filtered.map(r=>{const t=r.title||r.name||'';const p=imgUrl(r.poster_path,'w342');const rt=r.vote_average?r.vote_average.toFixed(1):'';const yr=r.release_date?fmtYear(r.release_date):(r.first_air_date?fmtYear(r.first_air_date):'');const mt=r._t==='tv'?'TV Show':'Movie';const ov=(r.overview||'No description available.').substring(0,150)+'...';return`<div class="result-card" onclick="showPreview(${r.id},'${r._t}','${escA(t)}','${p||''}','${rt}','${yr}','${mt}','${escA(ov)}')"><img src="${p}" alt="${escH(t)}" loading="lazy" onerror="this.src='${noPoster}'"/></div>`;}).join('')}</div>`;
   html+='</div>';body.innerHTML=html;
 }
 function setFilter(type,q){currentFilter=type;renderResults(q);}
@@ -1054,11 +1051,12 @@ async function renderDetail(dv,detail,credits,videos,images,type,providersData){
       wtwHtml=firstActive?`<div class="where-to-watch"><div class="wtw-title">🎬 Where to Watch</div><div class="wtw-tabs">${tabsHtml}</div>${contentHtml}</div>`:`<div class="where-to-watch"><div class="wtw-title">🎬 Where to Watch</div><div class="wtw-empty">No streaming info available</div></div>`;
     }else{wtwHtml=`<div class="where-to-watch"><div class="wtw-title">🎬 Where to Watch</div><div class="wtw-empty">Not available in your region</div></div>`;}
   }catch(e){wtwHtml='';}
-  const castHtml=cast.length?`<div class="sec-lbl">Cast<div class="sec-lbl-line"></div></div><div class="cast-row">${cast.map(a=>{const ph=imgUrl(a.profile_path,'w185');return`<div class="cast-item" onclick="openPerson(${a.id})"><div class="cast-avatar"><img src="${ph||noAv}" alt="${escH(a.name)}" loading="lazy" onerror="this.src='${noAv}'"/></div><div class="cast-name cast-name-link">${escH(a.name)}</div><div class="cast-char">${escH((a.character||'').substring(0,22))}</div></div>`;}).join('')}</div>`:'';
+  const castHtml=cast.length?`<div class="sec-lbl">Cast<div class="sec-lbl-line"></div></div><div class="cast-row">${cast.map(a=>{const ph=imgUrl(a.profile_path,'w185');return`<div class="cast-item"><div class="cast-avatar" onclick="openPerson(${a.id})"><img src="${ph||noAv}" alt="${escH(a.name)}" loading="lazy" onerror="this.src='${noAv}'"/></div><div class="cast-name cast-name-link" onclick="copyActorName('${escA(a.name)}')">${escH(a.name)} <span class="copy-icon">${IC.copy}</span></div><div class="cast-char">${escH((a.character||'').substring(0,22))}</div></div>`;}).join('')}</div>`:'';
   const safeTitle=escA(title),safePoster=escA(detail.poster_path||'');
   dv.innerHTML=`
     <button class="detail-back" onclick="closeDetail()">‹</button>
     <button class="detail-share-btn" onclick="shareDetail(${detail.id},'${type}','${safeTitle}')" title="Share">${IC.share}</button>
+    <button class="detail-playlist-btn" onclick="openPlPicker(${detail.id},'${type}','${safeTitle}','${safePoster}')" title="Add to Playlist">${IC.plus}</button>
     ${trailerSec}
     <div class="detail-body">
       <div class="dprow">
@@ -1070,14 +1068,13 @@ async function renderDetail(dv,detail,credits,videos,images,type,providersData){
           <div class="ddate">${IC.cal} ${releaseDate}</div>
         </div>
       </div>
-      <button class="add-playlist-btn" onclick="openPlPicker(${detail.id},'${type}','${safeTitle}','${safePoster}')">${IC.plus} Add to Playlist</button>
       <div class="doverview">${escH(overview)}</div>
       ${buildUserScore(detail)}
       ${wtwHtml}
+      ${buildWebSearcher(title)}
       <div class="sec-lbl">Details<div class="sec-lbl-line"></div></div>
       <table class="info-tbl"><tbody>${tRows.map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join('')}</tbody></table>
       ${scrSec}
-      ${buildWebSearcher(title)}
       ${castHtml}
       ${type==='tv'&&validSeasons.length?`<div class="sec-lbl">Episodes<div class="sec-lbl-line"></div></div><div class="season-sel" id="season-sel">${validSeasons.map((s,i)=>`<button class="season-btn${i===0?' active':''}" onclick="loadSeason(${detail.id},${s.season_number},this)">Season ${s.season_number}</button>`).join('')}</div><div class="ep-list" id="ep-list"><div class="small-ring"></div></div>`:''}
     </div>`;
